@@ -1,0 +1,17 @@
+<div #popup
+class="popup-background" 
+[@popupState]="popupState"
+(@popupState.done)="animationStop()">
+    <div class="popup"
+    appClickedOutside 
+    (clickOutside)="closePopup()"
+    [ignoreElementList]="ignoreClickOutside">
+        <div class="popup-header">
+            <div class="popup-close-btn" (click)="closePopup()"></div>
+        </div>
+        <div class="popup-body">
+            <ng-content></ng-content>
+        </div>
+        <div class="popup-footer"></div>
+    </div>
+</div>
