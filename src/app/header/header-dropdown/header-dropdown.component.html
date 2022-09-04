@@ -1,0 +1,49 @@
+<div 
+    class="dropdown" 
+    appClickedOutside 
+    (clickOutside)="onClickedOutside()" 
+    [includeClickedOutside]="[management]"
+    [ignoreElementList]="ignoreClickOutside" 
+    [@dropdownState]="dropDownState"
+    (@dropdownState.start)="$event.element.style.display = 'block'"
+    (@dropdownState.done)="$event.element.style.display = (state ? 'block' : 'none')">
+    <div class="info">
+        <h3>{{ this.user ? this.user.username : 'User Account' }}</h3>
+    </div>
+    <div #management>
+        <ul class="user-management" *ngIf="!this.user">
+            <li class="dropdown-item" (click)="onLoginOptionClicked()">
+                <div class="icon-box">
+                    <fa-icon class="fas fa-user" [icon]="userIcon"></fa-icon>
+                </div>
+                <p>Login</p>
+            </li>
+            <li class="dropdown-item" (click)="onSignUpOptionClick()">
+                <div class="icon-box">
+                    <fa-icon class="fas fa-edit" [icon]="editIcon"></fa-icon>
+                </div>
+                <p>Sign up</p>
+            </li>
+        </ul>
+        <ul class="user-management" *ngIf="this.user">
+            <li class="dropdown-item">
+                <div class="icon-box">
+                    <fa-icon class="fas fa-user" [icon]="userIcon"></fa-icon>
+                </div>
+                <p>My Profile</p>
+            </li>
+            <li class="dropdown-item">
+                <div class="icon-box">
+                    <fa-icon class="fas fa-question-circle" [icon]="questionCircleIcon"></fa-icon>
+                </div>
+                <p>Help</p>
+            </li>
+            <li class="dropdown-item" (click)="onLogout()">
+                <div class="icon-box">
+                    <fa-icon class="fas fa-sign-out-alt" [icon]="signOutAltIcon"></fa-icon>
+                </div>
+                <p>Logout</p>
+            </li>
+        </ul>
+    </div>
+</div>
