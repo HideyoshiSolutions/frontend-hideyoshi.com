@@ -1,0 +1,16 @@
+{
+  "name": "Hideyoshi Portfolio",
+  "short_name": "Hideyoshi",
+  "theme_color": "#2e2e2e",
+  "background_color": "#2e2e2e",
+  "display": "standalone",
+  "scope": "./",
+  "start_url": "./",
+  "icons": [
+    {
+      "src": "assets/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
