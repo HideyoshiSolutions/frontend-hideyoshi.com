@@ -6,5 +6,5 @@ COPY . .
 RUN npm install
 
 
-EXPOSE 5000
+EXPOSE 5000-7000
 ENTRYPOINT ["npm", "start"]
