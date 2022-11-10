@@ -97,6 +97,7 @@ export class HeaderComponent {
 
         this.navSliderStatus = false;
         this.userSliderStatus = false;
+        this.profileDropdownState = false;
     }
 
     private createSignupPopup() {
@@ -119,6 +120,7 @@ export class HeaderComponent {
 
         this.navSliderStatus = false;
         this.userSliderStatus = false;
+        this.profileDropdownState = false;
     }
 
     private closeLoginPopup() {

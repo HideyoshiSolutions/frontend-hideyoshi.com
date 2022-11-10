@@ -13,6 +13,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LoginComponent } from './header-popup/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './header-popup/signup/signup.component';
+import { CallbackComponent } from './header-popup/callback/callback.component';
+import {MatIconModule} from '@angular/material/icon';
 
 
 
@@ -24,7 +26,8 @@ import { SignupComponent } from './header-popup/signup/signup.component';
         UserSliderComponent,
         HeaderDropdownComponent,
         LoginComponent,
-        SignupComponent
+        SignupComponent,
+        CallbackComponent
     ],
     imports: [
         CommonModule,
@@ -33,6 +36,7 @@ import { SignupComponent } from './header-popup/signup/signup.component';
         FontAwesomeModule,
         FormsModule,
         ReactiveFormsModule,
+        MatIconModule,
         SharedModule
     ], exports: [
         HeaderComponent,

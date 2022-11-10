@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { AfterViewInit, Directive, ElementRef, EventEmitter, Inject, Input, OnDestroy, Output, ViewChild } from '@angular/core';
-import { filter, fromEvent, Subscription } from 'rxjs';
+import { combineLatest, combineLatestWith, filter, fromEvent, merge, Subscription } from 'rxjs';
 
 @Directive({
     selector: '[appClickedOutside]'
@@ -8,18 +8,18 @@ import { filter, fromEvent, Subscription } from 'rxjs';
 export class ClickedOutsideDirective implements AfterViewInit, OnDestroy {
 
     @Input()
-        ignoreElementList!: HTMLDivElement[];
+    ignoreElementList!: HTMLDivElement[];
 
     @Input()
-        includeClickedOutside!: HTMLDivElement[];
+    includeClickedOutside!: HTMLDivElement[];
 
     @Input()
-        clickOutsideStopWatching: boolean = false;
+    clickOutsideStopWatching: boolean = false;
 
     @Output()
-        clickOutside: EventEmitter<void> = new EventEmitter();
+    clickOutside: EventEmitter<void> = new EventEmitter();
 
-    clickListener!: Subscription;
+    eventListener!: Subscription;
 
     constructor(
         private element: ElementRef,
@@ -28,20 +28,25 @@ export class ClickedOutsideDirective implements AfterViewInit, OnDestroy {
 
     ngAfterViewInit(): void {
 
-        
+        const mouseDownListener$ = fromEvent(document, 'mousedown');
+        const mouseUpListener$ = fromEvent(document,'mouseup');
 
-        this.clickListener = fromEvent(this.document, 'click')
-            .pipe(
-                filter((event) => {
-                    return !this.isInside(event.target as HTMLElement) || this.includedList(event.target as HTMLElement);
-                })
-            ). subscribe( () => {
-                !this.clickOutsideStopWatching && this.clickOutside.emit();
-            });
+        this.eventListener = mouseUpListener$.pipe(
+            combineLatestWith(mouseDownListener$),
+            filter(([downClick, upClick]) => {
+                return (downClick.target as HTMLElement)
+                .contains(this.element.nativeElement) && (!this.isInside(
+                    upClick.target as HTMLElement
+                    ) || this.includedList(upClick.target as HTMLElement));
+            })
+        ). subscribe( () => {
+            !this.clickOutsideStopWatching && this.clickOutside.emit();
+        });
+            
     }
 
     ngOnDestroy(): void {
-        this.clickListener?.unsubscribe();
+        this.eventListener?.unsubscribe();
     }
 
     private isInside(elementToCheck: HTMLElement): boolean {
