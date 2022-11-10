@@ -2,7 +2,7 @@ import { Token } from "../token/token.model";
 
 export interface User {
     id?: number,
-    fullname?: string,
+    name?: string,
     email?: string,
     username: string,
     password?: string,

@@ -1,7 +1,8 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { first, firstValueFrom, Observable, Subject, take } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { param } from 'ts-interface-checker';
 import { HttpError } from '../model/httpError/httpError.model';
 import { Token } from '../model/token/token.model';
 import { User } from '../model/user/user.model';
@@ -13,7 +14,7 @@ export class AuthService {
 
     private userAuthenticated!: User;
 
-    authSubject = new Subject<User|HttpError|null>();
+    authSubject = new Subject<User | HttpError | null>();
 
     readonly BACKEND_PATH = environment.backendPath;
 
@@ -22,10 +23,26 @@ export class AuthService {
     login(userAuthAtempt: User): void {
         this.validateUser(this.loginUser(userAuthAtempt));
     }
+    
+    googleLogin() {
+        window.open(this.BACKEND_PATH + '/oauth2/authorization/google', '_self');
+    }
+    
+    githubLogin() {
+        window.open(this.BACKEND_PATH + '/oauth2/authorization/github', '_self');
+    }
+
+    loginGoogleUser(p: any): void {
+        this.validateUser(this.fetchGoogleOAuthToken(p))
+    }
+
+    loginGithubUser(p: any): void {
+        this.validateUser(this.fetchGithubOAuthToken(p))
+    }
 
     signup(userAuthAtempt: User): void {
         this.validateUser(this.createUser(userAuthAtempt));
-            
+
     }
 
     autoLogin(): void {
@@ -39,8 +56,8 @@ export class AuthService {
 
     async getUserAccessToken(): Promise<Token | undefined> {
         if (this.userAuthenticated) {
-            if ((!this.userAuthenticated.accessToken && this.refreshAccessToken  ) || 
-            (this.userAuthenticated.accessToken && this.userAuthenticated.accessToken.expirationDate < Date.now())) {
+            if ((!this.userAuthenticated.accessToken && this.refreshAccessToken) ||
+                (this.userAuthenticated.accessToken && this.userAuthenticated.accessToken.expirationDate < Date.now())) {
                 this.userAuthenticated = <User>(await this.refreshAccessToken());
             }
             return this.userAuthenticated.accessToken;
@@ -64,6 +81,44 @@ export class AuthService {
         ).pipe(
             first()
         )
+    }
+
+    private fetchGoogleOAuthToken(p: any): Observable<User|any> {
+
+        let params = new HttpParams(
+            {
+                fromObject: p
+            }
+        );
+
+        return this.http.get<User>(
+            this.BACKEND_PATH + '/login/oauth2/code/google',
+            {  
+                withCredentials: true,
+                params: params 
+            },
+        ).pipe(
+            first()
+        );
+    }
+
+    private fetchGithubOAuthToken(p: any): Observable<User|any> {
+
+        let params = new HttpParams(
+            {
+                fromObject: p
+            }
+        );
+
+        return this.http.get<User>(
+            this.BACKEND_PATH + '/login/oauth2/code/github',
+            {  
+                withCredentials: true,
+                params: params 
+            },
+        ).pipe(
+            first()
+        );
     }
 
     private createUser(newUser: User) {
@@ -114,5 +169,5 @@ export class AuthService {
             take(1)
         );
     }
-  
+
 }
