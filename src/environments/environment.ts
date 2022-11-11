@@ -4,7 +4,8 @@
 
 export const environment = {
     production: false,
-    backendPath: 'http://localhost:8070'
+    backendPath: '/api',
+    backendOAuthPath: 'http://localhost:8070'
 };
 
 /*
