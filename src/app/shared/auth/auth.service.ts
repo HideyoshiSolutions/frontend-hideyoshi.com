@@ -18,8 +18,6 @@ export class AuthService {
 
     readonly BACKEND_PATH = environment.backendPath;
 
-    readonly BACKEND_OAUTH_PATH = environment.backendOAuthPath;
-
     constructor(private http: HttpClient) { }
 
     login(userAuthAtempt: User): void {
@@ -27,11 +25,11 @@ export class AuthService {
     }
     
     googleLogin() {
-        window.open(this.BACKEND_OAUTH_PATH + '/oauth2/authorization/google', '_self');
+        window.open(this.BACKEND_PATH + '/oauth2/authorization/google', '_self');
     }
     
     githubLogin() {
-        window.open(this.BACKEND_OAUTH_PATH + '/oauth2/authorization/github', '_self');
+        window.open(this.BACKEND_PATH + '/oauth2/authorization/github', '_self');
     }
 
     loginGoogleUser(p: any): void {
@@ -94,7 +92,7 @@ export class AuthService {
         );
 
         return this.http.get<User>(
-            this.BACKEND_OAUTH_PATH + '/login/oauth2/code/google',
+            this.BACKEND_PATH + '/login/oauth2/code/google',
             {  
                 withCredentials: true,
                 params: params 
@@ -113,7 +111,7 @@ export class AuthService {
         );
 
         return this.http.get<User>(
-            this.BACKEND_OAUTH_PATH + '/login/oauth2/code/github',
+            this.BACKEND_PATH + '/login/oauth2/code/github',
             {  
                 withCredentials: true,
                 params: params 
