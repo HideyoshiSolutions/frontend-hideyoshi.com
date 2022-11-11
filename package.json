@@ -5,6 +5,11 @@
         "start": "node ./server.js",
         "postinstall": "ng build --configuration=production"
     },
+    "proxy": {
+        "/callback": {
+            "target": "http://localhost:8070"
+        }
+    },
     "private": true,
     "dependencies": {
         "@angular/animations": "^14.0.3",
@@ -24,6 +29,7 @@
         "@fortawesome/free-regular-svg-icons": "^6.1.1",
         "@fortawesome/free-solid-svg-icons": "^6.1.1",
         "bootstrap": "^4.6.1",
+        "cors": "^2.8.5",
         "express": "^4.18.1",
         "jquery": "^3.6.0",
         "normalize.css": "^8.0.1",

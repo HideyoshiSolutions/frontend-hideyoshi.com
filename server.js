@@ -1,9 +1,11 @@
 const express = require('express');
+var cors = require('cors');
 const path = require('path');
 
 const PKG_NAME = "frontend-hideyoshi.com";
 
 const app = express();
+app.use(cors());
 
 app.use(express.static(`${__dirname}/dist/${PKG_NAME}`));
 
