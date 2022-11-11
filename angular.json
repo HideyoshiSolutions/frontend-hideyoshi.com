@@ -18,6 +18,9 @@
                         "main": "src/main.ts",
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.app.json",
+                        "allowedCommonJsDependencies": [
+                            "ts-interface-checker"
+                        ],
                         "assets": [
                           "src/assets",
                           "src/manifest.webmanifest",
@@ -73,10 +76,12 @@
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "configurations": {
                         "production": {
-                            "browserTarget": "frontend-hideyoshi.com:build:production"
+                            "browserTarget": "frontend-hideyoshi.com:build:production",
+                            "proxyConfig": "src/proxy.conf.json"
                         },
                         "development": {
-                            "browserTarget": "frontend-hideyoshi.com:build:development"
+                            "browserTarget": "frontend-hideyoshi.com:build:development",
+                            "proxyConfig": "src/proxy.conf.json"
                         }
                     },
                     "defaultConfiguration": "development"
