@@ -1,5 +1,5 @@
 .dropdown {
-    width: 180px;
+    width: fit-content;
     border-radius: 8px;
     background-color: #ffffff;
     border: 1px solid rgba(46, 46, 46, .3);
@@ -17,8 +17,13 @@
     border-left: 1px solid rgba(46, 46, 46, .3);
     transform: translateX(120px) translateY(-50%) rotate(45deg);
 }
+.info {
+    min-width: 180px;
+    padding: 0px 10px;
+    width: fit-content;
+}
 
-.info h3{
+.info h3 {
     height: 50px;
     display: flex;
     justify-content: center;
