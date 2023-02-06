@@ -1,5 +1,5 @@
 export const environment = {
     production: true,
-    backendPath: 'https://api.hideyoshi.com.br',
-    backendOAuthPath: 'https://api.hideyoshi.com.br'
+    backendPath: process.env['BACKEND_URL'],
+    backendOAuthPath: process.env['BACKEND_OAUTH_URL']
 };
