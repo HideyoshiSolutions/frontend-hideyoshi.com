@@ -2,8 +2,7 @@
     "name": "frontend-hideyoshi.com",
     "version": "0.0.0",
     "scripts": {
-        "start": "node ./server.js",
-        "postinstall": "ng build --configuration=production"
+        "start": "node ./server.js"
     },
     "proxy": {
         "/callback": {
@@ -39,6 +38,7 @@
         "zone.js": "~0.11.4"
     },
     "devDependencies": {
+        "@angular-builders/custom-webpack": "^14.1.0",
         "@angular-devkit/build-angular": "^14.0.3",
         "@angular-eslint/builder": "14.0.0",
         "@angular-eslint/eslint-plugin": "14.0.0",
@@ -48,6 +48,7 @@
         "@angular/cli": "~14.0.3",
         "@angular/compiler-cli": "^14.0.0",
         "@types/jasmine": "~4.0.0",
+        "@types/node": "^18.11.19",
         "@typescript-eslint/eslint-plugin": "5.29.0",
         "@typescript-eslint/parser": "5.29.0",
         "eslint": "^8.18.0",
