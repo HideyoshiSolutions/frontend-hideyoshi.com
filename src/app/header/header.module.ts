@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 import { HeaderComponent } from './header.component';
@@ -15,6 +15,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './header-popup/signup/signup.component';
 import { CallbackComponent } from './header-popup/callback/callback.component';
 import {MatIconModule} from '@angular/material/icon';
+import { ErrorBoxComponent } from './header-popup/error-box/error-box.component';
 
 
 
@@ -27,7 +28,8 @@ import {MatIconModule} from '@angular/material/icon';
         HeaderDropdownComponent,
         LoginComponent,
         SignupComponent,
-        CallbackComponent
+        CallbackComponent,
+        ErrorBoxComponent,
     ],
     imports: [
         CommonModule,
@@ -37,7 +39,8 @@ import {MatIconModule} from '@angular/material/icon';
         FormsModule,
         ReactiveFormsModule,
         MatIconModule,
-        SharedModule
+        SharedModule,
+        NgOptimizedImage
     ], exports: [
         HeaderComponent,
         HeaderSliderComponent,

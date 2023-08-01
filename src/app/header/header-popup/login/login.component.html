@@ -1,57 +1,66 @@
-<app-popup [state]="popupState" 
-    (stateChange)="onStateChange($event)" 
+<app-popup [state]="popupState"
+    (stateChange)="onStateChange($event)"
     [ignoreClickOutside]="ignoreClickOutside">
 
-    {{errorMessage}}
-    
-    <div class="container authentication-container">
-        <div class="row">
-            <div class="col-lg-6 authentication-body">
-                <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-                    <div class="input-div">
-                        <fa-icon class="input-div-icon"
-                        [icon]="_userIcon">
-                        </fa-icon>
-                        <input type="text" id="username" 
-                            formControlName="username" 
-                            class="form-control"
-                            placeholder="Username">
-                    </div>
-                    <div class="input-div">
-                        <fa-icon class="input-div-icon"
-                        [icon]="_passwordIcon">
-                        </fa-icon>
-                        <input type="password" id="password" 
-                            formControlName="password" 
-                            class="form-control"
-                            placeholder="Password">
-                    </div>
-                    <button class="btn" 
-                        type="submit">
-                        Login
+    <div class="container overflow-hidden"
+         [@resizeContainerForErrorMessage]="hideErrorMessage()">
+
+        <app-error-box [errorMessage]="errorMessage"
+                       [@showErrorMessage]="showErrorMessage()">
+        </app-error-box>
+
+        <div class="container authentication-container"
+             [@hideAuthContainer]="hideErrorMessage()"
+             (@hideAuthContainer.done)="hideAuthContainer($event)">
+            <div class="row">
+                <div class="col-lg-6 authentication-body">
+                    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+                        <div class="input-div">
+                            <fa-icon class="input-div-icon"
+                                     [icon]="_userIcon">
+                            </fa-icon>
+                            <input type="text" id="username"
+                                   formControlName="username"
+                                   class="form-control"
+                                   placeholder="Username">
+                        </div>
+                        <div class="input-div">
+                            <fa-icon class="input-div-icon"
+                                     [icon]="_passwordIcon">
+                            </fa-icon>
+                            <input type="password" id="password"
+                                   formControlName="password"
+                                   class="form-control"
+                                   placeholder="Password">
+                        </div>
+                        <button class="btn"
+                                type="submit">
+                            Login
+                        </button>
+                    </form>
+                </div>
+                <div class="separator-line">
+                    <div class="line"></div>
+                </div>
+                <div class="col-lg-6 authentication-body">
+                    <button mat-button
+                            class="oauth-button d-flex justify-content-center align-items-center"
+                            (click)="onGoogleLogin()">
+                        <mat-icon style="width: 50px; height:30px"
+                                  svgIcon="google-logo"></mat-icon>
+                        Login With Google
                     </button>
-                </form>
-            </div>
-            <div class="separator-line">
-                <div class="line"></div>
-            </div>
-            <div class="col-lg-6 authentication-body">
-                <button mat-button 
-                class="oauth-button d-flex justify-content-center align-items-center" 
-                (click)="onGoogleLogin()">
-                    <mat-icon style="width: 50px; height:30px"
-                              svgIcon="google-logo"></mat-icon> 
-                    Login With Google
-                </button>
-                <button mat-button 
-                class="oauth-button d-flex justify-content-center align-items-center"
-                (click)="onGithubLogin()">
-                    <mat-icon style="width: 50px; height:30px"
-                              svgIcon="github-logo"></mat-icon> 
-                    Login With Github
-                </button>
+                    <button mat-button
+                            class="oauth-button d-flex justify-content-center align-items-center"
+                            (click)="onGithubLogin()">
+                        <mat-icon style="width: 50px; height:30px"
+                                  svgIcon="github-logo"></mat-icon>
+                        Login With Github
+                    </button>
+                </div>
             </div>
         </div>
+
     </div>
 
 </app-popup>

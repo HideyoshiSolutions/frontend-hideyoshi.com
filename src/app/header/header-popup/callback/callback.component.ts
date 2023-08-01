@@ -19,23 +19,21 @@ export class CallbackComponent implements OnInit {
 
             let auth: 'google' | 'github' = p['auth'];
 
-            if (auth === 'google') {
-                this.loginGoogle(p);
-            } else if (auth === 'github') {
-                this.loginGithub(p);
+            switch (auth) {
+            case "github":
+                this.authService.loginGithubUser(p)
+                break;
+            case "google":
+                this.authService.loginGoogleUser(p)
+                break;
+            default:
+                console.log(`Unimplemented auth: ${auth}`)
+                break;
             }
 
             this.router.navigate(['/home'])
 
         })
-    }
-
-    private loginGoogle(p: any) {
-        this.authService.loginGoogleUser(p)
-    }
-
-    private loginGithub(p: any) {
-        this.authService.loginGithubUser(p)
     }
 
 }

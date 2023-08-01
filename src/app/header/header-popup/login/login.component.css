@@ -113,12 +113,14 @@
     transition: .3s;
 }
 
+
+
 @media (min-width:767px) {
 
     .authentication-container {
         min-width: 630px;
     }
-    
+
     .authentication-body {
         all: unset;
         justify-content: space-around;

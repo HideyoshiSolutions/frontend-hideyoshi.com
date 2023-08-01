@@ -17,7 +17,7 @@ import { Component, ElementRef, EventEmitter, Input, Output, ViewEncapsulation }
                 '* => show',
                 group([
                     query(
-                        "@*", 
+                        "@*",
                         animateChild(),
                         { optional: true }
                     ),
@@ -28,7 +28,7 @@ import { Component, ElementRef, EventEmitter, Input, Output, ViewEncapsulation }
                 'show => hide',
                 group([
                     query(
-                        "@*", 
+                        "@*",
                         animateChild(),
                         { optional: true }
                     ),
@@ -51,7 +51,7 @@ export class PopupComponent {
 
     constructor() { }
 
-    get popupState(): string { 
+    get popupState(): string {
         return this.state ? 'show' : 'hide';
     }
 
