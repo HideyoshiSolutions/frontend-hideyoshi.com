@@ -9,6 +9,7 @@ import { HttpError } from 'src/app/shared/model/httpError/httpError.model';
 import HttpErrorChecker from 'src/app/shared/model/httpError/httpErrorChecker';
 import UserChecker from 'src/app/shared/model/user/user.checker';
 import { User } from 'src/app/shared/model/user/user.model';
+import {animate, animateChild, group, query, state, style, transition, trigger} from "@angular/animations";
 
 
 const GOOGLE_LOGO_SVG = "assets/img/providers/google.svg";
@@ -17,24 +18,89 @@ const GITHUB_LOGO_SVG = "assets/img/providers/github.svg";
 @Component({
     selector: 'app-signup',
     templateUrl: './signup.component.html',
-    styleUrls: ['./signup.component.css']
+    styleUrls: ['./signup.component.css'],
+    animations: [
+        trigger('resizeContainerForErrorMessage', [
+            state('hide',
+                style({
+                    height: '100px',
+                    width: '320px',
+                })
+            ),
+            transition(
+                'show => hide',
+                group([
+                    query(
+                        "@*",
+                        animateChild(),
+                        { optional: true }
+                    ),
+                    animate('1s ease')
+                ])
+            )
+        ]),
+        trigger('showErrorMessage', [
+            state('show',
+                style({
+                    opacity: 1,
+                    height: '100px',
+                    width: '320px',
+                })
+            ),
+            state('hide',
+                style({
+                    opacity: 0,
+                    height: '0px',
+                    width: '0px',
+                })
+            ),
+            transition(
+                '* => show',
+                animate(
+                    '500ms ease-in'
+                )
+            ),
+        ]),
+        trigger('hideAuthContainer', [
+            state('hide',
+                style({
+                    opacity: 0,
+                })
+            ),
+            transition(
+                'show => hide',
+                group([
+                    query(
+                        "@*",
+                        animateChild(),
+                        { optional: true }
+                    ),
+                    animate(
+                        '250ms ease-out'
+                    )
+                ])
+            )
+        ]),
+    ]
 })
 export class SignupComponent implements OnInit {
 
     @Input()
-    state: boolean = false;
+        state: boolean = false;
 
     @Input()
-    ignoreClickOutside!: HTMLDivElement[];
+        ignoreClickOutside!: HTMLDivElement[];
 
     @Output()
-    stateChange = new EventEmitter<boolean>();
+        stateChange = new EventEmitter<boolean>();
 
     signupForm!: FormGroup;
 
     authSubject!: Subscription;
 
     errorMessage!: string | null;
+
+    isShowErrorMessage = false;
 
     _fullnameIcon = faFingerprint;
 
@@ -47,15 +113,15 @@ export class SignupComponent implements OnInit {
     constructor(private authService: AuthService,
         private matIconRegistry: MatIconRegistry,
         private domSanitizer: DomSanitizer) {
-            this.matIconRegistry.addSvgIcon(
-                "google-logo",
-                this.domSanitizer.bypassSecurityTrustResourceUrl(GOOGLE_LOGO_SVG)
-            );
-            this.matIconRegistry.addSvgIcon(
-                "github-logo",
-                this.domSanitizer.bypassSecurityTrustResourceUrl(GITHUB_LOGO_SVG)
-            );
-        }
+        this.matIconRegistry.addSvgIcon(
+            "google-logo",
+            this.domSanitizer.bypassSecurityTrustResourceUrl(GOOGLE_LOGO_SVG)
+        );
+        this.matIconRegistry.addSvgIcon(
+            "github-logo",
+            this.domSanitizer.bypassSecurityTrustResourceUrl(GITHUB_LOGO_SVG)
+        );
+    }
 
     ngOnInit(): void {
         this.signupForm = new FormGroup({
@@ -108,6 +174,27 @@ export class SignupComponent implements OnInit {
     private closePopup() {
         this.state = false;
         this.signupForm.reset();
+    }
+
+    public showErrorMessage(): string {
+        if (this.isShowErrorMessage) {
+            return "show";
+        }
+        return "hide";
+    }
+
+    public hideErrorMessage(): string {
+        if (!!this.errorMessage) {
+            return "hide";
+        }
+        return "show";
+    }
+
+    hideAuthContainer(event: any) {
+        if (event.toState === "hide") {
+            event.element.style.display = "none";
+            this.isShowErrorMessage = true;
+        }
     }
 
 

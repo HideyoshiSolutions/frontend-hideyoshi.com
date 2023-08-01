@@ -1,8 +1,8 @@
-<app-popup [state]="popupState"
+<app-popup [state]="state"
     (stateChange)="onStateChange($event)"
     [ignoreClickOutside]="ignoreClickOutside">
 
-    <div class="container overflow-hidden"
+    <div class="container m-0 overflow-hidden"
          [@resizeContainerForErrorMessage]="hideErrorMessage()">
 
         <app-error-box [errorMessage]="errorMessage"

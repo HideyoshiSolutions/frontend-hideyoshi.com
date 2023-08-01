@@ -1,6 +1,6 @@
 .error-box {
     background-color: #ff00001a;
-    min-width: 250px;
+    max-width: 320px;
     display: flex;
     border-radius: 5px;
     padding: 25px;

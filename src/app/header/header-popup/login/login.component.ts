@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { faLock, faUser } from '@fortawesome/free-solid-svg-icons';
-import {Subscription, timeout} from 'rxjs';
+import {Subscription} from 'rxjs';
 import { AuthService } from 'src/app/shared/auth/auth.service';
 import { HttpError } from 'src/app/shared/model/httpError/httpError.model';
 import HttpErrorChecker from 'src/app/shared/model/httpError/httpErrorChecker';
@@ -24,7 +24,7 @@ const GITHUB_LOGO_SVG = "assets/img/providers/github.svg";
             state('hide',
                 style({
                     height: '100px',
-                    width: '370px',
+                    width: '320px',
                 })
             ),
             transition(
@@ -44,7 +44,7 @@ const GITHUB_LOGO_SVG = "assets/img/providers/github.svg";
                 style({
                     opacity: 1,
                     height: '100px',
-                    width: '340px',
+                    width: '320px',
                 })
             ),
             state('hide',
@@ -94,8 +94,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     @Output()
         stateChange = new EventEmitter<boolean>();
 
-    popupState = false;
-
     loginForm!: FormGroup;
 
     authSubject!: Subscription;
@@ -137,7 +135,6 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     ngAfterViewInit(): void {
-        this.popupState = this.state;
         this.changeDetectorRef.detectChanges();
     }
 
@@ -175,7 +172,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     private closePopup() {
-        this.popupState = false;
+        this.state = false;
         this.loginForm.reset();
     }
 
