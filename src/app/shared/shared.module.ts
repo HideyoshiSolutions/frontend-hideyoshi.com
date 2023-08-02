@@ -8,10 +8,10 @@ import { PopupComponent } from './components/popup/popup.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
-    declarations: [ 
+    declarations: [
         ClickedOutsideDirective,
         SliderItemComponent,
-        PopupComponent
+        PopupComponent,
     ],
     imports: [
         CommonModule,

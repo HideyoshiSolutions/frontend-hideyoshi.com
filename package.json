@@ -2,7 +2,8 @@
     "name": "frontend-hideyoshi.com",
     "version": "0.0.0",
     "scripts": {
-        "start": "node ./server.js"
+        "start": "node ./server.js",
+        "serve": "ng serve"
     },
     "proxy": {
         "/callback": {
