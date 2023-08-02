@@ -53,6 +53,7 @@
                                 placeholder="Password">
                         </div>
                         <button class="btn"
+                                [disabled]="!signupForm.valid"
                             type="submit">
                             SignUp
                         </button>

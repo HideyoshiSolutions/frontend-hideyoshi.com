@@ -10,6 +10,8 @@ import HttpErrorChecker from 'src/app/shared/model/httpError/httpErrorChecker';
 import UserChecker from 'src/app/shared/model/user/user.checker';
 import { User } from 'src/app/shared/model/user/user.model';
 import {animate, animateChild, group, query, state, style, transition, trigger} from "@angular/animations";
+import {ValidatePasswordValidator} from "../../../shared/validators/validate-password.validator";
+import {ValidateNotEmptyValidator} from "../../../shared/validators/validate-not-empty.validator";
 
 
 const GOOGLE_LOGO_SVG = "assets/img/providers/google.svg";
@@ -123,8 +125,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
     ngOnInit(): void {
         this.loginForm = new FormGroup({
-            'username': new FormControl(null, [Validators.required]),
-            'password': new FormControl(null, [Validators.required])
+            'username': new FormControl(null, [Validators.required, ValidateNotEmptyValidator]),
+            'password': new FormControl(null, [Validators.required, ValidatePasswordValidator])
         });
         this.errorMessage = null;
         this.authSubject = this.authService.authSubject.subscribe(
