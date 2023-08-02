@@ -78,13 +78,14 @@
     background-color: #f44336;
     border-radius: 15px;
 }
-.input-div:hover:after {
+.input-div:hover:after,
+.input-div:has(input.form-control:focus):after {
     width: 100%;
     transition: .4s;
     overflow: hidden;
 }
 
-.input-div > .form-control, .input-div > .form-control:focus {
+.input-div > .form-control, .input-div > .form-control:hover{
     border: none;
     border-color: inherit;
     -webkit-box-shadow: none;
@@ -103,22 +104,27 @@
     -webkit-box-shadow: 0 0 0px 1000px #ffffff inset;
 }
 
+.input-div:has(input.form-control:focus) > .form-control::placeholder,
 .input-div:hover > .form-control::placeholder,
-.input-div:hover > .input-div-icon {
+.input-div:hover > .input-div-icon,
+.input-div:has(input.form-control:focus) > .input-div-icon {
     color: #D8291C;
     transition: .3s;
 }
-.input-div:hover > .form-control::placeholder {
+.input-div:hover > .form-control::placeholder,
+.input-div:has(input.form-control:focus) > .form-control::placeholder {
     font-weight: 500;
     transition: .3s;
 }
+
+
 
 @media (min-width:767px) {
 
     .authentication-container {
         min-width: 630px;
     }
-    
+
     .authentication-body {
         all: unset;
         justify-content: space-around;

@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { first, firstValueFrom, Observable, Subject, take } from 'rxjs';
+import {first, firstValueFrom, Observable, of, Subject, take} from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { param } from 'ts-interface-checker';
 import { HttpError } from '../model/httpError/httpError.model';
 import { Token } from '../model/token/token.model';
 import { User } from '../model/user/user.model';
@@ -25,11 +25,11 @@ export class AuthService {
     login(userAuthAtempt: User): void {
         this.validateUser(this.loginUser(userAuthAtempt));
     }
-    
+
     googleLogin() {
         window.open(this.BACKEND_OAUTH_PATH + '/oauth2/authorization/google', '_self');
     }
-    
+
     githubLogin() {
         window.open(this.BACKEND_OAUTH_PATH + '/oauth2/authorization/github', '_self');
     }
@@ -95,9 +95,9 @@ export class AuthService {
 
         return this.http.get<User>(
             this.BACKEND_OAUTH_PATH + '/login/oauth2/code/google',
-            {  
+            {
                 withCredentials: true,
-                params: params 
+                params: params
             },
         ).pipe(
             first()
@@ -114,9 +114,9 @@ export class AuthService {
 
         return this.http.get<User>(
             this.BACKEND_OAUTH_PATH + '/login/oauth2/code/github',
-            {  
+            {
                 withCredentials: true,
-                params: params 
+                params: params
             },
         ).pipe(
             first()
@@ -133,18 +133,6 @@ export class AuthService {
         )
     }
 
-    private validateUser(userAuthAtempt: Observable<User>) {
-        userAuthAtempt.subscribe({
-            next: userAuthentication => {
-                this.userAuthenticated = <User>userAuthentication;
-                this.authSubject.next(this.userAuthenticated);
-            },
-            error: err => {
-                this.authSubject.next(<HttpError>err.error);
-            }
-        });
-    }
-
     private refreshAccessToken() {
         return firstValueFrom(this.http.post(
             this.BACKEND_PATH + "/user/login/refresh",
@@ -157,19 +145,37 @@ export class AuthService {
         return this.http.get<User>(
             this.BACKEND_PATH + '/session/validate',
             { withCredentials: true }
-        ).pipe(
-            first()
         );
     }
 
     private destroySessions() {
-        return this.http.post(
+        return this.http.delete(
             this.BACKEND_PATH + '/session/destroy',
-            {},
             { withCredentials: true }
-        ).pipe(
-            take(1)
         );
+    }
+
+    private validateUser(userAuthAtempt: Observable<User>) {
+        userAuthAtempt.pipe(
+            catchError(error => {
+                if (error.status == 0) {
+                    return of(<HttpError>{
+                        title: "Service Unavailable",
+                        status: 500,
+                        details: "Service Unavailable, please try again later.",
+                        developerMessage: "Service Unavailable, please try again later.",
+                        timestamp: new Date().toISOString()
+                    });
+                }
+                return of(<HttpError>error.error);
+            }),
+            first()
+        ).subscribe({
+            next: userAuthentication => {
+                this.userAuthenticated = <User>userAuthentication;
+                this.authSubject.next(this.userAuthenticated);
+            }
+        });
     }
 
 }
