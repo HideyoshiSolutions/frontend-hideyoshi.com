@@ -1,14 +1,18 @@
-import { Component, ComponentRef, ElementRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import {Component, ComponentRef, ElementRef, OnDestroy, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { LoginComponent } from './header-popup/login/login.component';
 import { SignupComponent } from './header-popup/signup/signup.component';
+import {AuthService} from "../shared/auth/auth.service";
+import UserChecker from "../shared/model/user/user.checker";
+import {User} from "../shared/model/user/user.model";
+import {Subscription} from "rxjs";
 
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, OnDestroy {
 
     userIcon = faUser;
 
@@ -21,18 +25,39 @@ export class HeaderComponent {
 
     @ViewChild('profileBtn')
         profileBtnElementRef!: ElementRef;
-    
+
     @ViewChild('profileDropdown')
         profileDropdownElementRef!: ElementRef;
-    
+
     @ViewChild('user')
         userElementRef!: ElementRef;
+
+    loggedUser!: User | null;
+
+    private userSubscription!: Subscription;
 
     private loginComponent!: ComponentRef<LoginComponent>;
 
     private signupComponent!: ComponentRef<SignupComponent>;
 
-    constructor(private viewContainerRef: ViewContainerRef) { }
+    constructor(private viewContainerRef: ViewContainerRef, private authService: AuthService) { }
+
+    ngOnInit(): void {
+        this.userSubscription = this.authService.authSubject.subscribe(
+            res => {
+                console.log(UserChecker.test(res));
+                if (res && UserChecker.test(res)) {
+                    this.loggedUser = <User>res;
+                } else {
+                    this.loggedUser = null;
+                }
+            }
+        )
+    }
+
+    ngOnDestroy(): void {
+        this.userSubscription.unsubscribe();
+    }
 
 
     public toogleProfileDropdown(): void {
@@ -63,7 +88,7 @@ export class HeaderComponent {
         if (this.userSliderStatus) {
             this.userSliderStatus = false;
         } else {
-            this.navSliderStatus = false;   
+            this.navSliderStatus = false;
         }
     }
 

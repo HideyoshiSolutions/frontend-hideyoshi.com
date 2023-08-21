@@ -1,6 +1,6 @@
 import { createCheckers } from "ts-interface-checker";
-import TokenTI from "../token/token.model-ti";
-import UserTI from "./user.model-ti";
+import User from "./user.model-ti";
+import Token from "../token/token.model-ti";
 
-const UserChecker = createCheckers(UserTI, TokenTI)['User'];
+const UserChecker = createCheckers(User, Token)['User'];
 export default UserChecker;

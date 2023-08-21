@@ -104,14 +104,14 @@ app-header-slider {
         all: unset;
         width: 50%;
     }
-    
+
     .link-container {
         display: flex;
         justify-content: space-around;
         padding: 0;
         margin: 0;
     }
-    
+
     .link-container li {
         display: flex;
         justify-content: center;
@@ -119,7 +119,7 @@ app-header-slider {
         color: #ffffff;
         text-decoration: none;
     }
-    
+
     .link-container li a {
         font-family: 'Montserrat', sans-serif;
         text-decoration: none;
@@ -136,6 +136,11 @@ app-header-slider {
         cursor: pointer;
     }
 
+    .profile-picture {
+        border-radius: 50%;
+        border: 2px solid #ffffff;
+    }
+
     .profile .profile-btn {
         display: flex;
         border: 5px solid #ffffff;
@@ -143,8 +148,8 @@ app-header-slider {
         justify-content: center;
         align-items: center;
         color: #ffffff;
-        height: 45px;
-        width: 45px;
+        height: 50px;
+        width: 50px;
     }
 
     .profile .dropdown {
@@ -153,7 +158,7 @@ app-header-slider {
     }
 
     .profile .profile-btn fa-icon {
-        font-size: 25px;
+        font-size: 28px;
     }
 
     .burger-container {

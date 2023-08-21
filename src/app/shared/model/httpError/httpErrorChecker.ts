@@ -1,5 +1,5 @@
 import { createCheckers } from "ts-interface-checker";
-import HttpErrorTI from "./httpError.model-ti";
+import HttpError from "./httpError.model-ti";
 
-const HttpErrorChecker = createCheckers(HttpErrorTI)['HttpError'];
+const HttpErrorChecker = createCheckers(HttpError)['HttpError'];
 export default HttpErrorChecker;

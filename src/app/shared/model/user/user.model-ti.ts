@@ -10,14 +10,13 @@ export const User = t.iface([], {
     "email": t.opt("string"),
     "username": "string",
     "password": t.opt("string"),
+    "profilePictureUrl": t.opt("string"),
     "accessToken": t.opt("Token"),
     "refreshToken": t.opt("Token"),
-    "authorities": t.opt(t.array(t.iface([], {
-        "authority": "string",
-    }))),
+    "roles": t.opt(t.array("string")),
 });
 
-const UserTI: t.ITypeSuite = {
+const exportedTypeSuite: t.ITypeSuite = {
     User,
 };
-export default UserTI;
+export default exportedTypeSuite;

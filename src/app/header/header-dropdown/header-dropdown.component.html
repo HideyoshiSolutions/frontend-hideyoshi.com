@@ -1,9 +1,9 @@
-<div 
-    class="dropdown" 
-    appClickedOutside 
-    (clickOutside)="onClickedOutside()" 
+<div
+    class="dropdown"
+    appClickedOutside
+    (clickOutside)="onClickedOutside()"
     [includeClickedOutside]="[management]"
-    [ignoreElementList]="ignoreClickOutside" 
+    [ignoreElementList]="ignoreClickOutside"
     [@dropdownState]="dropDownState"
     (@dropdownState.start)="$event.element.style.display = 'block'"
     (@dropdownState.done)="$event.element.style.display = (state ? 'block' : 'none')">
