@@ -16,7 +16,13 @@
     #profile>
         <div class="profile-btn"
         (click)="onProfileButtonClicked()">
-            <fa-icon class="fas fa-user" [icon]="userIcon"></fa-icon>
+            <fa-icon *ngIf="!loggedUser || !(loggedUser.profilePictureUrl)"
+                     class="fas fa-user" [icon]="userIcon"></fa-icon>
+            <img *ngIf="!!loggedUser && !!(loggedUser.profilePictureUrl)"
+                 class="profile-picture"
+                 [ngSrc]="loggedUser.profilePictureUrl"
+                 width="50" height="50"
+                 alt="Profile Picture" priority/>
         </div>
     </div>
 </div>

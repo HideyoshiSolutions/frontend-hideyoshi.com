@@ -12,7 +12,7 @@ export const HttpError = t.iface([], {
     "timestamp": "string",
 });
 
-const HttpErrorTI: t.ITypeSuite = {
+const exportedTypeSuite: t.ITypeSuite = {
     HttpError,
 };
-export default HttpErrorTI;
+export default exportedTypeSuite;

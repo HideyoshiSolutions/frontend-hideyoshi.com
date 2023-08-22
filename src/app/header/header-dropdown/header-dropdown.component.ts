@@ -1,10 +1,10 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { faEdit, faQuestionCircle, faSignOutAlt, faUser } from '@fortawesome/free-solid-svg-icons';
-import { Subscription, timeout } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/shared/auth/auth.service';
-import UserChecker from 'src/app/shared/model/user/user.checker';
-import { User } from 'src/app/shared/model/user/user.model';
+import {User} from "../../shared/model/user/user.model";
+import UserChecker from "../../shared/model/user/user.checker";
 
 @Component({
     selector: 'app-header-dropdown',
@@ -24,7 +24,7 @@ import { User } from 'src/app/shared/model/user/user.model';
     ]
 })
 export class HeaderDropdownComponent implements OnInit, OnDestroy {
-    
+
     userIcon = faUser;
 
     editIcon = faEdit;
@@ -57,6 +57,7 @@ export class HeaderDropdownComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.userSubscription = this.authService.authSubject.subscribe(
             res => {
+                console.log(UserChecker.test(res));
                 if (res && UserChecker.test(res)) {
                     this.user = <User>res;
                 } else {

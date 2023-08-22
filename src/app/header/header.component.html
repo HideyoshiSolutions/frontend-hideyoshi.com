@@ -16,11 +16,18 @@
 
         <div class="profile" #profileDropdown>
             <div class="profile-btn" (click)="toogleProfileDropdown()" #profileBtn>
-                <fa-icon class="fas fa-user" [icon]="userIcon"></fa-icon>
+                <fa-icon *ngIf="!loggedUser || !(loggedUser.profilePictureUrl)"
+                         class="fas fa-user" [icon]="userIcon"></fa-icon>
+                <img *ngIf="!!loggedUser && !!(loggedUser.profilePictureUrl)"
+                     class="profile-picture"
+                     [ngSrc]="loggedUser.profilePictureUrl"
+                     width="50" height="50"
+                     alt="Profile Picture" priority/>
             </div>
-            <app-header-dropdown 
-                class="dropdown" 
-                (clickOutside)="closeDropdown()" 
+
+            <app-header-dropdown
+                class="dropdown"
+                (clickOutside)="closeDropdown()"
                 [ignoreClickOutside]="[profileBtn]"
                 [state]="profileDropdownState"
                 (loginPopupState)="loginPopupStateChange($event)"
@@ -43,12 +50,12 @@
             </app-nav-slider>
         </app-header-slider>
     </div>
-    
+
     <div #user>
         <app-header-slider
         [(state)]="userSliderStatus"
         [ignoreClickOutside]="[header, nav]">
-            <app-user-slider 
+            <app-user-slider
                 [state]="userSliderStatus"
                 (loginPopupState)="loginPopupStateChange($event)"
                 (signupPopupState)="signupPopupStateChange($event)">
@@ -57,14 +64,3 @@
     </div>
 </div>
 <div class="header-spacer"></div>
-
-<!-- <app-login 
-*ngIf="loginPopupState"
-[(state)]="loginPopupState"
-[ignoreClickOutside]="[profileBtn, profileDropdown, user]">
-</app-login>
-
-<app-signup
-[(state)]="signupPopupState"
-[ignoreClickOutside]="[profileBtn, profileDropdown, user]">
-</app-signup> -->
