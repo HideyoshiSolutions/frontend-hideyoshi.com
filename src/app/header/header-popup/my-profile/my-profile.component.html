@@ -1,0 +1,42 @@
+<app-popup [state]="state"
+           (stateChange)="onStateChange($event)"
+           [ignoreClickOutside]="ignoreClickOutside">
+
+    <div class="container m-0 overflow-hidden"
+         [@resizeContainerForErrorMessage]="hideErrorMessage()">
+
+        <app-error-box [errorMessage]="errorMessage"
+                       [@showErrorMessage]="showErrorMessage()">
+        </app-error-box>
+
+        <div class="container profile-container"
+             [@hideAuthContainer]="hideErrorMessage()"
+             (@hideAuthContainer.done)="hideAuthContainer($event)">
+
+            <div class="row">
+
+                <div class="btn-container">
+                    <button class="picture-btn"
+                            (click)="onAddProfilePicture()">
+                        Add Profile Picture
+                    </button>
+                </div>
+
+                <div class="separator-line">
+                    <div class="line"></div>
+                </div>
+
+                <div class="btn-container">
+                    <button class="delete-btn"
+                            (click)="onDeleteAccount()">
+                        Delete Account
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</app-popup>

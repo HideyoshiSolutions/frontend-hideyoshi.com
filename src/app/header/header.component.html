@@ -31,7 +31,9 @@
                 [ignoreClickOutside]="[profileBtn]"
                 [state]="profileDropdownState"
                 (loginPopupState)="loginPopupStateChange($event)"
-                (signupPopupState)="signupPopupStateChange($event)">
+                (signupPopupState)="signupPopupStateChange($event)"
+                (myProfilePopupState)="myProfilePopupStateChange($event)"
+                (helpPopupState)="helpPopupStateChange($event)">
             </app-header-dropdown>
         </div>
         <div class="burger-container" (click)="toogleNavSlider()">
@@ -58,7 +60,9 @@
             <app-user-slider
                 [state]="userSliderStatus"
                 (loginPopupState)="loginPopupStateChange($event)"
-                (signupPopupState)="signupPopupStateChange($event)">
+                (signupPopupState)="signupPopupStateChange($event)"
+                (myProfilePopupState)="myProfilePopupStateChange($event)"
+                (helpPopupState)="helpPopupStateChange($event)">
             </app-user-slider>
         </app-header-slider>
     </div>

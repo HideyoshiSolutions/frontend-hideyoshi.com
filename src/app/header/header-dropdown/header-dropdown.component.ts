@@ -1,10 +1,12 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import {Component, ComponentRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewContainerRef} from '@angular/core';
 import { faEdit, faQuestionCircle, faSignOutAlt, faUser } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/shared/auth/auth.service';
 import {User} from "../../shared/model/user/user.model";
 import UserChecker from "../../shared/model/user/user.checker";
+import {HelpComponent} from "../header-popup/help/help.component";
+import {MyProfileComponent} from "../header-popup/my-profile/my-profile.component";
 
 @Component({
     selector: 'app-header-dropdown',
@@ -52,12 +54,17 @@ export class HeaderDropdownComponent implements OnInit, OnDestroy {
     @Output()
         signupPopupState: EventEmitter<boolean> = new EventEmitter();
 
-    constructor(private authService: AuthService) { }
+    @Output()
+        helpPopupState: EventEmitter<boolean> = new EventEmitter();
+
+    @Output()
+        myProfilePopupState: EventEmitter<boolean> = new EventEmitter();
+
+    constructor(private viewContainerRef: ViewContainerRef, private authService: AuthService) { }
 
     ngOnInit(): void {
         this.userSubscription = this.authService.authSubject.subscribe(
             res => {
-                console.log(UserChecker.test(res));
                 if (res && UserChecker.test(res)) {
                     this.user = <User>res;
                 } else {
@@ -87,8 +94,15 @@ export class HeaderDropdownComponent implements OnInit, OnDestroy {
         this.signupPopupState.emit(true);
     }
 
+    onMyProfileClicked() {
+        this.myProfilePopupState.emit(true);
+    }
+
+    onHelpClicked() {
+        this.helpPopupState.emit(true);
+    }
+
     onLogout() {
         this.authService.logout();
     }
-
 }

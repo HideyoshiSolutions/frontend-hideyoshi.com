@@ -21,7 +21,6 @@ export class AuthService {
     readonly BACKEND_OAUTH_PATH = environment.backendOAuthPath;
 
     constructor(private http: HttpClient) { }
-
     login(userAuthAtempt: User): void {
         this.validateUser(this.loginUser(userAuthAtempt));
     }
@@ -56,16 +55,15 @@ export class AuthService {
         this.destroySessions().subscribe()
     }
 
-    async getUserAccessToken(): Promise<Token | undefined> {
-        if (this.userAuthenticated) {
-            if ((!this.userAuthenticated.accessToken && this.refreshAccessToken) ||
-                (this.userAuthenticated.accessToken && this.userAuthenticated.accessToken.expirationDate < Date.now())) {
-                this.userAuthenticated = <User>(await this.refreshAccessToken());
-            }
-            return this.userAuthenticated.accessToken;
-        } else return
+    deleteAccount() {
+        return this.deleteAccountRequest().pipe(
+            first()
+        );
     }
 
+    addProfilePicture() {
+
+    }
     private loginUser(userAuthAtempt: User): Observable<User|any> {
 
         let loginParams = new URLSearchParams();
@@ -155,6 +153,13 @@ export class AuthService {
         );
     }
 
+    private deleteAccountRequest() {
+        return this.http.delete(
+            this.BACKEND_PATH + `/user/delete/${this.userAuthenticated.id}`,
+            { withCredentials: true }
+        );
+    }
+
     private validateUser(userAuthAtempt: Observable<User>) {
         userAuthAtempt.pipe(
             catchError(error => {
@@ -177,5 +182,4 @@ export class AuthService {
             }
         });
     }
-
 }

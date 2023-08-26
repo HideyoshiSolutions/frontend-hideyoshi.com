@@ -6,6 +6,8 @@ import {AuthService} from "../shared/auth/auth.service";
 import UserChecker from "../shared/model/user/user.checker";
 import {User} from "../shared/model/user/user.model";
 import {Subscription} from "rxjs";
+import {HelpComponent} from "./header-popup/help/help.component";
+import {MyProfileComponent} from "./header-popup/my-profile/my-profile.component";
 
 @Component({
     selector: 'app-header',
@@ -40,12 +42,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     private signupComponent!: ComponentRef<SignupComponent>;
 
+    private myProfileComponent!: ComponentRef<MyProfileComponent>;
+
+    private helpComponent!: ComponentRef<HelpComponent>;
+
     constructor(private viewContainerRef: ViewContainerRef, private authService: AuthService) { }
 
     ngOnInit(): void {
         this.userSubscription = this.authService.authSubject.subscribe(
             res => {
-                console.log(UserChecker.test(res));
                 if (res && UserChecker.test(res)) {
                     this.loggedUser = <User>res;
                 } else {
@@ -83,23 +88,36 @@ export class HeaderComponent implements OnInit, OnDestroy {
     public closeDropdown(): void {
         this.profileDropdownState = false;
     }
-
-    public closeNavSlider(): void {
-        if (this.userSliderStatus) {
-            this.userSliderStatus = false;
-        } else {
-            this.navSliderStatus = false;
-        }
-    }
-
     public loginPopupStateChange(state: boolean): void {
-
         if (state) {
             this.createLoginPopup();
         } else {
             this.closeLoginPopup();
         }
+    }
 
+    public signupPopupStateChange(state: boolean): void {
+        if (state) {
+            this.createSignupPopup();
+        } else {
+            this.closeSignupPopup();
+        }
+    }
+
+    myProfilePopupStateChange(state: boolean): void {
+        if (state) {
+            this.createMyProfilePopup();
+        } else {
+            this.closeMyProfilePopup();
+        }
+    }
+
+    helpPopupStateChange(state: boolean): void {
+        if (state) {
+            this.createHelpPopup();
+        } else {
+            this.closeHelpPopup();
+        }
     }
 
     private createLoginPopup(): void {
@@ -148,6 +166,41 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.profileDropdownState = false;
     }
 
+    private createMyProfilePopup() {
+        this.myProfileComponent = this.viewContainerRef.createComponent(MyProfileComponent);
+        this.myProfileComponent.instance.state = true;
+        this.myProfileComponent.instance.user = this.loggedUser;
+
+        this.myProfileComponent.instance.stateChange.subscribe(
+            state => {
+                if (!state) {
+                    this.closeMyProfilePopup()
+                }
+            }
+        );
+
+        this.navSliderStatus = false;
+        this.userSliderStatus = false;
+        this.profileDropdownState = false;
+    }
+
+    private createHelpPopup() {
+        this.helpComponent = this.viewContainerRef.createComponent(HelpComponent);
+        this.helpComponent.instance.state = true;
+
+        this.helpComponent.instance.stateChange.subscribe(
+            state => {
+                if (!state) {
+                    this.closeHelpPopup()
+                }
+            }
+        );
+
+        this.navSliderStatus = false;
+        this.userSliderStatus = false;
+        this.profileDropdownState = false;
+    }
+
     private closeLoginPopup() {
         this.loginComponent.destroy();
     }
@@ -156,15 +209,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.signupComponent.destroy();
     }
 
-    public signupPopupStateChange(state: boolean): void {
-        this.signupPopupState = state;
-
-        if (state) {
-            this.createSignupPopup();
-        } else {
-            this.closeSignupPopup();
-        }
-
+    private closeMyProfilePopup() {
+        this.myProfileComponent.destroy();
     }
 
+    private closeHelpPopup() {
+        this.helpComponent.destroy();
+    }
 }
