@@ -9,11 +9,11 @@
                        [@showErrorMessage]="showErrorMessage()">
         </app-error-box>
 
-        <div class="container profile-container"
+        <div class="container profile-options-container"
              [@hideAuthContainer]="hideErrorMessage()"
              (@hideAuthContainer.done)="hideAuthContainer($event)">
 
-            <div class="row">
+            <div class="row profile-options-row">
 
                 <div class="btn-container">
                     <app-profile-picture-picker

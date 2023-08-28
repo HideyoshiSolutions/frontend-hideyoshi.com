@@ -28,8 +28,12 @@ export class ProfilePicturePickerComponent  {
         this.imageSent.emit(true);
     }
 
+    getFileName(): string {
+        return this.profilePicture.name;
+    }
+
     get isProfilePictureSelected(): boolean {
-        return !this.profilePicture;
+        return !!this.profilePicture;
     }
 
 }

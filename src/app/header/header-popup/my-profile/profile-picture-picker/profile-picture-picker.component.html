@@ -8,12 +8,12 @@
                    (change)="handleFileInput($event)">
             <label class="custom-file-label"
                    for="inputProfilePicture">
-                Profile Picture
+                {{isProfilePictureSelected ? getFileName() : 'Profile Picture'}}
             </label>
         </div>
         <div class="input-group-append">
             <button class="btn btn-outline-secondary"
-            [disabled]="isProfilePictureSelected"
+            [disabled]="!isProfilePictureSelected"
             (click)="uploadProfilePicture()">Upload</button>
         </div>
     </div>
