@@ -19,7 +19,10 @@
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "rules": {
-        "indent": ["error", 4],
+        "indent": [
+          "error",
+          4
+        ],
         "@angular-eslint/directive-selector": [
           "error",
           {
