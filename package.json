@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "scripts": {
     "start": "node ./server.js",
-    "serve": "ng serve"
+    "build": "ng build",
+    "serve": "ng serve",
+    "serve:prod": "ng serve --configuration=production",
+    "build:prod": "ng build --configuration=production"
   },
   "proxy": {
     "/callback": {
