@@ -16,10 +16,9 @@
             <div class="row">
 
                 <div class="btn-container">
-                    <button class="picture-btn"
-                            (click)="onAddProfilePicture()">
-                        Add Profile Picture
-                    </button>
+                    <app-profile-picture-picker
+                    (imageSent)="onProfilePictureSent($event)">
+                    </app-profile-picture-picker>
                 </div>
 
                 <div class="separator-line">

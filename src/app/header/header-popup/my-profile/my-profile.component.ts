@@ -11,6 +11,7 @@ import {first, take} from "rxjs";
 import UserChecker from "../../../shared/model/user/user.checker";
 import HttpErrorChecker from "../../../shared/model/httpError/httpErrorChecker";
 import {HttpError} from "../../../shared/model/httpError/httpError.model";
+import {faFileUpload} from "@fortawesome/free-solid-svg-icons";
 
 
 @Component({
@@ -101,6 +102,8 @@ export class MyProfileComponent implements OnInit {
 
     isShowErrorMessage = false;
 
+    _fileIcon = faFileUpload
+
     constructor(private authService: AuthService) {
     }
 
@@ -116,42 +119,39 @@ export class MyProfileComponent implements OnInit {
         this.stateChange.emit(state);
     }
 
-    public showErrorMessage(): string {
+    showErrorMessage(): string {
         if (this.isShowErrorMessage) {
             return "show";
         }
         return "hide";
     }
 
-    public hideErrorMessage(): string {
+    hideErrorMessage(): string {
         if (!!this.errorMessage) {
             return "hide";
         }
         return "show";
     }
 
-    public onDeleteAccount() {
+    onDeleteAccount() {
         this.authService.deleteAccount().subscribe({
-            next: (res) => {
-                if (res && UserChecker.test(res)) {
-                    this.closePopup()
-                } if (HttpErrorChecker.test(res)) {
-                    this.errorMessage = (<HttpError>res).details;
-                }
+            next: (response: any) => {
+                this.authService.logout();
             }
         })
-        // this.authService.logout()
-        // this.onStateChange(false);
-    }
-
-    public onAddProfilePicture() {
-        this.authService.addProfilePicture()
+        this.closePopup();
     }
 
     hideAuthContainer(event: any) {
         if (event.toState === "hide") {
             event.element.style.display = "none";
             this.isShowErrorMessage = true;
+        }
+    }
+
+    onProfilePictureSent(event: any) {
+        if (event) {
+            this.closePopup();
         }
     }
 
