@@ -21,7 +21,7 @@ import { Component, ElementRef, EventEmitter, Input, Output, ViewEncapsulation }
                         animateChild(),
                         { optional: true }
                     ),
-                    animate('125ms ease-in')
+                    animate('250ms ease-in')
                 ])
             ),
             transition(

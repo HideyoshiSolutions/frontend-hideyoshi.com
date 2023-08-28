@@ -1,11 +1,11 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {first, firstValueFrom, Observable, of, Subject, take} from 'rxjs';
+import {first, firstValueFrom, map, Observable, of, Subject, take, tap} from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { HttpError } from '../model/httpError/httpError.model';
-import { Token } from '../model/token/token.model';
 import { User } from '../model/user/user.model';
+import * as http from "http";
 
 @Injectable({
     providedIn: 'root'
@@ -21,7 +21,6 @@ export class AuthService {
     readonly BACKEND_OAUTH_PATH = environment.backendOAuthPath;
 
     constructor(private http: HttpClient) { }
-
     login(userAuthAtempt: User): void {
         this.validateUser(this.loginUser(userAuthAtempt));
     }
@@ -56,14 +55,27 @@ export class AuthService {
         this.destroySessions().subscribe()
     }
 
-    async getUserAccessToken(): Promise<Token | undefined> {
-        if (this.userAuthenticated) {
-            if ((!this.userAuthenticated.accessToken && this.refreshAccessToken) ||
-                (this.userAuthenticated.accessToken && this.userAuthenticated.accessToken.expirationDate < Date.now())) {
-                this.userAuthenticated = <User>(await this.refreshAccessToken());
+    deleteAccount() {
+        return this.deleteAccountRequest();
+    }
+
+    addProfilePicture(file: File): void {
+        const fileType = file.type.split('/')[1];
+        this.getAddProfilePictureUrl(fileType).subscribe({
+            next: (url: string|null) => {
+                if (url != null) {
+                    this.uploadProfilePicture(url, file).then(
+                        (response: Observable<any>) => {
+                            response.subscribe({
+                                next: (response: any) => {
+                                    this.processProfilePicture().subscribe();
+                                }
+                            });
+                        }
+                    );
+                }
             }
-            return this.userAuthenticated.accessToken;
-        } else return
+        })
     }
 
     private loginUser(userAuthAtempt: User): Observable<User|any> {
@@ -155,6 +167,15 @@ export class AuthService {
         );
     }
 
+    private deleteAccountRequest() {
+        let headers = this.createAuthorizationHeader()
+
+        return this.http.delete(
+            this.BACKEND_PATH + `/user/delete`,
+            { headers: headers, withCredentials: true }
+        );
+    }
+
     private validateUser(userAuthAtempt: Observable<User>) {
         userAuthAtempt.pipe(
             catchError(error => {
@@ -178,4 +199,67 @@ export class AuthService {
         });
     }
 
+    private getAddProfilePictureUrl(fileType: string): Observable<string|null> {
+        return this.http.post<{ presigned_url: string, file_key: string }>(
+            this.BACKEND_PATH + '/user/profile-picture?fileType=' + fileType,
+            null,
+            {
+                headers: this.createAuthorizationHeader(),
+                withCredentials: true
+            }
+        ).pipe(
+            first(),
+            map((res) => {
+                if (!!res && !!res.presigned_url) {
+                    return res.presigned_url;
+                }
+                return null
+            })
+        )
+    }
+
+    private async uploadProfilePicture(url: string, file: File): Promise<Observable<any>> {
+        const fileData = await this.readAsArrayBuffer(file);
+        let headers = new HttpHeaders({
+            'Content-Type': file.type
+        })
+        return this.http.put(
+            url,
+            fileData,
+            {
+                headers: headers,
+            }
+        );
+    }
+
+    private processProfilePicture() {
+        return this.http.post(
+            this.BACKEND_PATH + '/user/profile-picture/proccess',
+            null,
+            {
+                headers: this.createAuthorizationHeader(),
+                withCredentials: true
+            }
+        )
+    }
+
+    private createAuthorizationHeader(): HttpHeaders {
+        return new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + this.userAuthenticated.accessToken?.token
+        });
+    }
+
+    private async readAsArrayBuffer(file: File): Promise<ArrayBuffer> {
+        const reader = new FileReader();
+        reader.readAsArrayBuffer(file)
+        return new Promise<ArrayBuffer>((resolve, reject) => {
+            reader.onload = () => {
+                resolve(reader.result as ArrayBuffer);
+            };
+            reader.onerror = () => {
+                reject(reader.error);
+            };
+        });
+    }
 }

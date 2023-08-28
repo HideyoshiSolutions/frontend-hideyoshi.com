@@ -36,7 +36,6 @@ export class NavSliderComponent extends SliderItemComponent implements OnInit, O
     ngOnInit(): void {
         this.userSubscription = this.authService.authSubject.subscribe(
             res => {
-                console.log(UserChecker.test(res));
                 if (res && UserChecker.test(res)) {
                     this.loggedUser = <User>res;
                 } else {

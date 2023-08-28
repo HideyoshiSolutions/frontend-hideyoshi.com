@@ -11,18 +11,18 @@ import { User } from 'src/app/shared/model/user/user.model';
     styleUrls: ['./user-slider.component.css']
 })
 export class UserSliderComponent extends SliderItemComponent implements OnInit {
-    
+
     userlessOptions = [
         {
             name: "Login",
             onClick: () => {
-                this.loginOptionClicked();
+                this.onLoginOptionClicked();
             }
         },
         {
             name: "Signup",
             onClick: () => {
-                this.signupOptionClicked();
+                this.onSignUpOptionClick();
             }
         }
     ]
@@ -30,11 +30,15 @@ export class UserSliderComponent extends SliderItemComponent implements OnInit {
     userOptions = [
         {
             name: "My Profile",
-            onClick: () => {}
+            onClick: () => {
+                this.onMyProfileClicked()
+            }
         },
         {
             name: "Help",
-            onClick: () => {}
+            onClick: () => {
+                this.onHelpClicked();
+            }
         },
         {
             name: "Logout",
@@ -48,19 +52,24 @@ export class UserSliderComponent extends SliderItemComponent implements OnInit {
 
     authSubscription!: Subscription;
 
+    @Output()
+        loginPopupState: EventEmitter<boolean> = new EventEmitter();
 
     @Output()
-        loginPopupState = new EventEmitter<boolean>();
+        signupPopupState: EventEmitter<boolean> = new EventEmitter();
 
     @Output()
-        signupPopupState = new EventEmitter<boolean>();
+        helpPopupState: EventEmitter<boolean> = new EventEmitter();
+
+    @Output()
+        myProfilePopupState: EventEmitter<boolean> = new EventEmitter();
 
     constructor(private authService: AuthService) {
         super();
     }
 
     ngOnInit() {
-        this.authSubscription = 
+        this.authSubscription =
             this.authService.authSubject.subscribe(
                 res => {
                     if (UserChecker.test(res)) {
@@ -72,12 +81,20 @@ export class UserSliderComponent extends SliderItemComponent implements OnInit {
             )
     }
 
-    loginOptionClicked(): void {
+    onLoginOptionClicked(): void {
         this.loginPopupState.emit(true);
     }
 
-    signupOptionClicked(): void {
+    onSignUpOptionClick(): void {
         this.signupPopupState.emit(true);
+    }
+
+    onMyProfileClicked(): void {
+        this.myProfilePopupState.emit(true);
+    }
+
+    onHelpClicked(): void {
+        this.helpPopupState.emit(true);
     }
 
     onLogout() {
