@@ -6,8 +6,9 @@ export interface User {
     email?: string,
     username: string,
     password?: string,
+    profilePictureUrl?: string,
     accessToken?: Token,
     refreshToken?: Token,
-    authorities?: Array<{authority: string}>,
+    roles?: Array<string>,
     validateAccessToken?: () => Token | undefined;
 };

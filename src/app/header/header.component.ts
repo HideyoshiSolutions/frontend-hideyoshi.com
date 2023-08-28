@@ -1,14 +1,20 @@
-import { Component, ComponentRef, ElementRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import {Component, ComponentRef, ElementRef, OnDestroy, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { LoginComponent } from './header-popup/login/login.component';
 import { SignupComponent } from './header-popup/signup/signup.component';
+import {AuthService} from "../shared/auth/auth.service";
+import UserChecker from "../shared/model/user/user.checker";
+import {User} from "../shared/model/user/user.model";
+import {Subscription} from "rxjs";
+import {HelpComponent} from "./header-popup/help/help.component";
+import {MyProfileComponent} from "./header-popup/my-profile/my-profile.component";
 
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, OnDestroy {
 
     userIcon = faUser;
 
@@ -21,18 +27,42 @@ export class HeaderComponent {
 
     @ViewChild('profileBtn')
         profileBtnElementRef!: ElementRef;
-    
+
     @ViewChild('profileDropdown')
         profileDropdownElementRef!: ElementRef;
-    
+
     @ViewChild('user')
         userElementRef!: ElementRef;
+
+    loggedUser!: User | null;
+
+    private userSubscription!: Subscription;
 
     private loginComponent!: ComponentRef<LoginComponent>;
 
     private signupComponent!: ComponentRef<SignupComponent>;
 
-    constructor(private viewContainerRef: ViewContainerRef) { }
+    private myProfileComponent!: ComponentRef<MyProfileComponent>;
+
+    private helpComponent!: ComponentRef<HelpComponent>;
+
+    constructor(private viewContainerRef: ViewContainerRef, private authService: AuthService) { }
+
+    ngOnInit(): void {
+        this.userSubscription = this.authService.authSubject.subscribe(
+            res => {
+                if (res && UserChecker.test(res)) {
+                    this.loggedUser = <User>res;
+                } else {
+                    this.loggedUser = null;
+                }
+            }
+        )
+    }
+
+    ngOnDestroy(): void {
+        this.userSubscription.unsubscribe();
+    }
 
 
     public toogleProfileDropdown(): void {
@@ -58,23 +88,36 @@ export class HeaderComponent {
     public closeDropdown(): void {
         this.profileDropdownState = false;
     }
-
-    public closeNavSlider(): void {
-        if (this.userSliderStatus) {
-            this.userSliderStatus = false;
-        } else {
-            this.navSliderStatus = false;   
-        }
-    }
-
     public loginPopupStateChange(state: boolean): void {
-
         if (state) {
             this.createLoginPopup();
         } else {
             this.closeLoginPopup();
         }
+    }
 
+    public signupPopupStateChange(state: boolean): void {
+        if (state) {
+            this.createSignupPopup();
+        } else {
+            this.closeSignupPopup();
+        }
+    }
+
+    myProfilePopupStateChange(state: boolean): void {
+        if (state) {
+            this.createMyProfilePopup();
+        } else {
+            this.closeMyProfilePopup();
+        }
+    }
+
+    helpPopupStateChange(state: boolean): void {
+        if (state) {
+            this.createHelpPopup();
+        } else {
+            this.closeHelpPopup();
+        }
     }
 
     private createLoginPopup(): void {
@@ -123,6 +166,41 @@ export class HeaderComponent {
         this.profileDropdownState = false;
     }
 
+    private createMyProfilePopup() {
+        this.myProfileComponent = this.viewContainerRef.createComponent(MyProfileComponent);
+        this.myProfileComponent.instance.state = true;
+        this.myProfileComponent.instance.user = this.loggedUser;
+
+        this.myProfileComponent.instance.stateChange.subscribe(
+            state => {
+                if (!state) {
+                    this.closeMyProfilePopup()
+                }
+            }
+        );
+
+        this.navSliderStatus = false;
+        this.userSliderStatus = false;
+        this.profileDropdownState = false;
+    }
+
+    private createHelpPopup() {
+        this.helpComponent = this.viewContainerRef.createComponent(HelpComponent);
+        this.helpComponent.instance.state = true;
+
+        this.helpComponent.instance.stateChange.subscribe(
+            state => {
+                if (!state) {
+                    this.closeHelpPopup()
+                }
+            }
+        );
+
+        this.navSliderStatus = false;
+        this.userSliderStatus = false;
+        this.profileDropdownState = false;
+    }
+
     private closeLoginPopup() {
         this.loginComponent.destroy();
     }
@@ -131,15 +209,11 @@ export class HeaderComponent {
         this.signupComponent.destroy();
     }
 
-    public signupPopupStateChange(state: boolean): void {
-        this.signupPopupState = state;
-
-        if (state) {
-            this.createSignupPopup();
-        } else {
-            this.closeSignupPopup();
-        }
-
+    private closeMyProfilePopup() {
+        this.myProfileComponent.destroy();
     }
 
+    private closeHelpPopup() {
+        this.helpComponent.destroy();
+    }
 }

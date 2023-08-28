@@ -1,9 +1,9 @@
-<div 
-    class="dropdown" 
-    appClickedOutside 
-    (clickOutside)="onClickedOutside()" 
+<div
+    class="dropdown"
+    appClickedOutside
+    (clickOutside)="onClickedOutside()"
     [includeClickedOutside]="[management]"
-    [ignoreElementList]="ignoreClickOutside" 
+    [ignoreElementList]="ignoreClickOutside"
     [@dropdownState]="dropDownState"
     (@dropdownState.start)="$event.element.style.display = 'block'"
     (@dropdownState.done)="$event.element.style.display = (state ? 'block' : 'none')">
@@ -26,13 +26,13 @@
             </li>
         </ul>
         <ul class="user-management" *ngIf="this.user">
-            <li class="dropdown-item">
+            <li class="dropdown-item" (click)="onMyProfileClicked()">
                 <div class="icon-box">
                     <fa-icon class="fas fa-user" [icon]="userIcon"></fa-icon>
                 </div>
                 <p>My Profile</p>
             </li>
-            <li class="dropdown-item">
+            <li class="dropdown-item" (click)="onHelpClicked()">
                 <div class="icon-box">
                     <fa-icon class="fas fa-question-circle" [icon]="questionCircleIcon"></fa-icon>
                 </div>
