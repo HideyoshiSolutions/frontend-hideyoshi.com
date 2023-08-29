@@ -46,6 +46,10 @@ export class AuthService {
 
     }
 
+    refresh(): void {
+        this.validateUser(this.refreshAccessToken());
+    }
+
     autoLogin(): void {
         this.validateUser(this.validateSession());
     }
@@ -68,7 +72,11 @@ export class AuthService {
                         (response: Observable<any>) => {
                             response.subscribe({
                                 next: (response: any) => {
-                                    this.processProfilePicture().subscribe();
+                                    this.processProfilePicture().subscribe(
+                                        () => {
+                                            this.refresh();
+                                        }
+                                    );
                                 }
                             });
                         }
@@ -146,11 +154,11 @@ export class AuthService {
     }
 
     private refreshAccessToken() {
-        return firstValueFrom(this.http.post(
+        return this.http.post<User>(
             this.BACKEND_PATH + "/user/login/refresh",
             this.userAuthenticated.refreshToken,
             { withCredentials: true }
-        ));
+        );
     }
 
     private validateSession(): Observable<User> {
