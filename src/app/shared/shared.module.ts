@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { PopupComponent } from './components/popup/popup.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {CookieConsentModule} from "./cookie-consent/cookie-consent.module";
 
 @NgModule({
     declarations: [
@@ -18,6 +19,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
         HttpClientModule,
         BrowserAnimationsModule,
         FontAwesomeModule,
+        CookieConsentModule
     ],
     exports: [
         ClickedOutsideDirective,
