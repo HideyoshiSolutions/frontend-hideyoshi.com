@@ -12,9 +12,12 @@ import { User } from 'src/app/shared/model/user/user.model';
 import {animate, animateChild, group, query, state, style, transition, trigger} from "@angular/animations";
 import {ValidatePasswordValidator} from "../../../shared/validators/validate-password.validator";
 import {ValidateNotEmptyValidator} from "../../../shared/validators/validate-not-empty.validator";
+import {NgcCookieConsentService, NgcStatusChangeEvent} from "ngx-cookieconsent";
+import {CookieConsertService} from "../../../shared/cookie-consent/cookie-consert.service";
 
 
 const GOOGLE_LOGO_SVG = "assets/img/providers/google.svg";
+const GOOGLE_DISABLED_LOGO_SVG = "assets/img/providers/google-disabled.svg";
 const GITHUB_LOGO_SVG = "assets/img/providers/github.svg";
 
 @Component({
@@ -100,7 +103,11 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
     authSubject!: Subscription;
 
+    cookieStatusChangeSubscription!: Subscription;
+
     errorMessage!: string | null;
+
+    isCookieBlocked = false;
 
     isShowErrorMessage = false;
 
@@ -110,6 +117,8 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
     constructor(
         private authService: AuthService,
+        private ccService: NgcCookieConsentService,
+        private cookieConsentService: CookieConsertService,
         private changeDetectorRef: ChangeDetectorRef,
         private matIconRegistry: MatIconRegistry,
         private domSanitizer: DomSanitizer) {
@@ -117,6 +126,10 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
             "google-logo",
             this.domSanitizer.bypassSecurityTrustResourceUrl(GOOGLE_LOGO_SVG)
         );
+        this.matIconRegistry.addSvgIcon(
+            "google-disabled-logo",
+            this.domSanitizer.bypassSecurityTrustResourceUrl(GOOGLE_DISABLED_LOGO_SVG)
+        )
         this.matIconRegistry.addSvgIcon(
             "github-logo",
             this.domSanitizer.bypassSecurityTrustResourceUrl(GITHUB_LOGO_SVG)
@@ -134,6 +147,17 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
                 this.validateLogin(res);
             }
         );
+
+        this.cookieStatusChangeSubscription = this.cookieConsentService.cookieStatusChangeSubscription.subscribe(
+            (status: boolean) => {
+                this.isCookieBlocked = !status;
+                console.log("Cookie status: " + status);
+            }
+        );
+
+        if (this.isCookieBlocked) {
+            this.ccService.fadeIn();
+        }
     }
 
     ngAfterViewInit(): void {
@@ -142,6 +166,7 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.authSubject.unsubscribe();
+        this.cookieStatusChangeSubscription.unsubscribe();
     }
 
     onStateChange(state: boolean) {

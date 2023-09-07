@@ -46,13 +46,19 @@
                 <div class="col-lg-6 authentication-body">
                     <button mat-button
                             class="oauth-button d-flex justify-content-center align-items-center"
+                            [disabled]="isCookieBlocked"
                             (click)="onGoogleLogin()">
-                        <mat-icon style="width: 50px; height:30px"
+                        <mat-icon *ngIf="!isCookieBlocked"
+                                  style="width: 50px; height:30px"
                                   svgIcon="google-logo"></mat-icon>
+                        <mat-icon *ngIf="isCookieBlocked"
+                                  style="width: 50px; height:30px"
+                                  svgIcon="google-disabled-logo"></mat-icon>
                         Login With Google
                     </button>
                     <button mat-button
                             class="oauth-button d-flex justify-content-center align-items-center"
+                            [disabled]="isCookieBlocked"
                             (click)="onGithubLogin()">
                         <mat-icon style="width: 50px; height:30px"
                                   svgIcon="github-logo"></mat-icon>
