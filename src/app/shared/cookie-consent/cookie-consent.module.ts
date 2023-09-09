@@ -7,7 +7,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     "cookie": {
         "domain": "tinesoft.github.io"
     },
-    "position": "bottom-right",
+    "position": "bottom-left",
     "theme": "classic",
     "palette": {
         "popup": {
