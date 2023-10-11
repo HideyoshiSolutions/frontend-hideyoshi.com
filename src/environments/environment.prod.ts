@@ -1,5 +1,5 @@
 export const environment = {
     production: true,
-    backendPath: process.env['BACKEND_URL'],
-    backendOAuthPath: process.env['BACKEND_OAUTH_URL']
+    backendPath: (<any>window).env['BACKEND_URL'],
+    backendOAuthPath: (<any>window).env['BACKEND_OAUTH_URL']
 };
