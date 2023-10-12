@@ -2,6 +2,6 @@
     window['env'] = window['env'] || {};
 
     // Environment variables
-    window['env']['backendPath'] = '${BACKEND_URL}';
-    window['env']['backendOAuthPath'] = '${BACKEND_OAUTH_URL}';
+    window['env']['BACKEND_URL'] = '${BACKEND_URL}';
+    window['env']['BACKEND_OAUTH_URL'] = '${BACKEND_OAUTH_URL}';
 })(this);

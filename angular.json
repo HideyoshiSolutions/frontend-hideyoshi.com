@@ -79,16 +79,6 @@
                     "options": {
                         "browserTarget": "frontend-hideyoshi.com:build:build"
                     },
-                    "configurations": {
-                        "production": {
-                            "browserTarget": "frontend-hideyoshi.com:build:production",
-                            "proxyConfig": "src/proxy.conf.json"
-                        },
-                        "development": {
-                            "browserTarget": "frontend-hideyoshi.com:build:development",
-                            "proxyConfig": "src/proxy.conf.json"
-                        }
-                    },
                     "defaultConfiguration": "development"
                 },
                 "extract-i18n": {
