@@ -10,11 +10,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppServiceWorkerModule } from './app-service-worker.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import {FooterComponent} from "./footer/footer.component";
 
 @NgModule({
     declarations: [
         AppComponent,
-        HomeComponent
+        HomeComponent,
+        FooterComponent
     ],
     imports: [
         BrowserModule,
