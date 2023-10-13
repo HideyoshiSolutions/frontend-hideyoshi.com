@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
         let cookieConsentStatus = this.cookieConsentService.getCookieConsentStatusFromLocalStorage();
 
         if (cookieConsentStatus) {
-            this.ccService.fadeOut();
+            this.ccService.destroy();
         }
 
         this.cookieStatusChangeSubscription = this.ccService.statusChange$.subscribe(
