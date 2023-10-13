@@ -1,5 +1,9 @@
+footer {
+    max-height: 100px;
+    margin-top: auto;
+}
+
 .page-footer {
-    position: absolute;
     bottom: 0;
     width: 100%;
 }
