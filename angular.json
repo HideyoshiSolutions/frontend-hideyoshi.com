@@ -75,9 +75,14 @@
                     "defaultConfiguration": "production"
                 },
                 "serve": {
-                    "builder": "@angular-builders/custom-webpack:dev-server",
-                    "options": {
-                        "browserTarget": "frontend-hideyoshi.com:build:build"
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "frontend-hideyoshi.com:build:production"
+                        },
+                        "development": {
+                            "browserTarget": "frontend-hideyoshi.com:build:development"
+                        }
                     },
                     "defaultConfiguration": "development"
                 },
