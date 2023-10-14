@@ -28,52 +28,66 @@ export class ClickedOutsideDirective implements AfterViewInit, OnDestroy {
 
     ngAfterViewInit(): void {
 
-        const mouseDownListener$ = fromEvent(document, 'mousedown');
-        const mouseUpListener$ = fromEvent(document,'mouseup');
+        const clickListener$ = fromEvent(this.document, 'click');
 
-        this.eventListener = mouseUpListener$.pipe(
-            combineLatestWith(mouseDownListener$),
-            filter(([downClick, upClick]) => {
-                return (downClick.target as HTMLElement)
-                .contains(this.element.nativeElement) && (!this.isInside(
-                    upClick.target as HTMLElement
-                    ) || this.includedList(upClick.target as HTMLElement));
+        this.eventListener = clickListener$.pipe(
+            filter((click) => {
+                return (
+                    (
+                        this.isOutside(click.target as HTMLElement) ||
+                        this.isInIncludedList(click.target as HTMLElement)
+                    ) &&
+                    this.notInIgnoredList(click.target as HTMLElement)
+                );
             })
         ). subscribe( () => {
             !this.clickOutsideStopWatching && this.clickOutside.emit();
         });
-            
+
     }
 
     ngOnDestroy(): void {
         this.eventListener?.unsubscribe();
     }
 
-    private isInside(elementToCheck: HTMLElement): boolean {
-        return (
-            elementToCheck === this.element.nativeElement 
-                || this.element.nativeElement.contains(elementToCheck) 
-                || (this.ignoreElementList && this.checkIgnoredList(elementToCheck))
+    private isOutside(elementToCheck: HTMLElement): boolean {
+        let status = true;
+        if (this.element.nativeElement === elementToCheck ||
+            this.element.nativeElement.contains(elementToCheck)) {
+            status = false;
+        }
 
-        );
+        console.log('isOutside', status)
+
+        return status;
     }
-    
-    private checkIgnoredList(elementToCheck: HTMLElement): boolean {
-        return this.ignoreElementList.some(
-            (ignoreElement) => {
-                return ignoreElement === elementToCheck ||
-                    ignoreElement.contains(elementToCheck)
-            }
-        )
+
+    private notInIgnoredList(elementToCheck: HTMLElement): boolean {
+        if (!this.ignoreElementList || this.ignoreElementList.length === 0) {
+            return false;
+        }
+
+        let validateIsIgnored = (ignoreElement: HTMLDivElement): boolean => {
+            return ignoreElement === elementToCheck
+                || ignoreElement.contains(elementToCheck)
+                || elementToCheck.contains(ignoreElement)
+        }
+
+        return !this.ignoreElementList.some(validateIsIgnored)
     }
-        
-    private includedList(elementToCheck: HTMLElement): boolean {
-        return this.includeClickedOutside && this.includeClickedOutside.some(
-            (includedElement) => {
-                return includedElement === elementToCheck ||
-                includedElement.contains(elementToCheck)
-            }
-        )
+
+    private isInIncludedList(elementToCheck: HTMLElement): boolean {
+        if (!this.includeClickedOutside || this.includeClickedOutside.length === 0) {
+            return false;
+        }
+
+        let validateIsIncluded = (includedElement: HTMLDivElement): boolean => {
+            return includedElement === elementToCheck
+                || includedElement.contains(elementToCheck)
+                || elementToCheck.contains(includedElement)
+        }
+
+        return !this.includeClickedOutside.some(validateIsIncluded)
     }
 
 }
