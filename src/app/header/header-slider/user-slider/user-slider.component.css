@@ -28,17 +28,16 @@
 }
 
 .user-options li a {
-    font-family: 'Montserrat';
+    font-family: "Montserrat";
     text-decoration: none;
     font-weight: 400;
     color: #ffffff;
     font-size: 18px;
 }
 
-
 .user-options li a:hover {
     color: #f44336;
     transition: 0.5s;
     cursor: pointer;
-    opacity: .8;
+    opacity: 0.8;
 }

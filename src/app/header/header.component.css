@@ -48,20 +48,20 @@
     height: 5px;
     background: #ffffff;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(255, 101, 47, .2);
-    transition: all .5s ease-in-out;
+    box-shadow: 0 2px 5px rgba(255, 101, 47, 0.2);
+    transition: all 0.5s ease-in-out;
 }
 
 .burger-menu::before,
 .burger-menu::after {
-    content: '';
+    content: "";
     position: absolute;
     width: 40px;
     height: 5px;
     background: #ffffff;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(255, 101, 47, .2);
-    transition: all .5s ease-in-out;
+    box-shadow: 0 2px 5px rgba(255, 101, 47, 0.2);
+    transition: all 0.5s ease-in-out;
 }
 
 .burger-menu::before {
@@ -75,17 +75,17 @@
 .burger-menu.open {
     background: transparent;
     box-shadow: none;
-    transition: all .5s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
 
 .burger-menu.open::before {
     transform: rotate(45deg);
-    transition: all .5s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
 
 .burger-menu.open::after {
     transform: rotate(-45deg);
-    transition: all .5s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
 
 .profile {
@@ -99,7 +99,6 @@ app-header-slider {
 /* ====================== COMPUTER MEDIA FORMAT ======================== */
 
 @media only screen and (min-width: 712px) {
-
     .nav-links {
         all: unset;
         width: 50%;
@@ -121,7 +120,7 @@ app-header-slider {
     }
 
     .link-container li a {
-        font-family: 'Montserrat', sans-serif;
+        font-family: "Montserrat", sans-serif;
         text-decoration: none;
         letter-spacing: 3px;
         color: #ffffff;
@@ -180,5 +179,4 @@ app-header-slider {
     app-header-slider {
         opacity: 0;
     }
-
 }

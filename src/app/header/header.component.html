@@ -2,7 +2,7 @@
     <div class="main" #header>
         <div class="logo">
             <a routerLink="">
-                <img src="assets/img/logohideyoshi-white.png" alt="">
+                <img src="assets/img/logohideyoshi-white.png" alt="" />
             </a>
         </div>
         <div class="nav-links">
@@ -15,14 +15,25 @@
         </div>
 
         <div class="profile" #profileDropdown>
-            <div class="profile-btn" (click)="toogleProfileDropdown()" #profileBtn>
-                <fa-icon *ngIf="!loggedUser || !(loggedUser.profilePictureUrl)"
-                         class="fas fa-user" [icon]="userIcon"></fa-icon>
-                <img *ngIf="!!loggedUser && !!(loggedUser.profilePictureUrl)"
-                     class="profile-picture"
-                     [ngSrc]="loggedUser.profilePictureUrl"
-                     width="50" height="50"
-                     alt="Profile Picture" priority/>
+            <div
+                class="profile-btn"
+                (click)="toogleProfileDropdown()"
+                #profileBtn
+            >
+                <fa-icon
+                    *ngIf="!loggedUser || !loggedUser.profilePictureUrl"
+                    class="fas fa-user"
+                    [icon]="userIcon"
+                ></fa-icon>
+                <img
+                    *ngIf="!!loggedUser && !!loggedUser.profilePictureUrl"
+                    class="profile-picture"
+                    [ngSrc]="loggedUser.profilePictureUrl"
+                    width="50"
+                    height="50"
+                    alt="Profile Picture"
+                    priority
+                />
             </div>
 
             <app-header-dropdown
@@ -33,36 +44,43 @@
                 (loginPopupState)="loginPopupStateChange($event)"
                 (signupPopupState)="signupPopupStateChange($event)"
                 (myProfilePopupState)="myProfilePopupStateChange($event)"
-                (helpPopupState)="helpPopupStateChange($event)">
+                (helpPopupState)="helpPopupStateChange($event)"
+            >
             </app-header-dropdown>
         </div>
         <div class="burger-container" (click)="toogleNavSlider()">
-            <div class="burger-menu" [ngClass]="{'open' : navSliderStatus}">
-            </div>
+            <div
+                class="burger-menu"
+                [ngClass]="{ open: navSliderStatus }"
+            ></div>
         </div>
     </div>
     <div #nav>
         <app-header-slider
-        [(state)]="navSliderStatus"
-        [clickOutsideStopWatching]="userSliderStatus"
-        [ignoreClickOutside]="[header, user]">
+            [(state)]="navSliderStatus"
+            [clickOutsideStopWatching]="userSliderStatus"
+            [ignoreClickOutside]="[header, user]"
+        >
             <app-nav-slider
                 [state]="navSliderStatus"
-                (profileButtonClicked)="profileButtonClicked()">
+                (profileButtonClicked)="profileButtonClicked()"
+            >
             </app-nav-slider>
         </app-header-slider>
     </div>
 
     <div #user>
         <app-header-slider
-        [(state)]="userSliderStatus"
-        [ignoreClickOutside]="[header, nav]">
+            [(state)]="userSliderStatus"
+            [ignoreClickOutside]="[header, nav]"
+        >
             <app-user-slider
                 [state]="userSliderStatus"
                 (loginPopupState)="loginPopupStateChange($event)"
                 (signupPopupState)="signupPopupStateChange($event)"
                 (myProfilePopupState)="myProfilePopupStateChange($event)"
-                (helpPopupState)="helpPopupStateChange($event)">
+                (helpPopupState)="helpPopupStateChange($event)"
+            >
             </app-user-slider>
         </app-header-slider>
     </div>

@@ -1,6 +1,6 @@
-const express = require('express');
-const cors = require('cors');
-const path = require('path');
+const express = require("express");
+const cors = require("cors");
+const path = require("path");
 
 const PKG_NAME = "frontend-hideyoshi.com";
 
@@ -9,7 +9,7 @@ app.use(cors());
 
 app.use(express.static(`${__dirname}/dist/${PKG_NAME}`));
 
-app.get('/*', (req, res) => {
+app.get("/*", (req, res) => {
     res.sendFile(path.join(`${__dirname}/dist/${PKG_NAME}/index.html`));
 });
 

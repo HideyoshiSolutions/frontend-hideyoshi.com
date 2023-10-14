@@ -1,8 +1,10 @@
-<div class="slider"
-appClickedOutside
-[ignoreElementList]="ignoreClickOutside"
-[clickOutsideStopWatching]="clickOutsideStopWatching"
-(clickOutside)="closeNavSlider()"
-[@slideState]="sliderStatus">
+<div
+    class="slider"
+    appClickedOutside
+    [ignoreElementList]="ignoreClickOutside"
+    [clickOutsideStopWatching]="clickOutsideStopWatching"
+    (clickOutside)="closeNavSlider()"
+    [@slideState]="sliderStatus"
+>
     <ng-content></ng-content>
 </div>

@@ -2,21 +2,34 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
-import { faEnvelope, faFingerprint, faLock, faUser } from '@fortawesome/free-solid-svg-icons';
+import {
+    faEnvelope,
+    faFingerprint,
+    faLock,
+    faUser,
+} from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/shared/auth/auth.service';
 import { HttpError } from 'src/app/shared/model/httpError/httpError.model';
 import HttpErrorChecker from 'src/app/shared/model/httpError/httpErrorChecker';
 import UserChecker from 'src/app/shared/model/user/user.checker';
 import { User } from 'src/app/shared/model/user/user.model';
-import {animate, animateChild, group, query, state, style, transition, trigger} from "@angular/animations";
-import {ValidateEmailValidator} from "../../../shared/validators/validate-email.validator";
-import {ValidatePasswordValidator} from "../../../shared/validators/validate-password.validator";
-import {ValidateNotEmptyValidator} from "../../../shared/validators/validate-not-empty.validator";
+import {
+    animate,
+    animateChild,
+    group,
+    query,
+    state,
+    style,
+    transition,
+    trigger,
+} from '@angular/animations';
+import { ValidateEmailValidator } from '../../../shared/validators/validate-email.validator';
+import { ValidatePasswordValidator } from '../../../shared/validators/validate-password.validator';
+import { ValidateNotEmptyValidator } from '../../../shared/validators/validate-not-empty.validator';
 
-
-const GOOGLE_LOGO_SVG = "assets/img/providers/google.svg";
-const GITHUB_LOGO_SVG = "assets/img/providers/github.svg";
+const GOOGLE_LOGO_SVG = 'assets/img/providers/google.svg';
+const GITHUB_LOGO_SVG = 'assets/img/providers/github.svg';
 
 @Component({
     selector: 'app-signup',
@@ -24,78 +37,66 @@ const GITHUB_LOGO_SVG = "assets/img/providers/github.svg";
     styleUrls: ['./signup.component.css'],
     animations: [
         trigger('resizeContainerForErrorMessage', [
-            state('hide',
+            state(
+                'hide',
                 style({
                     height: '100px',
                     width: '320px',
-                })
+                }),
             ),
             transition(
                 'show => hide',
                 group([
-                    query(
-                        "@*",
-                        animateChild(),
-                        { optional: true }
-                    ),
-                    animate('1s ease')
-                ])
-            )
+                    query('@*', animateChild(), { optional: true }),
+                    animate('1s ease'),
+                ]),
+            ),
         ]),
         trigger('showErrorMessage', [
-            state('show',
+            state(
+                'show',
                 style({
                     opacity: 1,
                     height: '100px',
                     width: '320px',
-                })
+                }),
             ),
-            state('hide',
+            state(
+                'hide',
                 style({
                     opacity: 0,
                     height: '0px',
                     width: '0px',
-                })
+                }),
             ),
-            transition(
-                '* => show',
-                animate(
-                    '500ms ease-in'
-                )
-            ),
+            transition('* => show', animate('500ms ease-in')),
         ]),
         trigger('hideAuthContainer', [
-            state('hide',
+            state(
+                'hide',
                 style({
                     opacity: 0,
-                })
+                }),
             ),
             transition(
                 'show => hide',
                 group([
-                    query(
-                        "@*",
-                        animateChild(),
-                        { optional: true }
-                    ),
-                    animate(
-                        '250ms ease-out'
-                    )
-                ])
-            )
+                    query('@*', animateChild(), { optional: true }),
+                    animate('250ms ease-out'),
+                ]),
+            ),
         ]),
-    ]
+    ],
 })
 export class SignupComponent implements OnInit {
+    @Input()
+    state: boolean = false;
 
     @Input()
-        state: boolean = false;
-
-    @Input()
-        ignoreClickOutside!: HTMLDivElement[];
+    ignoreClickOutside!: HTMLDivElement[];
 
     @Output()
-        stateChange = new EventEmitter<boolean>();
+    stateChange = new EventEmitter<boolean>();
 
     signupForm!: FormGroup;
 
@@ -113,34 +114,46 @@ export class SignupComponent implements OnInit {
 
     _passwordIcon = faLock;
 
-    constructor(private authService: AuthService,
+    constructor(
+        private authService: AuthService,
         private matIconRegistry: MatIconRegistry,
-        private domSanitizer: DomSanitizer) {
+        private domSanitizer: DomSanitizer,
+    ) {
         this.matIconRegistry.addSvgIcon(
-            "google-logo",
-            this.domSanitizer.bypassSecurityTrustResourceUrl(GOOGLE_LOGO_SVG)
+            'google-logo',
+            this.domSanitizer.bypassSecurityTrustResourceUrl(GOOGLE_LOGO_SVG),
         );
         this.matIconRegistry.addSvgIcon(
-            "github-logo",
-            this.domSanitizer.bypassSecurityTrustResourceUrl(GITHUB_LOGO_SVG)
+            'github-logo',
+            this.domSanitizer.bypassSecurityTrustResourceUrl(GITHUB_LOGO_SVG),
         );
     }
 
     ngOnInit(): void {
         this.signupForm = new FormGroup({
-            'fullname': new FormControl(null, [Validators.required, ValidateNotEmptyValidator]),
+            fullname: new FormControl(null, [
+                Validators.required,
+                ValidateNotEmptyValidator,
+            ]),
             // Create a Email Validator
-            'email': new FormControl(null, [Validators.required, ValidateEmailValidator]),
-            'username': new FormControl(null, [Validators.required, ValidateNotEmptyValidator]),
+            email: new FormControl(null, [
+                Validators.required,
+                ValidateEmailValidator,
+            ]),
+            username: new FormControl(null, [
+                Validators.required,
+                ValidateNotEmptyValidator,
+            ]),
             // Create a Password Validator
-            'password': new FormControl(null, [Validators.required, ValidatePasswordValidator])
+            password: new FormControl(null, [
+                Validators.required,
+                ValidatePasswordValidator,
+            ]),
         });
         this.errorMessage = null;
-        this.authSubject = this.authService.authSubject.subscribe(
-            res => {
-                this.validateSignup(res);
-            }
-        );
+        this.authSubject = this.authService.authSubject.subscribe((res) => {
+            this.validateSignup(res);
+        });
     }
 
     onStateChange(state: boolean) {
@@ -152,8 +165,8 @@ export class SignupComponent implements OnInit {
             name: this.signupForm.controls['fullname'].value,
             email: this.signupForm.controls['email'].value,
             username: this.signupForm.controls['username'].value,
-            password: this.signupForm.controls['password'].value
-        }
+            password: this.signupForm.controls['password'].value,
+        };
         this.authService.signup(user);
     }
 
@@ -167,11 +180,11 @@ export class SignupComponent implements OnInit {
 
     private validateSignup(res: User | HttpError | null) {
         if (res && UserChecker.test(res)) {
-            this.closePopup()
-        } if (HttpErrorChecker.test(res)) {
+            this.closePopup();
+        }
+        if (HttpErrorChecker.test(res)) {
             this.errorMessage = (<HttpError>res).details;
         }
-
     }
 
     private closePopup() {
@@ -181,24 +194,22 @@ export class SignupComponent implements OnInit {
 
     public showErrorMessage(): string {
         if (this.isShowErrorMessage) {
-            return "show";
+            return 'show';
         }
-        return "hide";
+        return 'hide';
     }
 
     public hideErrorMessage(): string {
         if (!!this.errorMessage) {
-            return "hide";
+            return 'hide';
         }
-        return "show";
+        return 'show';
     }
 
     hideAuthContainer(event: any) {
-        if (event.toState === "hide") {
-            event.element.style.display = "none";
+        if (event.toState === 'hide') {
+            event.element.style.display = 'none';
             this.isShowErrorMessage = true;
         }
     }
-
-
 }

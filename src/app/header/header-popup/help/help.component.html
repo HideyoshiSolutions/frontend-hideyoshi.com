@@ -1,28 +1,32 @@
-<app-popup [state]="state"
-           (stateChange)="onStateChange($event)"
-           [ignoreClickOutside]="ignoreClickOutside">
-
+<app-popup
+    [state]="state"
+    (stateChange)="onStateChange($event)"
+    [ignoreClickOutside]="ignoreClickOutside"
+>
     <div class="help-container container m-0 overflow-hidden">
-
         <p>
-            This is a simple example project to demonstrate
-            User Authentication and Authorization using
-            <a href="https://spring.io/projects/spring-security" target="_blank">Spring Security</a>
+            This is a simple example project to demonstrate User Authentication
+            and Authorization using
+            <a href="https://spring.io/projects/spring-security" target="_blank"
+                >Spring Security</a
+            >
             and
-            <a href="https://docs.spring.io/spring-security/reference/servlet/oauth2/" target="_blank">OAuth2</a>.
+            <a
+                href="https://docs.spring.io/spring-security/reference/servlet/oauth2/"
+                target="_blank"
+                >OAuth2</a
+            >.
 
-            <br/><br/>
+            <br /><br />
 
-            The only data stored is your email address, username and name.
-            This data is stored in a database and is used to authenticate you
-            and will not be used for any other purpose.
+            The only data stored is your email address, username and name. This
+            data is stored in a database and is used to authenticate you and
+            will not be used for any other purpose.
 
-            <br/><br/>
+            <br /><br />
 
-            All data can be deleted by clicking the "Delete Account" button
-            on the "My Profile" option.
+            All data can be deleted by clicking the "Delete Account" button on
+            the "My Profile" option.
         </p>
-
     </div>
-
 </app-popup>

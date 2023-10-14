@@ -1,21 +1,28 @@
-import {Component, ComponentRef, ElementRef, OnDestroy, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
+import {
+    Component,
+    ComponentRef,
+    ElementRef,
+    OnDestroy,
+    OnInit,
+    ViewChild,
+    ViewContainerRef,
+} from '@angular/core';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { LoginComponent } from './header-popup/login/login.component';
 import { SignupComponent } from './header-popup/signup/signup.component';
-import {AuthService} from "../shared/auth/auth.service";
-import UserChecker from "../shared/model/user/user.checker";
-import {User} from "../shared/model/user/user.model";
-import {Subscription} from "rxjs";
-import {HelpComponent} from "./header-popup/help/help.component";
-import {MyProfileComponent} from "./header-popup/my-profile/my-profile.component";
+import { AuthService } from '../shared/auth/auth.service';
+import UserChecker from '../shared/model/user/user.checker';
+import { User } from '../shared/model/user/user.model';
+import { Subscription } from 'rxjs';
+import { HelpComponent } from './header-popup/help/help.component';
+import { MyProfileComponent } from './header-popup/my-profile/my-profile.component';
 
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
-    styleUrls: ['./header.component.css']
+    styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-
     userIcon = faUser;
 
     profileDropdownState: boolean = false;
@@ -26,13 +33,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
     userSliderStatus: boolean = false;
 
     @ViewChild('profileBtn')
-        profileBtnElementRef!: ElementRef;
+    profileBtnElementRef!: ElementRef;
 
     @ViewChild('profileDropdown')
-        profileDropdownElementRef!: ElementRef;
+    profileDropdownElementRef!: ElementRef;
 
     @ViewChild('user')
-        userElementRef!: ElementRef;
+    userElementRef!: ElementRef;
 
     loggedUser!: User | null;
 
@@ -46,24 +53,26 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     private helpComponent!: ComponentRef<HelpComponent>;
 
-    constructor(private viewContainerRef: ViewContainerRef, private authService: AuthService) { }
+    constructor(
+        private viewContainerRef: ViewContainerRef,
+        private authService: AuthService,
+    ) {}
 
     ngOnInit(): void {
         this.userSubscription = this.authService.authSubject.subscribe(
-            res => {
+            (res) => {
                 if (res && UserChecker.test(res)) {
                     this.loggedUser = <User>res;
                 } else {
                     this.loggedUser = null;
                 }
-            }
-        )
+            },
+        );
     }
 
     ngOnDestroy(): void {
         this.userSubscription.unsubscribe();
     }
-
 
     public toogleProfileDropdown(): void {
         this.profileDropdownState = !this.profileDropdownState;
@@ -121,22 +130,21 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
 
     private createLoginPopup(): void {
-        this.loginComponent = this.viewContainerRef.createComponent(LoginComponent);
+        this.loginComponent =
+            this.viewContainerRef.createComponent(LoginComponent);
         this.loginComponent.instance.state = true;
 
         this.loginComponent.instance.ignoreClickOutside = [
             this.profileBtnElementRef,
             this.profileDropdownElementRef,
-            this.userElementRef
-        ].map(element => element.nativeElement);
+            this.userElementRef,
+        ].map((element) => element.nativeElement);
 
-        this.loginComponent.instance.stateChange.subscribe(
-            state => {
-                if (!state) {
-                    this.closeLoginPopup()
-                }
+        this.loginComponent.instance.stateChange.subscribe((state) => {
+            if (!state) {
+                this.closeLoginPopup();
             }
-        );
+        });
 
         this.navSliderStatus = false;
         this.userSliderStatus = false;
@@ -144,22 +152,21 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
 
     private createSignupPopup() {
-        this.signupComponent = this.viewContainerRef.createComponent(SignupComponent);
+        this.signupComponent =
+            this.viewContainerRef.createComponent(SignupComponent);
         this.signupComponent.instance.state = true;
 
         this.signupComponent.instance.ignoreClickOutside = [
             this.profileBtnElementRef,
             this.profileDropdownElementRef,
-            this.userElementRef
-        ].map(element => element.nativeElement);
+            this.userElementRef,
+        ].map((element) => element.nativeElement);
 
-        this.signupComponent.instance.stateChange.subscribe(
-            state => {
-                if (!state) {
-                    this.closeSignupPopup()
-                }
+        this.signupComponent.instance.stateChange.subscribe((state) => {
+            if (!state) {
+                this.closeSignupPopup();
             }
-        );
+        });
 
         this.navSliderStatus = false;
         this.userSliderStatus = false;
@@ -167,17 +174,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
 
     private createMyProfilePopup() {
-        this.myProfileComponent = this.viewContainerRef.createComponent(MyProfileComponent);
+        this.myProfileComponent =
+            this.viewContainerRef.createComponent(MyProfileComponent);
         this.myProfileComponent.instance.state = true;
         this.myProfileComponent.instance.user = this.loggedUser;
 
-        this.myProfileComponent.instance.stateChange.subscribe(
-            state => {
-                if (!state) {
-                    this.closeMyProfilePopup()
-                }
+        this.myProfileComponent.instance.stateChange.subscribe((state) => {
+            if (!state) {
+                this.closeMyProfilePopup();
             }
-        );
+        });
 
         this.navSliderStatus = false;
         this.userSliderStatus = false;
@@ -185,16 +191,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
 
     private createHelpPopup() {
-        this.helpComponent = this.viewContainerRef.createComponent(HelpComponent);
+        this.helpComponent =
+            this.viewContainerRef.createComponent(HelpComponent);
         this.helpComponent.instance.state = true;
 
-        this.helpComponent.instance.stateChange.subscribe(
-            state => {
-                if (!state) {
-                    this.closeHelpPopup()
-                }
+        this.helpComponent.instance.stateChange.subscribe((state) => {
+            if (!state) {
+                this.closeHelpPopup();
             }
-        );
+        });
 
         this.navSliderStatus = false;
         this.userSliderStatus = false;

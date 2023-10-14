@@ -29,15 +29,14 @@
 
 .nav-links li a {
     text-decoration: none;
-    font-family: 'Montserrat';
+    font-family: "Montserrat";
     font-weight: 400;
     color: #ffffff;
     font-size: 18px;
 }
 
-
 .nav-links li a:hover {
-    opacity: .8;
+    opacity: 0.8;
     color: #f44336;
     transition: 0.5s;
 }

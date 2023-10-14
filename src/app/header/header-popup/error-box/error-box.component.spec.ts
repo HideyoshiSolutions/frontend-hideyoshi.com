@@ -3,21 +3,20 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ErrorBoxComponent } from './error-box.component';
 
 describe('ErrorBoxComponent', () => {
-  let component: ErrorBoxComponent;
-  let fixture: ComponentFixture<ErrorBoxComponent>;
+    let component: ErrorBoxComponent;
+    let fixture: ComponentFixture<ErrorBoxComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ ErrorBoxComponent ]
-    })
-    .compileComponents();
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            declarations: [ErrorBoxComponent],
+        }).compileComponents();
 
-    fixture = TestBed.createComponent(ErrorBoxComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+        fixture = TestBed.createComponent(ErrorBoxComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

@@ -1,9 +1,21 @@
 <div class="user-container">
     <div class="user-options">
         <ul>
-            <li *ngFor="let options of (user ? userOptions : userlessOptions); let i=index"[@animateSliderItem]="{ value: itemStatus, params: { fadeInTime: .6 + i/10 , fadeOutTime: .6 - i/10 } }">
+            <li
+                *ngFor="
+                    let options of user ? userOptions : userlessOptions;
+                    let i = index
+                "
+                [@animateSliderItem]="{
+                    value: itemStatus,
+                    params: {
+                        fadeInTime: 0.6 + i / 10,
+                        fadeOutTime: 0.6 - i / 10
+                    }
+                }"
+            >
                 <a (click)="options.onClick()">
-                    {{options.name}}
+                    {{ options.name }}
                 </a>
             </li>
         </ul>

@@ -1,19 +1,18 @@
-import {Component, EventEmitter, Output} from '@angular/core';
-import {AuthService} from "../../../../shared/auth/auth.service";
+import { Component, EventEmitter, Output } from '@angular/core';
+import { AuthService } from '../../../../shared/auth/auth.service';
 
 @Component({
     selector: 'app-profile-picture-picker',
     templateUrl: './profile-picture-picker.component.html',
-    styleUrls: ['./profile-picture-picker.component.css']
+    styleUrls: ['./profile-picture-picker.component.css'],
 })
-export class ProfilePicturePickerComponent  {
-
+export class ProfilePicturePickerComponent {
     @Output()
-        imageSent  = new EventEmitter<boolean>();
+    imageSent = new EventEmitter<boolean>();
 
     private profilePicture!: File;
 
-    constructor(private authService: AuthService) { }
+    constructor(private authService: AuthService) {}
 
     handleFileInput(event: Event) {
         const element = event.currentTarget as HTMLInputElement;
@@ -35,5 +34,4 @@ export class ProfilePicturePickerComponent  {
     get isProfilePictureSelected(): boolean {
         return !!this.profilePicture;
     }
-
 }

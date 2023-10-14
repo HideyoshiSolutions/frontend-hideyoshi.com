@@ -18,9 +18,7 @@
                         "main": "src/main.ts",
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.app.json",
-                        "allowedCommonJsDependencies": [
-                            "ts-interface-checker"
-                        ],
+                        "allowedCommonJsDependencies": ["ts-interface-checker"],
                         "assets": [
                             "src/assets",
                             "src/manifest.webmanifest",
@@ -104,28 +102,21 @@
                             "src/manifest.webmanifest",
                             "src/manifest.webmanifest"
                         ],
-                        "styles": [
-                            "src/styles.css"
-                        ],
+                        "styles": ["src/styles.css"],
                         "scripts": []
                     }
                 },
                 "lint": {
                     "builder": "@angular-eslint/builder:lint",
                     "options": {
-                        "lintFilePatterns": [
-                            "src/**/*.ts",
-                            "src/**/*.html"
-                        ]
+                        "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
                     }
                 }
             }
         }
     },
     "cli": {
-        "schematicCollections": [
-            "@angular-eslint/schematics"
-        ],
+        "schematicCollections": ["@angular-eslint/schematics"],
         "analytics": false
     },
     "schematics": {

@@ -1,33 +1,41 @@
-import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
+import {
+    Component,
+    EventEmitter,
+    OnDestroy,
+    OnInit,
+    Output,
+} from '@angular/core';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { SliderItemComponent } from 'src/app/shared/components/slider-item/slider-item.component';
-import UserChecker from "../../../shared/model/user/user.checker";
-import {User} from "../../../shared/model/user/user.model";
-import {AuthService} from "../../../shared/auth/auth.service";
-import {Subscription} from "rxjs";
+import UserChecker from '../../../shared/model/user/user.checker';
+import { User } from '../../../shared/model/user/user.model';
+import { AuthService } from '../../../shared/auth/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-nav-slider',
     templateUrl: './nav-slider.component.html',
-    styleUrls: ['./nav-slider.component.css']
+    styleUrls: ['./nav-slider.component.css'],
 })
-export class NavSliderComponent extends SliderItemComponent implements OnInit, OnDestroy {
-
+export class NavSliderComponent
+    extends SliderItemComponent
+    implements OnInit, OnDestroy
+{
     userIcon = faUser;
 
     navLink = [
-        { page: "Home", link: "/home" },
-        { page: "Work", link: "/home" },
-        { page: "Contact", link: "/home" },
-        { page: "About", link: "/home" }
-    ]
+        { page: 'Home', link: '/home' },
+        { page: 'Work', link: '/home' },
+        { page: 'Contact', link: '/home' },
+        { page: 'About', link: '/home' },
+    ];
 
     loggedUser!: User | null;
 
     private userSubscription!: Subscription;
 
     @Output()
-        profileButtonClicked = new EventEmitter();
+    profileButtonClicked = new EventEmitter();
 
     constructor(private authService: AuthService) {
         super();
@@ -35,14 +43,14 @@ export class NavSliderComponent extends SliderItemComponent implements OnInit, O
 
     ngOnInit(): void {
         this.userSubscription = this.authService.authSubject.subscribe(
-            res => {
+            (res) => {
                 if (res && UserChecker.test(res)) {
                     this.loggedUser = <User>res;
                 } else {
                     this.loggedUser = null;
                 }
-            }
-        )
+            },
+        );
     }
 
     ngOnDestroy(): void {
@@ -52,5 +60,4 @@ export class NavSliderComponent extends SliderItemComponent implements OnInit, O
     onProfileButtonClicked() {
         this.profileButtonClicked.emit();
     }
-
 }
