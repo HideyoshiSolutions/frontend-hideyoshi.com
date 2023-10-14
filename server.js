@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.static(`${__dirname}/dist/${PKG_NAME}`));
 
 app.get('/*', (req, res) => {
-res.sendFile(path.join(`${__dirname}/dist/${PKG_NAME}/index.html`));
+    res.sendFile(path.join(`${__dirname}/dist/${PKG_NAME}/index.html`));
 });
 
 app.listen(process.env.PORT || 5000);
