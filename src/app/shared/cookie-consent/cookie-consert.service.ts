@@ -1,21 +1,20 @@
-import {Injectable} from '@angular/core';
-import {BehaviorSubject, Subject, Subscription} from "rxjs";
-import {CookieService} from "ngx-cookie-service";
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Subject, Subscription } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class CookieConsertService {
-
     private storage: Storage;
 
-    cookieStatusChangeSubscription!: BehaviorSubject<boolean>
+    cookieStatusChangeSubscription!: BehaviorSubject<boolean>;
 
     constructor(private cookieService: CookieService) {
-        this.storage = window.localStorage
+        this.storage = window.localStorage;
 
         this.cookieStatusChangeSubscription = new BehaviorSubject<boolean>(
-            this.getCookieConsentStatusFromLocalStorage()
+            this.getCookieConsentStatusFromLocalStorage(),
         );
     }
 
@@ -48,5 +47,4 @@ export class CookieConsertService {
 
         return status === 'true';
     }
-
 }

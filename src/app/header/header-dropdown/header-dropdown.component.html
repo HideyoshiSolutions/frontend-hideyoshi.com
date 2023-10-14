@@ -6,9 +6,12 @@
     [ignoreElementList]="ignoreClickOutside"
     [@dropdownState]="dropDownState"
     (@dropdownState.start)="$event.element.style.display = 'block'"
-    (@dropdownState.done)="$event.element.style.display = (state ? 'block' : 'none')">
+    (@dropdownState.done)="
+        $event.element.style.display = state ? 'block' : 'none'
+    "
+>
     <div class="info">
-        <h3>{{ this.user ? this.user.username : 'User Account' }}</h3>
+        <h3>{{ this.user ? this.user.username : "User Account" }}</h3>
     </div>
     <div #management>
         <ul class="user-management" *ngIf="!this.user">
@@ -34,13 +37,19 @@
             </li>
             <li class="dropdown-item" (click)="onHelpClicked()">
                 <div class="icon-box">
-                    <fa-icon class="fas fa-question-circle" [icon]="questionCircleIcon"></fa-icon>
+                    <fa-icon
+                        class="fas fa-question-circle"
+                        [icon]="questionCircleIcon"
+                    ></fa-icon>
                 </div>
                 <p>Help</p>
             </li>
             <li class="dropdown-item" (click)="onLogout()">
                 <div class="icon-box">
-                    <fa-icon class="fas fa-sign-out-alt" [icon]="signOutAltIcon"></fa-icon>
+                    <fa-icon
+                        class="fas fa-sign-out-alt"
+                        [icon]="signOutAltIcon"
+                    ></fa-icon>
                 </div>
                 <p>Logout</p>
             </li>

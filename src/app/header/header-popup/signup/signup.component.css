@@ -22,7 +22,7 @@
 }
 
 .auth-body .btn {
-    background-color: #D8291C !important;
+    background-color: #d8291c !important;
     text-decoration: none;
     border-radius: 8px;
     color: #ffffff;
@@ -70,7 +70,7 @@
     border-bottom: 2px solid #7676769b;
 }
 .input-div:after {
-    content: '';
+    content: "";
     left: 0;
     right: 0;
     width: 0;
@@ -84,11 +84,12 @@
 .input-div:hover:after,
 .input-div:has(input.form-control:focus):after {
     width: 100%;
-    transition: .4s;
+    transition: 0.4s;
     overflow: hidden;
 }
 
-.input-div > .form-control, .input-div > .form-control:focus {
+.input-div > .form-control,
+.input-div > .form-control:focus {
     border: none;
     border-color: inherit;
     -webkit-box-shadow: none;
@@ -101,7 +102,7 @@
     font-size: 17px;
     color: #767676;
 }
-.input-div >.form-control:-webkit-autofill {
+.input-div > .form-control:-webkit-autofill {
     -webkit-text-fill-color: #767676;
     box-shadow: 0 0 0px 1000px #ffffff inset;
     -webkit-box-shadow: 0 0 0px 1000px #ffffff inset;
@@ -111,17 +112,16 @@
 .input-div:hover > .form-control::placeholder,
 .input-div:hover > .input-div-icon,
 .input-div:has(input.form-control:focus) > .input-div-icon {
-    color: #D8291C;
-    transition: .3s;
+    color: #d8291c;
+    transition: 0.3s;
 }
 .input-div:hover > .form-control::placeholder,
-.input-div:focus > .form-control::placeholder{
+.input-div:focus > .form-control::placeholder {
     font-weight: 500;
-    transition: .3s;
+    transition: 0.3s;
 }
 
-@media (min-width:767px) {
-
+@media (min-width: 767px) {
     .authentication-container {
         min-width: 630px;
     }
@@ -151,5 +151,4 @@
         border-right: 2px solid #80808076;
         height: 100%;
     }
-
 }

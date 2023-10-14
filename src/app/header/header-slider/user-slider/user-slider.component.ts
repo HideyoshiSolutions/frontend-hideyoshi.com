@@ -8,77 +8,75 @@ import { User } from 'src/app/shared/model/user/user.model';
 @Component({
     selector: 'app-user-slider',
     templateUrl: './user-slider.component.html',
-    styleUrls: ['./user-slider.component.css']
+    styleUrls: ['./user-slider.component.css'],
 })
 export class UserSliderComponent extends SliderItemComponent implements OnInit {
-
     userlessOptions = [
         {
-            name: "Login",
+            name: 'Login',
             onClick: () => {
                 this.onLoginOptionClicked();
-            }
+            },
         },
         {
-            name: "Signup",
+            name: 'Signup',
             onClick: () => {
                 this.onSignUpOptionClick();
-            }
-        }
-    ]
+            },
+        },
+    ];
 
     userOptions = [
         {
-            name: "My Profile",
+            name: 'My Profile',
             onClick: () => {
-                this.onMyProfileClicked()
-            }
+                this.onMyProfileClicked();
+            },
         },
         {
-            name: "Help",
+            name: 'Help',
             onClick: () => {
                 this.onHelpClicked();
-            }
+            },
         },
         {
-            name: "Logout",
+            name: 'Logout',
             onClick: () => {
                 this.onLogout();
-            }
-        }
-    ]
+            },
+        },
+    ];
 
-    user!: User|null;
+    user!: User | null;
 
     authSubscription!: Subscription;
 
     @Output()
-        loginPopupState: EventEmitter<boolean> = new EventEmitter();
+    loginPopupState: EventEmitter<boolean> = new EventEmitter();
 
     @Output()
-        signupPopupState: EventEmitter<boolean> = new EventEmitter();
+    signupPopupState: EventEmitter<boolean> = new EventEmitter();
 
     @Output()
-        helpPopupState: EventEmitter<boolean> = new EventEmitter();
+    helpPopupState: EventEmitter<boolean> = new EventEmitter();
 
     @Output()
-        myProfilePopupState: EventEmitter<boolean> = new EventEmitter();
+    myProfilePopupState: EventEmitter<boolean> = new EventEmitter();
 
     constructor(private authService: AuthService) {
         super();
     }
 
     ngOnInit() {
-        this.authSubscription =
-            this.authService.authSubject.subscribe(
-                res => {
-                    if (UserChecker.test(res)) {
-                        this.user = <User>res;
-                    } else {
-                        this.user = null;
-                    }
+        this.authSubscription = this.authService.authSubject.subscribe(
+            (res) => {
+                if (UserChecker.test(res)) {
+                    this.user = <User>res;
+                } else {
+                    this.user = null;
                 }
-            )
+            },
+        );
     }
 
     onLoginOptionClicked(): void {
@@ -100,5 +98,4 @@ export class UserSliderComponent extends SliderItemComponent implements OnInit {
     onLogout() {
         this.authService.logout();
     }
-
 }

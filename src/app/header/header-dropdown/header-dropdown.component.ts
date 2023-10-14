@@ -1,12 +1,32 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
-import {Component, ComponentRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewContainerRef} from '@angular/core';
-import { faEdit, faQuestionCircle, faSignOutAlt, faUser } from '@fortawesome/free-solid-svg-icons';
+import {
+    animate,
+    state,
+    style,
+    transition,
+    trigger,
+} from '@angular/animations';
+import {
+    Component,
+    ComponentRef,
+    EventEmitter,
+    Input,
+    OnDestroy,
+    OnInit,
+    Output,
+    ViewContainerRef,
+} from '@angular/core';
+import {
+    faEdit,
+    faQuestionCircle,
+    faSignOutAlt,
+    faUser,
+} from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/shared/auth/auth.service';
-import {User} from "../../shared/model/user/user.model";
-import UserChecker from "../../shared/model/user/user.checker";
-import {HelpComponent} from "../header-popup/help/help.component";
-import {MyProfileComponent} from "../header-popup/my-profile/my-profile.component";
+import { User } from '../../shared/model/user/user.model';
+import UserChecker from '../../shared/model/user/user.checker';
+import { HelpComponent } from '../header-popup/help/help.component';
+import { MyProfileComponent } from '../header-popup/my-profile/my-profile.component';
 
 @Component({
     selector: 'app-header-dropdown',
@@ -14,19 +34,24 @@ import {MyProfileComponent} from "../header-popup/my-profile/my-profile.componen
     styleUrls: ['./header-dropdown.component.css'],
     animations: [
         trigger('dropdownState', [
-            state('hide', style({
-                'opacity': '0'
-            })),
-            state('show', style({
-                'opacity': '1'
-            })),
+            state(
+                'hide',
+                style({
+                    opacity: '0',
+                }),
+            ),
+            state(
+                'show',
+                style({
+                    opacity: '1',
+                }),
+            ),
             transition('hide => show', animate('20ms ease-in')),
-            transition('show => hide', animate('5ms ease-out'))
-        ])
-    ]
+            transition('show => hide', animate('5ms ease-out')),
+        ]),
+    ],
 })
 export class HeaderDropdownComponent implements OnInit, OnDestroy {
-
     userIcon = faUser;
 
     editIcon = faEdit;
@@ -40,38 +65,41 @@ export class HeaderDropdownComponent implements OnInit, OnDestroy {
     private userSubscription!: Subscription;
 
     @Input()
-        state: boolean = false;
+    state: boolean = false;
 
     @Input()
-        ignoreClickOutside!: HTMLDivElement[];
+    ignoreClickOutside!: HTMLDivElement[];
 
     @Output()
-        clickOutside = new EventEmitter();
+    clickOutside = new EventEmitter();
 
     @Output()
-        loginPopupState: EventEmitter<boolean> = new EventEmitter();
+    loginPopupState: EventEmitter<boolean> = new EventEmitter();
 
     @Output()
-        signupPopupState: EventEmitter<boolean> = new EventEmitter();
+    signupPopupState: EventEmitter<boolean> = new EventEmitter();
 
     @Output()
-        helpPopupState: EventEmitter<boolean> = new EventEmitter();
+    helpPopupState: EventEmitter<boolean> = new EventEmitter();
 
     @Output()
-        myProfilePopupState: EventEmitter<boolean> = new EventEmitter();
+    myProfilePopupState: EventEmitter<boolean> = new EventEmitter();
 
-    constructor(private viewContainerRef: ViewContainerRef, private authService: AuthService) { }
+    constructor(
+        private viewContainerRef: ViewContainerRef,
+        private authService: AuthService,
+    ) {}
 
     ngOnInit(): void {
         this.userSubscription = this.authService.authSubject.subscribe(
-            res => {
+            (res) => {
                 if (res && UserChecker.test(res)) {
                     this.user = <User>res;
                 } else {
                     this.user = null;
                 }
-            }
-        )
+            },
+        );
     }
 
     ngOnDestroy(): void {

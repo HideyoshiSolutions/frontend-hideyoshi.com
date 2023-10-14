@@ -1,31 +1,39 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Hideyoshi Portfolio</title>
+        <base href="/" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link
+            rel="icon"
+            type="image/x-icon"
+            href="./assets/img/logohideyoshi-red.png"
+        />
 
-<head>
-    <meta charset="utf-8">
-    <title>Hideyoshi Portfolio</title>
-    <base href="/">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="./assets/img/logohideyoshi-red.png">
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta name="apple-mobile-web-app-title" content="Hideyoshi" />
 
+        <link rel="manifest" href="manifest.webmanifest" />
+        <link
+            rel="preconnect"
+            href="https://hideyoshi-portfolio-dev.s3.amazonaws.com"
+        />
 
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Hideyoshi">
+        <!--  Loading environment variables  -->
+        <script src="./assets/env.js"></script>
+    </head>
 
-    <link rel="manifest" href="manifest.webmanifest">
-    <link rel="preconnect" href="https://hideyoshi-portfolio-dev.s3.amazonaws.com">
-
-    <!--  Loading environment variables  -->
-    <script src="./assets/env.js"></script>
-</head>
-
-<body>
-    <app-root></app-root>
-    <noscript>Please enable JavaScript to continue using this application.</noscript>
-</body>
+    <body>
+        <app-root></app-root>
+        <noscript
+            >Please enable JavaScript to continue using this
+            application.</noscript
+        >
+    </body>
 </html>

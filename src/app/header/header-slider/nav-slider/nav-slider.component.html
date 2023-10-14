@@ -1,9 +1,18 @@
 <div class="links-container">
     <div class="nav-links">
         <ul>
-            <li *ngFor="let nav of navLink; let i=index"[@animateSliderItem]="{ value: itemStatus, params: { fadeInTime: .6 + i/20 , fadeOutTime: .6 - i/10 } }">
+            <li
+                *ngFor="let nav of navLink; let i = index"
+                [@animateSliderItem]="{
+                    value: itemStatus,
+                    params: {
+                        fadeInTime: 0.6 + i / 20,
+                        fadeOutTime: 0.6 - i / 10
+                    }
+                }"
+            >
                 <a [routerLink]="nav.link">
-                    {{nav.page}}
+                    {{ nav.page }}
                 </a>
             </li>
         </ul>
@@ -11,18 +20,32 @@
 </div>
 
 <div class="profile-container">
-    <div class="profile"
-    [@animateSliderItem]="{ value: itemStatus, params: { fadeInTime: .6 + (navLink.length+1)/20 , fadeOutTime: .6 - (navLink.length+1)/10 } }"
-    #profile>
-        <div class="profile-btn"
-        (click)="onProfileButtonClicked()">
-            <fa-icon *ngIf="!loggedUser || !(loggedUser.profilePictureUrl)"
-                     class="fas fa-user" [icon]="userIcon"></fa-icon>
-            <img *ngIf="!!loggedUser && !!(loggedUser.profilePictureUrl)"
-                 class="profile-picture"
-                 [ngSrc]="loggedUser.profilePictureUrl"
-                 width="50" height="50"
-                 alt="Profile Picture" priority/>
+    <div
+        class="profile"
+        [@animateSliderItem]="{
+            value: itemStatus,
+            params: {
+                fadeInTime: 0.6 + (navLink.length + 1) / 20,
+                fadeOutTime: 0.6 - (navLink.length + 1) / 10
+            }
+        }"
+        #profile
+    >
+        <div class="profile-btn" (click)="onProfileButtonClicked()">
+            <fa-icon
+                *ngIf="!loggedUser || !loggedUser.profilePictureUrl"
+                class="fas fa-user"
+                [icon]="userIcon"
+            ></fa-icon>
+            <img
+                *ngIf="!!loggedUser && !!loggedUser.profilePictureUrl"
+                class="profile-picture"
+                [ngSrc]="loggedUser.profilePictureUrl"
+                width="50"
+                height="50"
+                alt="Profile Picture"
+                priority
+            />
         </div>
     </div>
 </div>

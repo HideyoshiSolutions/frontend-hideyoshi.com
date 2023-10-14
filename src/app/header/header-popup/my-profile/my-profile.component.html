@@ -1,23 +1,28 @@
-<app-popup [state]="state"
-           (stateChange)="onStateChange($event)"
-           [ignoreClickOutside]="ignoreClickOutside">
-
-    <div class="container m-0 overflow-hidden"
-         [@resizeContainerForErrorMessage]="hideErrorMessage()">
-
-        <app-error-box [errorMessage]="errorMessage"
-                       [@showErrorMessage]="showErrorMessage()">
+<app-popup
+    [state]="state"
+    (stateChange)="onStateChange($event)"
+    [ignoreClickOutside]="ignoreClickOutside"
+>
+    <div
+        class="container m-0 overflow-hidden"
+        [@resizeContainerForErrorMessage]="hideErrorMessage()"
+    >
+        <app-error-box
+            [errorMessage]="errorMessage"
+            [@showErrorMessage]="showErrorMessage()"
+        >
         </app-error-box>
 
-        <div class="container profile-options-container"
-             [@hideAuthContainer]="hideErrorMessage()"
-             (@hideAuthContainer.done)="hideAuthContainer($event)">
-
+        <div
+            class="container profile-options-container"
+            [@hideAuthContainer]="hideErrorMessage()"
+            (@hideAuthContainer.done)="hideAuthContainer($event)"
+        >
             <div class="row profile-options-row">
-
                 <div class="btn-container">
                     <app-profile-picture-picker
-                    (imageSent)="onProfilePictureSent($event)">
+                        (imageSent)="onProfilePictureSent($event)"
+                    >
                     </app-profile-picture-picker>
                 </div>
 
@@ -26,16 +31,11 @@
                 </div>
 
                 <div class="btn-container">
-                    <button class="delete-btn"
-                            (click)="onDeleteAccount()">
+                    <button class="delete-btn" (click)="onDeleteAccount()">
                         Delete Account
                     </button>
                 </div>
-
             </div>
-
         </div>
-
     </div>
-
 </app-popup>
