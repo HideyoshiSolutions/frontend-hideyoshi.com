@@ -75,8 +75,6 @@ export class ClickedOutsideDirective implements AfterViewInit, OnDestroy {
             status = false;
         }
 
-        console.log('isOutside', status);
-
         return status;
     }
 

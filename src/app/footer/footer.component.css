@@ -1,11 +1,30 @@
-footer {
-    max-height: 100px;
-    margin-top: auto;
-}
-
 .page-footer {
+    position: relative;
     bottom: 0;
     width: 100%;
+    z-index: -1;
+}
+
+.footer-text {
+    background-color: #525252;
+    color: #ffffff;
+    padding: 10px 0;
+    height: 4vh;
+    text-align: center;
+}
+
+.footer-links {
+    display: flex;
+    height: 10vh;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.footer-links a {
+    color: #ffffff;
+    font-size: 18px;
+    margin: 0 10px;
 }
 
 .footer-btn {
