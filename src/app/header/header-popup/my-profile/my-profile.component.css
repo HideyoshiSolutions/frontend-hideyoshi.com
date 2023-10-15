@@ -36,7 +36,6 @@
 }
 
 .profile-options-container button {
-
     text-decoration: none;
     border-radius: 8px;
     color: #ffffff;
@@ -55,9 +54,7 @@
     background-color: rgba(216, 41, 28, 0.7) !important;
 }
 
-
-@media (min-width:767px) {
-
+@media (min-width: 767px) {
     .profile-options-container {
         all: unset;
         justify-content: space-around;
@@ -96,5 +93,4 @@
         border-radius: 50px;
         height: 100%;
     }
-
 }

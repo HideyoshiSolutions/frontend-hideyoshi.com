@@ -10,14 +10,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppServiceWorkerModule } from './app-service-worker.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-import {FooterComponent} from "./footer/footer.component";
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        HomeComponent,
-        FooterComponent
-    ],
+    declarations: [AppComponent, HomeComponent, FooterComponent],
     imports: [
         BrowserModule,
         HeaderModule,
@@ -27,10 +23,10 @@ import {FooterComponent} from "./footer/footer.component";
         FontAwesomeModule,
         ServiceWorkerModule.register('ngsw-worker.js', {
             enabled: environment.production,
-            registrationStrategy: 'registerWhenStable:30000'
-        })
+            registrationStrategy: 'registerWhenStable:30000',
+        }),
     ],
     providers: [],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

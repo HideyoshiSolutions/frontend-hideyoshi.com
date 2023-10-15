@@ -8,9 +8,8 @@ describe('HeaderDropdownComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            declarations: [ HeaderDropdownComponent ]
-        })
-            .compileComponents();
+            declarations: [HeaderDropdownComponent],
+        }).compileComponents();
 
         fixture = TestBed.createComponent(HeaderDropdownComponent);
         component = fixture.componentInstance;
