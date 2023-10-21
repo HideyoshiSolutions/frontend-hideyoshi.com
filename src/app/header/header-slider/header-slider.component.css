@@ -6,4 +6,5 @@
     top: 10vh;
     right: 0;
     overflow: hidden !important;
+    z-index: 50 !important;
 }

@@ -2,7 +2,6 @@
     position: relative;
     bottom: 0;
     width: 100%;
-    z-index: -1;
 }
 
 .footer-text {
@@ -36,6 +35,6 @@
 }
 
 .footer-btn:hover {
-    color: #525252;
+    color: #525252 !important;
     background-color: #ffffff;
 }
