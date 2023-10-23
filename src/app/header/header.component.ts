@@ -104,6 +104,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     public closeDropdown(): void {
         this.profileDropdownState = false;
     }
+
     public loginPopupStateChange(state: boolean): void {
         if (state) {
             this.createLoginPopup();
@@ -186,6 +187,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.myProfileComponent.instance.state = true;
         this.myProfileComponent.instance.user = this.loggedUser;
 
+        this.myProfileComponent.instance.ignoreClickOutside = [
+            this.profileBtnElementRef,
+            this.profileDropdownElementRef,
+            this.userElementRef,
+        ].map((element) => element.nativeElement);
+
         this.myProfileComponent.instance.stateChange.subscribe((state) => {
             if (!state) {
                 this.closeMyProfilePopup();
@@ -201,6 +208,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.helpComponent =
             this.viewContainerRef.createComponent(HelpComponent);
         this.helpComponent.instance.state = true;
+
+        this.helpComponent.instance.ignoreClickOutside = [
+            this.profileBtnElementRef,
+            this.profileDropdownElementRef,
+            this.userElementRef,
+        ].map((element) => element.nativeElement);
 
         this.helpComponent.instance.stateChange.subscribe((state) => {
             if (!state) {
