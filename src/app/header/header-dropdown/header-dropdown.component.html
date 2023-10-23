@@ -15,43 +15,21 @@
     </div>
     <div #management>
         <ul class="user-management" *ngIf="!this.user">
-            <li class="dropdown-item" (click)="onLoginOptionClicked()">
+            <li *ngFor="let option of mainOptions"
+                class="dropdown-item" (click)=option.callback()>
                 <div class="icon-box">
-                    <fa-icon class="fas fa-user" [icon]="userIcon"></fa-icon>
+                    <fa-icon [icon]="option.icon"></fa-icon>
                 </div>
-                <p>Login</p>
-            </li>
-            <li class="dropdown-item" (click)="onSignUpOptionClick()">
-                <div class="icon-box">
-                    <fa-icon class="fas fa-edit" [icon]="editIcon"></fa-icon>
-                </div>
-                <p>Sign up</p>
+                <p>{{option.text}}</p>
             </li>
         </ul>
         <ul class="user-management" *ngIf="this.user">
-            <li class="dropdown-item" (click)="onMyProfileClicked()">
+            <li *ngFor="let option of userOptions"
+                class="dropdown-item" (click)=option.callback()>
                 <div class="icon-box">
-                    <fa-icon class="fas fa-user" [icon]="userIcon"></fa-icon>
+                    <fa-icon [icon]="option.icon"></fa-icon>
                 </div>
-                <p>My Profile</p>
-            </li>
-            <li class="dropdown-item" (click)="onHelpClicked()">
-                <div class="icon-box">
-                    <fa-icon
-                        class="fas fa-question-circle"
-                        [icon]="questionCircleIcon"
-                    ></fa-icon>
-                </div>
-                <p>Help</p>
-            </li>
-            <li class="dropdown-item" (click)="onLogout()">
-                <div class="icon-box">
-                    <fa-icon
-                        class="fas fa-sign-out-alt"
-                        [icon]="signOutAltIcon"
-                    ></fa-icon>
-                </div>
-                <p>Logout</p>
+                <p>{{option.text}}</p>
             </li>
         </ul>
     </div>

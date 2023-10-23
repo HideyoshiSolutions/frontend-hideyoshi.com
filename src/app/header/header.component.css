@@ -13,6 +13,7 @@
     top: 0;
     left: 0;
     display: flex;
+    position: static;
     width: 100%;
     background-color: #2e2e2e;
     height: 10vh;
@@ -125,7 +126,7 @@ app-header-slider {
         letter-spacing: 3px;
         color: #ffffff;
         font-weight: 500;
-        font-size: 16px;
+        font-size: 20px;
     }
 
     .profile {
