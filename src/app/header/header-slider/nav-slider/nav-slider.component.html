@@ -2,7 +2,7 @@
     <div class="nav-links">
         <ul>
             <li
-                *ngFor="let nav of navLink; let i = index"
+                *ngFor="let page of pages; let i = index"
                 [@animateSliderItem]="{
                     value: itemStatus,
                     params: {
@@ -11,8 +11,8 @@
                     }
                 }"
             >
-                <a [routerLink]="nav.link">
-                    {{ nav.page }}
+                <a [routerLink]="page.route">
+                    {{ page.name }}
                 </a>
             </li>
         </ul>
@@ -25,8 +25,8 @@
         [@animateSliderItem]="{
             value: itemStatus,
             params: {
-                fadeInTime: 0.6 + (navLink.length + 1) / 20,
-                fadeOutTime: 0.6 - (navLink.length + 1) / 10
+                fadeInTime: 0.6 + (pages.length + 1) / 20,
+                fadeOutTime: 0.6 - (pages.length + 1) / 10
             }
         }"
         #profile

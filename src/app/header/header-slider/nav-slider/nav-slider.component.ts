@@ -1,6 +1,7 @@
 import {
     Component,
     EventEmitter,
+    Input,
     OnDestroy,
     OnInit,
     Output,
@@ -23,12 +24,8 @@ export class NavSliderComponent
 {
     userIcon = faUser;
 
-    navLink = [
-        { page: 'Home', link: '/home' },
-        { page: 'Work', link: '/home' },
-        { page: 'Contact', link: '/home' },
-        { page: 'About', link: '/home' },
-    ];
+    @Input()
+    pages!: { name: string; route: string }[];
 
     loggedUser!: User | null;
 
