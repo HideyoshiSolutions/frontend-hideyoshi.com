@@ -17,7 +17,7 @@ import {
 } from '@angular/core';
 import {
     faEdit,
-    faQuestionCircle,
+    faQuestionCircle, faSignIn,
     faSignOutAlt,
     faUser,
 } from '@fortawesome/free-solid-svg-icons';
@@ -27,6 +27,7 @@ import { User } from '../../shared/model/user/user.model';
 import UserChecker from '../../shared/model/user/user.checker';
 import { HelpComponent } from '../header-popup/help/help.component';
 import { MyProfileComponent } from '../header-popup/my-profile/my-profile.component';
+import {IconDefinition} from "@fortawesome/free-regular-svg-icons";
 
 @Component({
     selector: 'app-header-dropdown',
@@ -52,11 +53,41 @@ import { MyProfileComponent } from '../header-popup/my-profile/my-profile.compon
     ],
 })
 export class HeaderDropdownComponent implements OnInit, OnDestroy {
-    userIcon = faUser;
+    mainOptions: { text: string, icon: IconDefinition, callback: () => void }[] = [
+        {
+            text: 'Login',
+            icon: faUser,
+            callback: () => this.onLoginOptionClicked(),
+        },
+        {
+            text: 'Sign Up',
+            icon: faSignIn,
+            callback: () => this.onSignUpOptionClick(),
+        },
+        {
+            text: 'Help',
+            icon: faQuestionCircle,
+            callback: () => this.onHelpClicked(),
+        }
+    ];
 
-    editIcon = faEdit;
-
-    questionCircleIcon = faQuestionCircle;
+    userOptions: { text: string, icon: IconDefinition, callback: () => void }[] = [
+        {
+            text: 'My Profile',
+            icon: faUser,
+            callback: () => this.onMyProfileClicked(),
+        },
+        {
+            text: 'Help',
+            icon: faQuestionCircle,
+            callback: () => this.onHelpClicked(),
+        },
+        {
+            text: 'Logout',
+            icon: faSignOutAlt,
+            callback: () => this.onLogout(),
+        }
+    ];
 
     signOutAltIcon = faSignOutAlt;
 

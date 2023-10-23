@@ -7,10 +7,9 @@
         </div>
         <div class="nav-links">
             <ul class="link-container">
-                <li><a routerLink="/home">Home</a></li>
-                <li><a routerLink="/home">Work</a></li>
-                <li><a routerLink="/home">Contact</a></li>
-                <li><a routerLink="/home">About</a></li>
+                <li *ngFor="let page of pages">
+                    <a [routerLink]="page.route">{{ page.name }}</a>
+                </li>
             </ul>
         </div>
 
@@ -64,6 +63,7 @@
             <app-nav-slider
                 [state]="navSliderStatus"
                 (profileButtonClicked)="profileButtonClicked()"
+                [pages]="pages"
             >
             </app-nav-slider>
         </app-header-slider>
