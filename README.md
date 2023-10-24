@@ -1,27 +1,49 @@
-# FrontendHideyoshi.Com
+<div align="center">
+  <a href="https://github.com/HideyoshiNakazone/hideyoshi.com">
+    <img src="https://drive.google.com/uc?export=view&id=1ka1kTMcloX_wjAlKLET9VoaRTyRuGmxQ" width="100" height="100" allow="autoplay"\>
+  </a>
+</div>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.3.
 
-## Development server
+# frontend-hideyoshi.com
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Made using Angular2+, this project was made as the frontend of the [hideyoshi.com project](https://github.com/HideyoshiNakazone/hideyoshi.com). All code in this repo is distributed freely by the GPLv3 License.
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Environment Variables
 
-## Build
+For the execution of this project a `src/assets/env.js` file must be created using the template `src/assets/env.sample.js`. In there the following environment variables must be set:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+`PORT`
 
-## Running unit tests
+`BACKEND_URL`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+`BACKEND_OAUTH_URL`
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Usage
 
-## Further help
+Installing Dependencies:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```bash
+npm install
+```
+
+Building Project
+
+```bash
+npm install -g @angular/cli@16
+ng build --configuration=production
+```
+
+Serving Files using Express Node.js
+
+```bash
+npm start
+```
+
+
+## Authors
+
+- [@HideyoshiNakazone](https://github.com/HideyoshiNakazone)
+
