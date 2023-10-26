@@ -33,8 +33,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     profileDropdownState: boolean = false;
 
-    signupPopupState: boolean = false;
-
     navSliderStatus: boolean = false;
 
     userSliderStatus: boolean = false;

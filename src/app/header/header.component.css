@@ -1,12 +1,22 @@
+.wrapper {
+    width: 100vw;
+    overflow: hidden;
+}
+
 .header {
     top: 0;
     left: 0;
     display: flex;
     position: fixed;
-    width: 100%;
+    width: 100vw;
+
     background-color: #2e2e2e;
+
     height: 10vh;
     min-height: 80px;
+
+    justify-content: center;
+    align-items: center;
 }
 
 .header-spacer {
@@ -100,6 +110,10 @@ app-header-slider {
 /* ====================== COMPUTER MEDIA FORMAT ======================== */
 
 @media only screen and (min-width: 712px) {
+    .main {
+        max-width: 1333px;
+    }
+
     .nav-links {
         all: unset;
         width: 50%;
