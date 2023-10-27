@@ -1,8 +1,3 @@
-.wrapper {
-    width: 100vw;
-    overflow: hidden;
-}
-
 .header {
     top: 0;
     left: 0;
@@ -11,6 +6,7 @@
     width: 100vw;
 
     background-color: #2e2e2e;
+    z-index: 50;
 
     height: 10vh;
     min-height: 80px;
@@ -112,6 +108,10 @@ app-header-slider {
 @media only screen and (min-width: 712px) {
     .main {
         max-width: 1333px;
+    }
+
+    .slider-container {
+        display: none;
     }
 
     .nav-links {

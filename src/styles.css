@@ -6,6 +6,13 @@
     margin: 0 auto;
 }
 
+html, body {
+    width: 100vw;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: absolute;
+}
+
 h1,
 h2,
 h3,
