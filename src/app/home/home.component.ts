@@ -7,4 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent {
     constructor() {}
+
+    scrollToElement(element: HTMLElement): void {
+        element.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+            inline: "nearest"
+        });
+    }
 }
