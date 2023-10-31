@@ -2,10 +2,11 @@
     "name": "frontend-hideyoshi.com",
     "version": "0.0.0",
     "scripts": {
-        "start": "node ./server.js",
+        "start": "node ./set_env.js && node ./server.js",
+        "serve": "node ./set_env.js && ng serve",
         "build": "ng build",
-        "serve": "ng serve",
-        "serve:prod": "ng serve --configuration=production",
+        "start:prod": "node ./set_env.js --prod && node ./server.js",
+        "serve:prod": "node ./set_env.js --prod && ng serve --configuration=production",
         "build:prod": "ng build --configuration=production"
     },
     "proxy": {
@@ -34,6 +35,7 @@
         "bootstrap": "^4.6.2",
         "cookieconsent": "^3.1.1",
         "cors": "^2.8.5",
+        "envsub": "^4.1.0",
         "express": "^4.18.1",
         "jquery": "^3.6.0",
         "ngx-cookie-service": "^16.0.1",
