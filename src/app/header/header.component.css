@@ -7,7 +7,6 @@
 
 
     background: rgb(46,46,46);
-    background: linear-gradient(180deg, rgba(46,46,46,1) 65%, rgba(46,46,46,0.45) 100%);
     z-index: 50;
 
     height: 10vh;

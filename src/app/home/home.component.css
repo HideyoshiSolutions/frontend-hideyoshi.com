@@ -97,10 +97,10 @@
 .stack-section {
     background: rgb(241,241,241);
     /*background: linear-gradient(0deg, rgba(241,241,241,1) 80%, rgba(51,51,51,1) 100%);*/
-    height: 90vh;
+    height: 80vh;
 }
 .stack {
-    height: 60%;
+    height: 35%;
     display: flex;
     flex-direction: column;
     justify-content: center;

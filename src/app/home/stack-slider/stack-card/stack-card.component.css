@@ -1,0 +1,40 @@
+.stack-card {
+    width: 300px;
+
+    border-radius: 15px;
+}
+
+.stack-card-image {
+    width: 100%;
+    border-top-left-radius: 15px !important;
+    border-top-right-radius: 15px !important;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.stack-card-body {
+    padding: 10px;
+    flex-grow: 1;
+
+    width: 250px;
+    height: 130px;
+    inline-size: 250px;
+}
+
+.stack-card-text {
+    word-break: break-all !important;
+    white-space: normal !important;
+}
+
+
+/*CARD STATE*/
+.active {
+    opacity: 1;
+    width: 300px;
+}
+
+.inactive {
+    opacity: 0.85;
+    width: 275px;
+}
