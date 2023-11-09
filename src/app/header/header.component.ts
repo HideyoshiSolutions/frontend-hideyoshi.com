@@ -5,7 +5,7 @@ import {
     OnDestroy,
     OnInit,
     ViewChild,
-    ViewContainerRef,
+    ViewContainerRef, ViewEncapsulation,
 } from '@angular/core';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { LoginComponent } from './header-popup/login/login.component';
@@ -32,8 +32,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     userIcon = faUser;
 
     profileDropdownState: boolean = false;
-
-    signupPopupState: boolean = false;
 
     navSliderStatus: boolean = false;
 

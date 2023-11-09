@@ -54,35 +54,37 @@
             ></div>
         </div>
     </div>
-    <div #nav>
-        <app-header-slider
-            [(state)]="navSliderStatus"
-            [clickOutsideStopWatching]="userSliderStatus"
-            [ignoreClickOutside]="[header, user]"
-        >
-            <app-nav-slider
-                [state]="navSliderStatus"
-                (profileButtonClicked)="profileButtonClicked()"
-                [pages]="pages"
-            >
-            </app-nav-slider>
-        </app-header-slider>
-    </div>
-
-    <div #user>
-        <app-header-slider
-            [(state)]="userSliderStatus"
-            [ignoreClickOutside]="[header, nav]"
-        >
-            <app-user-slider
-                [state]="userSliderStatus"
-                (loginPopupState)="loginPopupStateChange($event)"
-                (signupPopupState)="signupPopupStateChange($event)"
-                (myProfilePopupState)="myProfilePopupStateChange($event)"
-                (helpPopupState)="helpPopupStateChange($event)"
-            >
-            </app-user-slider>
-        </app-header-slider>
-    </div>
 </div>
+
+<div class="slider-container" #nav>
+    <app-header-slider
+        [(state)]="navSliderStatus"
+        [clickOutsideStopWatching]="userSliderStatus"
+        [ignoreClickOutside]="[header, user]"
+    >
+        <app-nav-slider
+            [state]="navSliderStatus"
+            (profileButtonClicked)="profileButtonClicked()"
+            [pages]="pages"
+        >
+        </app-nav-slider>
+    </app-header-slider>
+</div>
+
+<div class="slider-container" #user>
+    <app-header-slider
+        [(state)]="userSliderStatus"
+        [ignoreClickOutside]="[header, nav]"
+    >
+        <app-user-slider
+            [state]="userSliderStatus"
+            (loginPopupState)="loginPopupStateChange($event)"
+            (signupPopupState)="signupPopupStateChange($event)"
+            (myProfilePopupState)="myProfilePopupStateChange($event)"
+            (helpPopupState)="helpPopupStateChange($event)"
+        >
+        </app-user-slider>
+    </app-header-slider>
+</div>
+
 <div class="header-spacer"></div>

@@ -27,12 +27,14 @@ import {
                 'hide',
                 style({
                     opacity: '0',
+                    zIndex: 2
                 }),
             ),
             state(
                 'show',
                 style({
                     opacity: '1',
+                    zIndex: 2
                 }),
             ),
             transition(

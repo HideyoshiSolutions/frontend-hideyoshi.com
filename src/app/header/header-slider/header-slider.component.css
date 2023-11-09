@@ -2,7 +2,7 @@
     background-color: #2e2e2e;
     width: 50%;
     height: 90vh;
-    position: absolute;
+    position: fixed;
     top: 10vh;
     right: 0;
     overflow: hidden !important;

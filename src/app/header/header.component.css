@@ -3,10 +3,17 @@
     left: 0;
     display: flex;
     position: fixed;
-    width: 100%;
-    background-color: #2e2e2e;
+    width: 100vw;
+
+
+    background: rgb(46,46,46);
+    z-index: 50;
+
     height: 10vh;
     min-height: 80px;
+
+    justify-content: center;
+    align-items: center;
 }
 
 .header-spacer {
@@ -100,6 +107,14 @@ app-header-slider {
 /* ====================== COMPUTER MEDIA FORMAT ======================== */
 
 @media only screen and (min-width: 712px) {
+    .main {
+        max-width: 1333px;
+    }
+
+    .slider-container {
+        display: none;
+    }
+
     .nav-links {
         all: unset;
         width: 50%;
