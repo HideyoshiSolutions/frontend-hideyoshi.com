@@ -15,33 +15,58 @@ export class StackSliderComponent implements AfterViewInit {
     stacks: Stack[] = [
         {
             name: 'Angular',
-            image: 'https://picsum.photos/id/1/100/100',
+            image: './assets/stacks/angular.svg',
             description: 'Angular is a platform for building mobile and desktop web applications.',
         },
         {
-            name: 'React',
-            image: 'https://picsum.photos/id/2/100/100',
+            name: 'Next.js',
+            image: './assets/stacks/nextjs.svg',
             description: 'React is a JavaScript library for building user interfaces.',
         },
         {
-            name: 'Vue',
-            image: 'https://picsum.photos/id/3/100/100',
-            description: 'Vue is a progressive framework for building user interfaces.',
+            name: 'FastAPI',
+            image: './assets/stacks/fastapi.svg',
+            description: 'FastAPI is a modern, fast (high-performance), web framework for building APIs.',
         },
         {
-            name: 'Svelte',
-            image: 'https://picsum.photos/id/4/100/100',
-            description: 'Svelte is a radical new approach to building user interfaces.',
+            name: 'Node.js',
+            image: './assets/stacks/nodejs.svg',
+            description: 'Node.js is an open-source, cross-platform, back-end JavaScript runtime environment.',
         },
         {
-            name: 'Ember',
-            image: 'https://picsum.photos/id/5/100/100',
-            description: 'Ember.js is an open-source JavaScript web framework.',
+            name: 'Spring Boot',
+            image: './assets/stacks/spring.svg',
+            description: 'Spring Boot makes it easy to create stand-alone, production-grade APIs',
         },
         {
-            name: 'Preact',
-            image: 'https://picsum.photos/id/6/100/100',
-            description: 'Preact is a fast 3kB alternative to React with the same modern API.',
+            name: 'Docker',
+            image: './assets/stacks/docker.svg',
+            description: 'Docker is a set of platform as a service products to deliver software in packages called containers.',
+        },
+        {
+            name: 'Kubernetes',
+            image: './assets/stacks/kubernetes.svg',
+            description: 'Kubernetes is an open-source container-orchestration system for automating deployment, scaling, and management.',
+        },
+        {
+            name: 'Terraform',
+            image: './assets/stacks/terraform.svg',
+            description: 'Terraform is an open-source infrastructure as code software tool.',
+        },
+        {
+            name: 'PostgreSQL',
+            image: './assets/stacks/postgresql.svg',
+            description: 'PostgreSQL is a free and open-source relational database.',
+        },
+        {
+            name: 'Redis',
+            image: './assets/stacks/redis.svg',
+            description: 'Redis is an in-memory data structure store.',
+        },
+        {
+            name: 'AWS',
+            image: './assets/stacks/aws.svg',
+            description: 'Amazon Web Services is a subsidiary of Amazon providing on-demand cloud computing.',
         }
     ]
 

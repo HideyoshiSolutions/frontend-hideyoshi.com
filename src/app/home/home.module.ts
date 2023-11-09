@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {HomeComponent} from "./home.component";
 import {StackSliderComponent} from "./stack-slider/stack-slider.component";
 import {StackCardComponent} from "./stack-slider/stack-card/stack-card.component";
@@ -15,7 +15,8 @@ import {NgxGlideComponent} from "ngx-glide";
     ],
     imports: [
         CommonModule,
-        NgxGlideComponent
+        NgxGlideComponent,
+        NgOptimizedImage
     ]
 })
 export class HomeModule { }
