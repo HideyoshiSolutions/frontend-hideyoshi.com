@@ -10,12 +10,12 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
         trigger('cardAnimation', [
             state('active', style({
                 opacity: 1,
-                width: '350px',
+                width: '325px',
                 height: '425px',
             })),
             state('inactive', style({
                 opacity: 0.7,
-                width: '300px',
+                width: '280px',
                 height: '410px',
             })),
             transition('* => *', [

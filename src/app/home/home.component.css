@@ -117,3 +117,24 @@
     font-size: 1rem;
     font-weight: 100;
 }
+
+.stack-slider {
+    height: 65%;
+}
+
+
+/*ON MOBILE VIEWPORT*/
+@media only screen and (max-width: 400px) {
+    .intro {
+        height: 75%;
+    }
+
+    .stack-section {
+        height: 100vh;
+    }
+    .stack {
+        padding-top: 60px;
+        width: 80%;
+        height: 30%;
+    }
+}
