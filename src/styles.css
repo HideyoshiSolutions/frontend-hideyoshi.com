@@ -1,9 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&display=swap');
 @import "font-montserrat.css";
 
 * {
     padding: 0 auto;
     margin: 0 auto;
+}
+
+html, body {
+    width: 100vw;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: absolute;
 }
 
 h1,
@@ -13,4 +21,8 @@ h4,
 h5,
 h6 {
     font-family: "Montserrat", sans-serif;
+}
+
+p {
+    font-family: "Hind", sans-serif;
 }

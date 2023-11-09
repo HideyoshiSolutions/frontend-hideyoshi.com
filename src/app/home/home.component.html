@@ -1,0 +1,45 @@
+<div #me class="me-section">
+    <div class="intro container">
+        <h1>
+            I'M VITOR HIDEYOSHI
+        </h1>
+        <p>
+            I'm a software engineer with a passion for web development
+            and a strong interest in data science. I spend most of my time
+            learning new technologies and improving my skills, searching for
+            new challenges and opportunities to grow as a professional.
+
+            <br>
+
+            In this search for new challenges I gained experience in different
+            areas of software development, from web development to data science.
+            I'm always looking for new opportunities to learn and improve my skills.
+        </p>
+    </div>
+
+    <div class="scroll-btn-container">
+        <a class="scroll-btn" (click)="scrollToElement(stack)">
+            <span></span>
+            <span></span>
+            <span></span>
+        </a>
+    </div>
+</div>
+
+
+<div #stack class="stack-section">
+    <div class="stack container">
+        <h2>
+            My Stack
+        </h2>
+        <p>
+            I'm always looking for new technologies to learn and improve my skills.
+            Here are some of the technologies I've been working with recently:
+        </p>
+    </div>
+
+    <div class="stack-slider">
+        <app-stack-slider>
+        </app-stack-slider>
+    </div>
+</div>

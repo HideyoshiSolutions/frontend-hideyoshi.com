@@ -26,13 +26,14 @@
                         ],
                         "styles": [
                             "src/styles.css",
-                            "node_modules/bootstrap/dist/css/bootstrap.min.css",
-                            "node_modules/normalize.css/normalize.css",
-                            "node_modules/cookieconsent/build/cookieconsent.min.css"
+                            "node_modules/bootstrap/dist/css/bootstrap.css",
+                            "node_modules/cookieconsent/build/cookieconsent.min.css",
+                            "node_modules/@glidejs/glide/dist/css/glide.core.css",
+                            "node_modules/@glidejs/glide/dist/css/glide.theme.css"
                         ],
                         "scripts": [
                             "node_modules/jquery/dist/jquery.min.js",
-                            "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+                            "node_modules/bootstrap/dist/js/bootstrap.bundle.js",
                             "node_modules/cookieconsent/build/cookieconsent.min.js"
                         ],
                         "serviceWorker": true,
