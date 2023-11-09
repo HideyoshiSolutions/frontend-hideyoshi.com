@@ -1,9 +1,5 @@
-<ng-container class="container" *ngIf="stacks && stacks.length > 0">
-    <ngx-glide #ngxGlide>
-        <ng-container *ngFor="let stack of stacks">
-            <app-stack-card class="slider-card" [stack]="stack"
-                [inFocus]="isInFocus(stack)">
-            </app-stack-card>
-        </ng-container>
-    </ngx-glide>
-</ng-container>
+<ngx-glide #ngxGlide class="container stack-slider" *ngIf="stacks && stacks.length > 0">
+    <app-stack-card *ngFor="let stack of stacks" class="slider-card" [stack]="stack"
+        [inFocus]="isInFocus(stack)">
+    </app-stack-card>
+</ngx-glide>
