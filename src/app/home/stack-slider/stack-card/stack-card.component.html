@@ -1,5 +1,10 @@
 <div class="card stack-card inactive" [@cardAnimation]="cardState">
-    <img class="card-img-top stack-card-image" [src]="stack.image" alt="Stack Image">
+    <div class="card-img-top stack-card-image">
+        <img [ngSrc]="stack.image"
+             width="200"
+                height="200"
+             alt="Stack Image" priority>
+    </div>
     <div class="card-body stack-card-body">
         <h5 class="card-title stack-card-title">{{stack.name}}</h5>
         <p class="card-text stack-card-text">{{stack.description}}</p>
