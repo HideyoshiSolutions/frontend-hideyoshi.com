@@ -9,10 +9,14 @@ export class HomeComponent {
     constructor() {}
 
     scrollToElement(element: HTMLElement): void {
+        let block: ScrollLogicalPosition = "start";
+        if (window.innerWidth < 400) {
+            block = "end";
+        }
         element.scrollIntoView({
             behavior: "smooth",
-            block: "start",
-            inline: "start"
+            block: block,
+            inline: "nearest"
         });
     }
 }

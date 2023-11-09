@@ -109,7 +109,7 @@ export class StackSliderComponent implements AfterViewInit {
     }
 
     private getNumberOfCards(windowWidth: number): number {
-        if (windowWidth <= 412) {
+        if (windowWidth <= 450) {
             return 1;
         } else if (windowWidth <= 768) {
             return 2;
