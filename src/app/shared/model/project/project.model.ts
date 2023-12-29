@@ -1,18 +1,25 @@
-export type Language = {
-    name: string;
-    color: string;
-    percentage: number;
-}
+import { Type, type Static } from '@sinclair/typebox'
 
-export type Project = {
-    name: string;
-    description: string;
-    link: string;
 
-    license?: string;
-    languages?: Language[];
+export const Language = Type.Object({
+    name: Type.String(),
+    color: Type.String(),
+    percentage: Type.Number(),
+})
 
-    stars: number;
-    forks: number;
-    watchers: number;
-}
+export const Project = Type.Object({
+    name: Type.String(),
+    description: Type.String(),
+    link: Type.String(),
+
+    license: Type.Optional(Type.String()),
+    languages: Type.Optional(Type.Array(Language)),
+
+    stars: Type.Number(),
+    forks: Type.Number(),
+    watchers: Type.Number(),
+});
+
+
+export type Language = Static<typeof Language>;
+export type Project = Static<typeof Project>;

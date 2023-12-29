@@ -2,8 +2,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/shared/service/auth.service';
 import { SliderItemComponent } from 'src/app/shared/components/slider-item/slider-item.component';
-import UserChecker from 'src/app/shared/model/user/user.checker';
 import { User } from 'src/app/shared/model/user/user.model';
+import {Value} from "@sinclair/typebox/value";
 
 @Component({
     selector: 'app-user-slider',
@@ -70,7 +70,7 @@ export class UserSliderComponent extends SliderItemComponent implements OnInit {
     ngOnInit() {
         this.authSubscription = this.authService.authSubject.subscribe(
             (res) => {
-                if (UserChecker.test(res)) {
+                if (Value.Check(User, res)) {
                     this.user = <User>res;
                 } else {
                     this.user = null;
