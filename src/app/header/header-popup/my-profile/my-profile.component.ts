@@ -6,7 +6,7 @@ import {
     OnInit,
     Output,
 } from '@angular/core';
-import { AuthService } from '../../../shared/auth/auth.service';
+import { AuthService } from '../../../shared/service/auth.service';
 import { User } from '../../../shared/model/user/user.model';
 import {
     animate,
@@ -88,16 +88,16 @@ import { faFileUpload } from '@fortawesome/free-solid-svg-icons';
 })
 export class MyProfileComponent implements OnInit {
     @Input()
-    state: boolean = false;
+        state: boolean = false;
 
     @Input()
-    user!: User | null;
+        user!: User | null;
 
     @Input()
-    ignoreClickOutside!: HTMLDivElement[];
+        ignoreClickOutside!: HTMLDivElement[];
 
     @Output()
-    stateChange = new EventEmitter<boolean>();
+        stateChange = new EventEmitter<boolean>();
 
     alterForm!: FormGroup;
 

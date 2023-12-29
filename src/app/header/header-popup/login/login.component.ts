@@ -13,7 +13,7 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { faLock, faUser } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
-import { AuthService } from 'src/app/shared/auth/auth.service';
+import { AuthService } from 'src/app/shared/service/auth.service';
 import { HttpError } from 'src/app/shared/model/httpError/httpError.model';
 import HttpErrorChecker from 'src/app/shared/model/httpError/httpErrorChecker';
 import UserChecker from 'src/app/shared/model/user/user.checker';
@@ -99,13 +99,13 @@ const GITHUB_LOGO_SVG = 'assets/img/providers/github.svg';
 })
 export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     @Input()
-    state: boolean = false;
+        state: boolean = false;
 
     @Input()
-    ignoreClickOutside!: HTMLDivElement[];
+        ignoreClickOutside!: HTMLDivElement[];
 
     @Output()
-    stateChange = new EventEmitter<boolean>();
+        stateChange = new EventEmitter<boolean>();
 
     loginForm!: FormGroup;
 

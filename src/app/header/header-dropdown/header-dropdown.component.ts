@@ -22,7 +22,7 @@ import {
     faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
-import { AuthService } from 'src/app/shared/auth/auth.service';
+import { AuthService } from 'src/app/shared/service/auth.service';
 import { User } from '../../shared/model/user/user.model';
 import UserChecker from '../../shared/model/user/user.checker';
 import { HelpComponent } from '../header-popup/help/help.component';
@@ -96,25 +96,25 @@ export class HeaderDropdownComponent implements OnInit, OnDestroy {
     private userSubscription!: Subscription;
 
     @Input()
-    state: boolean = false;
+        state: boolean = false;
 
     @Input()
-    ignoreClickOutside!: HTMLDivElement[];
+        ignoreClickOutside!: HTMLDivElement[];
 
     @Output()
-    clickOutside = new EventEmitter();
+        clickOutside = new EventEmitter();
 
     @Output()
-    loginPopupState: EventEmitter<boolean> = new EventEmitter();
+        loginPopupState: EventEmitter<boolean> = new EventEmitter();
 
     @Output()
-    signupPopupState: EventEmitter<boolean> = new EventEmitter();
+        signupPopupState: EventEmitter<boolean> = new EventEmitter();
 
     @Output()
-    helpPopupState: EventEmitter<boolean> = new EventEmitter();
+        helpPopupState: EventEmitter<boolean> = new EventEmitter();
 
     @Output()
-    myProfilePopupState: EventEmitter<boolean> = new EventEmitter();
+        myProfilePopupState: EventEmitter<boolean> = new EventEmitter();
 
     constructor(
         private viewContainerRef: ViewContainerRef,

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { AuthService } from 'src/app/shared/auth/auth.service';
+import { AuthService } from 'src/app/shared/service/auth.service';
 import { SliderItemComponent } from 'src/app/shared/components/slider-item/slider-item.component';
 import UserChecker from 'src/app/shared/model/user/user.checker';
 import { User } from 'src/app/shared/model/user/user.model';
@@ -52,16 +52,16 @@ export class UserSliderComponent extends SliderItemComponent implements OnInit {
     authSubscription!: Subscription;
 
     @Output()
-    loginPopupState: EventEmitter<boolean> = new EventEmitter();
+        loginPopupState: EventEmitter<boolean> = new EventEmitter();
 
     @Output()
-    signupPopupState: EventEmitter<boolean> = new EventEmitter();
+        signupPopupState: EventEmitter<boolean> = new EventEmitter();
 
     @Output()
-    helpPopupState: EventEmitter<boolean> = new EventEmitter();
+        helpPopupState: EventEmitter<boolean> = new EventEmitter();
 
     @Output()
-    myProfilePopupState: EventEmitter<boolean> = new EventEmitter();
+        myProfilePopupState: EventEmitter<boolean> = new EventEmitter();
 
     constructor(private authService: AuthService) {
         super();

@@ -16,6 +16,7 @@ yarn-error.log
 .project
 .classpath
 .c9/
+.nx/
 *.launch
 .settings/
 *.sublime-workspace
@@ -45,3 +46,5 @@ Thumbs.db
 src/assets/env.js
 
 .env
+
+.secret

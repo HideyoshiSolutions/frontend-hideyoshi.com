@@ -10,7 +10,7 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { SliderItemComponent } from 'src/app/shared/components/slider-item/slider-item.component';
 import UserChecker from '../../../shared/model/user/user.checker';
 import { User } from '../../../shared/model/user/user.model';
-import { AuthService } from '../../../shared/auth/auth.service';
+import { AuthService } from '../../../shared/service/auth.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -25,14 +25,14 @@ export class NavSliderComponent
     userIcon = faUser;
 
     @Input()
-    pages!: { name: string; route: string }[];
+        pages!: { name: string; route: string }[];
 
     loggedUser!: User | null;
 
     private userSubscription!: Subscription;
 
     @Output()
-    profileButtonClicked = new EventEmitter();
+        profileButtonClicked = new EventEmitter();
 
     constructor(private authService: AuthService) {
         super();

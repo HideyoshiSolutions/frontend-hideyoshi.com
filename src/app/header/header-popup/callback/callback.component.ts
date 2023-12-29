@@ -1,6 +1,6 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/shared/auth/auth.service';
+import { AuthService } from 'src/app/shared/service/auth.service';
 
 @Component({
     selector: 'app-callback',
@@ -19,15 +19,15 @@ export class CallbackComponent implements OnInit {
             let auth: 'google' | 'github' = p['auth'];
 
             switch (auth) {
-                case 'github':
-                    this.authService.loginGithubUser(p);
-                    break;
-                case 'google':
-                    this.authService.loginGoogleUser(p);
-                    break;
-                default:
-                    console.log(`Unimplemented auth: ${auth}`);
-                    break;
+            case 'github':
+                this.authService.loginGithubUser(p);
+                break;
+            case 'google':
+                this.authService.loginGoogleUser(p);
+                break;
+            default:
+                console.log(`Unimplemented auth: ${auth}`);
+                break;
             }
 
             this.router.navigate(['/home']);
