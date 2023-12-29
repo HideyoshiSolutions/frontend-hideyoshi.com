@@ -11,8 +11,6 @@ import {
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/shared/service/auth.service';
 import { HttpError } from 'src/app/shared/model/httpError/httpError.model';
-import HttpErrorChecker from 'src/app/shared/model/httpError/httpErrorChecker';
-import UserChecker from 'src/app/shared/model/user/user.checker';
 import { User } from 'src/app/shared/model/user/user.model';
 import {
     animate,
@@ -27,6 +25,7 @@ import {
 import { ValidateEmailValidator } from '../../../shared/validators/validate-email.validator';
 import { ValidatePasswordValidator } from '../../../shared/validators/validate-password.validator';
 import { ValidateNotEmptyValidator } from '../../../shared/validators/validate-not-empty.validator';
+import {Value} from "@sinclair/typebox/value";
 
 const GOOGLE_LOGO_SVG = 'assets/img/providers/google.svg';
 const GITHUB_LOGO_SVG = 'assets/img/providers/github.svg';
@@ -179,10 +178,10 @@ export class SignupComponent implements OnInit {
     }
 
     private validateSignup(res: User | HttpError | null) {
-        if (res && UserChecker.test(res)) {
+        if (res && Value.Check(User, res)) {
             this.closePopup();
         }
-        if (HttpErrorChecker.test(res)) {
+        if (Value.Check(HttpError, res)) {
             this.errorMessage = (<HttpError>res).details;
         }
     }

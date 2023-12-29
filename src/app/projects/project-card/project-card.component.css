@@ -48,8 +48,8 @@
     margin: 5px 0px 5px 0px;
     display: flex;
     flex-direction: row;
-    align-items: start;
-    align-content: start;
+    align-items: flex-start;
+    align-content: flex-start;
 
     color: #919294;
 }

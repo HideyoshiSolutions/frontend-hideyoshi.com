@@ -1,5 +1,4 @@
 import {
-    ChangeDetectorRef,
     Component,
     EventEmitter,
     Input,
@@ -18,15 +17,9 @@ import {
     transition,
     trigger,
 } from '@angular/animations';
-import { MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ValidateNotEmptyValidator } from '../../../shared/validators/validate-not-empty.validator';
 import { ValidatePasswordValidator } from '../../../shared/validators/validate-password.validator';
-import { first, take } from 'rxjs';
-import UserChecker from '../../../shared/model/user/user.checker';
-import HttpErrorChecker from '../../../shared/model/httpError/httpErrorChecker';
-import { HttpError } from '../../../shared/model/httpError/httpError.model';
 import { faFileUpload } from '@fortawesome/free-solid-svg-icons';
 
 @Component({

@@ -5,17 +5,17 @@ import {
     OnDestroy,
     OnInit,
     ViewChild,
-    ViewContainerRef, ViewEncapsulation,
+    ViewContainerRef,
 } from '@angular/core';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { LoginComponent } from './header-popup/login/login.component';
 import { SignupComponent } from './header-popup/signup/signup.component';
 import { AuthService } from '../shared/service/auth.service';
-import UserChecker from '../shared/model/user/user.checker';
 import { User } from '../shared/model/user/user.model';
 import { Subscription } from 'rxjs';
 import { HelpComponent } from './header-popup/help/help.component';
 import { MyProfileComponent } from './header-popup/my-profile/my-profile.component';
+import {Value} from "@sinclair/typebox/value";
 
 @Component({
     selector: 'app-header',
@@ -66,7 +66,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.userSubscription = this.authService.authSubject.subscribe(
             (res) => {
-                if (res && UserChecker.test(res)) {
+                if (res && Value.Check(User, res)) {
                     this.loggedUser = <User>res;
                 } else {
                     this.loggedUser = null;

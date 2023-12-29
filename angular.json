@@ -18,7 +18,10 @@
                         "main": "src/main.ts",
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.app.json",
-                        "allowedCommonJsDependencies": ["ts-interface-checker"],
+                        "allowedCommonJsDependencies": [
+                            "ts-interface-checker",
+                            "apexcharts"
+                        ],
                         "assets": [
                             "src/assets",
                             "src/manifest.webmanifest",
