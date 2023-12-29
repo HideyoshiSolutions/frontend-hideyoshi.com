@@ -5,6 +5,7 @@ import { ProjectCardComponent } from './project-card/project-card.component';
 import {MatIconModule} from "@angular/material/icon";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {NgApexchartsModule} from "ng-apexcharts";
+import {ProjectsRouterModule} from "./projects-router.module";
 
 @NgModule({
     declarations: [
@@ -16,7 +17,8 @@ import {NgApexchartsModule} from "ng-apexcharts";
         NgOptimizedImage,
         MatIconModule,
         FontAwesomeModule,
-        NgApexchartsModule
+        NgApexchartsModule,
+        ProjectsRouterModule
     ],
     exports: []
 })

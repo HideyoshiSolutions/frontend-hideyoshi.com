@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { AuthService } from '../../../../shared/auth/auth.service';
+import { AuthService } from '../../../../shared/service/auth.service';
 
 @Component({
     selector: 'app-profile-picture-picker',
@@ -8,7 +8,7 @@ import { AuthService } from '../../../../shared/auth/auth.service';
 })
 export class ProfilePicturePickerComponent {
     @Output()
-    imageSent = new EventEmitter<boolean>();
+        imageSent = new EventEmitter<boolean>();
 
     private profilePicture!: File;
 

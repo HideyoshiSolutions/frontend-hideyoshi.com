@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AuthService } from './shared/auth/auth.service';
+import { AuthService } from './shared/service/auth.service';
 import { UpdateService } from './shared/service-worker/update.service';
 import {
     NgcCookieConsentService,

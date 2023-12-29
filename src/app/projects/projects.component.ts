@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {GithubService} from "../shared/github-service/github.service";
+import {GithubService} from "../shared/service/github.service";
 import {Project} from "../shared/model/project/project.model";
 
 @Component({

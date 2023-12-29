@@ -10,7 +10,7 @@ import {
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { LoginComponent } from './header-popup/login/login.component';
 import { SignupComponent } from './header-popup/signup/signup.component';
-import { AuthService } from '../shared/auth/auth.service';
+import { AuthService } from '../shared/service/auth.service';
 import UserChecker from '../shared/model/user/user.checker';
 import { User } from '../shared/model/user/user.model';
 import { Subscription } from 'rxjs';
