@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
     selector: 'app-help',
@@ -7,13 +7,13 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class HelpComponent {
     @Input()
-    state: boolean = false;
+        state: boolean = false;
 
     @Input()
-    ignoreClickOutside!: HTMLDivElement[];
+        ignoreClickOutside!: HTMLDivElement[];
 
     @Output()
-    stateChange = new EventEmitter<boolean>();
+        stateChange = new EventEmitter<boolean>();
 
     constructor() {}
 

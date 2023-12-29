@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
     selector: 'app-error-box',
@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class ErrorBoxComponent {
     @Input()
-    errorMessage: string | null = 'Error, please try again later.';
+        errorMessage: string | null = 'Error, please try again later.';
 
     constructor() {}
 }

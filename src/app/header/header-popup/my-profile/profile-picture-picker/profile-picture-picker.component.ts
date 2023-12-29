@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { AuthService } from '../../../../shared/service/auth.service';
+import {Component, EventEmitter, Output} from '@angular/core';
+import {AuthService} from '../../../../shared/service/auth.service';
 
 @Component({
     selector: 'app-profile-picture-picker',

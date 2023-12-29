@@ -8,31 +8,19 @@ import {
     OnInit,
     Output,
 } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
-import { faLock, faUser } from '@fortawesome/free-solid-svg-icons';
-import { Subscription } from 'rxjs';
-import { AuthService } from 'src/app/shared/service/auth.service';
-import { Value } from '@sinclair/typebox/value'
-import { User } from 'src/app/shared/model/user/user.model';
-import {
-    animate,
-    animateChild,
-    group,
-    query,
-    state,
-    style,
-    transition,
-    trigger,
-} from '@angular/animations';
-import { ValidatePasswordValidator } from '../../../shared/validators/validate-password.validator';
-import { ValidateNotEmptyValidator } from '../../../shared/validators/validate-not-empty.validator';
-import {
-    NgcCookieConsentService,
-    NgcStatusChangeEvent,
-} from 'ngx-cookieconsent';
-import { CookieConsertService } from '../../../shared/cookie-consent/cookie-consert.service';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {MatIconRegistry} from '@angular/material/icon';
+import {DomSanitizer} from '@angular/platform-browser';
+import {faLock, faUser} from '@fortawesome/free-solid-svg-icons';
+import {Subscription} from 'rxjs';
+import {AuthService} from 'src/app/shared/service/auth.service';
+import {Value} from '@sinclair/typebox/value'
+import {User} from 'src/app/shared/model/user/user.model';
+import {animate, animateChild, group, query, state, style, transition, trigger,} from '@angular/animations';
+import {ValidatePasswordValidator} from '../../../shared/validators/validate-password.validator';
+import {ValidateNotEmptyValidator} from '../../../shared/validators/validate-not-empty.validator';
+import {NgcCookieConsentService,} from 'ngx-cookieconsent';
+import {CookieConsertService} from '../../../shared/cookie-consent/cookie-consert.service';
 import {HttpError} from "../../../shared/model/httpError/httpError.model";
 
 const GOOGLE_LOGO_SVG = 'assets/img/providers/google.svg';
