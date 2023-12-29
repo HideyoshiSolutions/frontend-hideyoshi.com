@@ -10,7 +10,7 @@ import {
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { LoginComponent } from './header-popup/login/login.component';
 import { SignupComponent } from './header-popup/signup/signup.component';
-import { AuthService } from '../shared/auth/auth.service';
+import { AuthService } from '../shared/service/auth.service';
 import UserChecker from '../shared/model/user/user.checker';
 import { User } from '../shared/model/user/user.model';
 import { Subscription } from 'rxjs';
@@ -25,7 +25,7 @@ import { MyProfileComponent } from './header-popup/my-profile/my-profile.compone
 export class HeaderComponent implements OnInit, OnDestroy {
     pages: { name: string; route: string }[] = [
         { name: 'Home', route: '/home' },
-        { name: 'Projects', route: '/home' },
+        { name: 'Projects', route: '/projects' },
         { name: 'Contact', route: '/home' },
     ];
 
@@ -38,13 +38,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
     userSliderStatus: boolean = false;
 
     @ViewChild('profileBtn')
-    profileBtnElementRef!: ElementRef;
+        profileBtnElementRef!: ElementRef;
 
     @ViewChild('profileDropdown')
-    profileDropdownElementRef!: ElementRef;
+        profileDropdownElementRef!: ElementRef;
 
     @ViewChild('user')
-    userElementRef!: ElementRef;
+        userElementRef!: ElementRef;
 
     loggedUser!: User | null;
 

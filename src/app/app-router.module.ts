@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
 import { CallbackComponent } from './header/header-popup/callback/callback.component';
+
 
 const routes: Routes = [
     {
@@ -12,7 +12,11 @@ const routes: Routes = [
     },
     {
         path: 'home',
-        component: HomeComponent,
+        loadChildren: () => import('./home/home.module').then(mod => mod.HomeModule),
+    },
+    {
+        path: 'projects',
+        loadChildren: () => import('./projects/projects.module').then(mod => mod.ProjectsModule),
     },
     {
         path: 'callback',

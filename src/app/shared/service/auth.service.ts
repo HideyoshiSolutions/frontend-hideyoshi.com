@@ -2,19 +2,15 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
     first,
-    firstValueFrom,
     map,
     Observable,
     of,
     Subject,
-    take,
-    tap,
 } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { HttpError } from '../model/httpError/httpError.model';
 import { User } from '../model/user/user.model';
-import * as http from 'http';
 
 @Injectable({
     providedIn: 'root',
