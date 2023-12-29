@@ -1,0 +1,27 @@
+name: vercel-cleanup-pr
+
+on:
+    pull_request:
+        types: [closed]
+
+env:
+    VERCEL_CLI_TOKEN: ${{ secrets.VERCEL_CLI_TOKEN }}
+    VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+    GITHUB_PR_ID: ${{github.event.pull_request.number}}
+
+jobs:
+    cleanup:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Cleanup Vercel Deployments
+              run: |
+                closed_deployments=$(curl "https://api.vercel.com/v6/deployments?projectId=$VERCEL_PROJECT_ID" \
+                    -H "Accept: application/json" \
+                    -H "Authorization: Bearer ${VERCEL_CLI_TOKEN}" | jq -r ".deployments[] | select(.meta.githubPrId == \"${GITHUB_PR_ID}\") | .uid")
+                for deployment in $closed_deployments; do
+                    echo "Deleting Deployment: $deployment"
+                    curl "https://api.vercel.com/v6/now/deployments/$deployment" \
+                        -X DELETE \
+                        -H "Authorization: Bearer ${VERCEL_CLI_TOKEN}"
+                done
+

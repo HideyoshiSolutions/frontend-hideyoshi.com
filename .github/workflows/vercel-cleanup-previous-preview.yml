@@ -1,0 +1,33 @@
+name: vercel-cleanup-preview
+
+on:
+    push:
+        branches:
+            - '*'
+            - '!main'
+            - '!devel'
+
+env:
+    VERCEL_CLI_TOKEN: ${{ secrets.VERCEL_CLI_TOKEN }}
+    VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+    GIT_PREVIOS_COMMIT: ${{github.event.before}}
+
+
+jobs:
+    cleanup:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - name: Cleanup Vercel Deployments
+              run: |
+
+                invalid_deployments=$(curl "https://api.vercel.com/v6/deployments?projectId=$VERCEL_PROJECT_ID" \
+                    -H "Accept: application/json" \
+                    -H "Authorization: Bearer ${VERCEL_CLI_TOKEN}" | jq -r ".deployments[] | select(.meta.githubCommitSha == \"${GIT_PREVIOS_COMMIT}\") | .uid")
+
+                for deployment in $invalid_deployments; do
+                    echo "Deleting Deployment: $deployment"
+                    curl "https://api.vercel.com/v6/now/deployments/$deployment" \
+                        -X DELETE \
+                        -H "Authorization: Bearer ${VERCEL_CLI_TOKEN}"
+                done
