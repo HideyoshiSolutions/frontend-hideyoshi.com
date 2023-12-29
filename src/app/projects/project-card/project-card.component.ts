@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, HostListener, Input, OnInit, ViewChild} from '@angular/core';
 import { faCodeFork, faEye, faStar } from '@fortawesome/free-solid-svg-icons';
 import {Language, Project} from "../../shared/model/project/project.model";
 import {faScaleBalanced} from "@fortawesome/free-solid-svg-icons/faScaleBalanced";
@@ -46,11 +46,26 @@ export class ProjectCardComponent implements OnInit {
 
     faEye = faEye;
 
+    private windowResizeTimeout: any;
+
     ngOnInit() {
         if (!!this.project.languages) {
-            this.chartOptions = this.generateChart(this.project.languages);
+            const windowWidth = window.innerWidth;
+            this.chartOptions = this.generateChart(this.project.languages, windowWidth);
         }
 
+    }
+
+    @HostListener('window:resize', ['$event'])
+    getScreenSize(event: Event) {
+        clearTimeout(this.windowResizeTimeout);
+
+        this.windowResizeTimeout = setTimeout(() => {
+            if (!this.project.languages) return;
+            this.chartOptions = this.generateChart(
+                this.project.languages, window.innerWidth
+            );
+        }, 100);
     }
 
     get hasLicense(): boolean {
@@ -62,7 +77,10 @@ export class ProjectCardComponent implements OnInit {
             this.project.languages?.length > 0;
     }
 
-    private generateChart(languages: Language[]): ChartOptions {
+    private generateChart(languages: Language[], windowWidth: number): ChartOptions {
+        const responsiveWindowWidth = windowWidth >= 530 ?
+            300 : (windowWidth*.8 - 80);
+
         return {
             series: languages.map(value => value.percentage),
             colors: languages.map(value => value.color),
@@ -73,10 +91,10 @@ export class ProjectCardComponent implements OnInit {
             labels: languages.map(value => value.name),
             responsive: [
                 {
-                    breakpoint: 480,
+                    breakpoint: 530,
                     options: {
                         chart: {
-                            width: 300
+                            width: responsiveWindowWidth
                         },
                         legend: {
                             position: "bottom"
@@ -87,7 +105,7 @@ export class ProjectCardComponent implements OnInit {
             plotOptions: {
                 pie: {
                     expandOnClick: true,
-                    
+
                 }
             },
             dataLabels: {

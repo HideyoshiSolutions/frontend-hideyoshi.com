@@ -81,7 +81,7 @@
 }
 
 /* COMPUTER FORMAT */
-@media only screen and (min-width: 712px) {
+@media only screen and (min-width: 770px) {
     .card-languages {
         margin: 0;
     }

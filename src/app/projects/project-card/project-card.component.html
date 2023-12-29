@@ -7,7 +7,7 @@
                 <p class="card-text">{{project.description}}</p>
             </div>
             <div class="card-content-f row">
-                <div class="card-languages col-sm-9" *ngIf="hasLanguage" id="language-chart">
+                <div class="card-languages col-md-9" *ngIf="hasLanguage" id="language-chart">
                     <apx-chart *ngIf="chartOptions !== undefined"
                         [series]="chartOptions.series"
                         [colors]="chartOptions.colors"
@@ -18,7 +18,7 @@
                         [dataLabels]="chartOptions.dataLabels">
                     </apx-chart>
                 </div>
-                <div class="card-stats" [ngClass]="hasLanguage ? 'col-sm-3' : 'stats-inline'">
+                <div class="card-stats" [ngClass]="hasLanguage ? 'col-md-3' : 'stats-inline'">
                     <div class="stat-item" *ngIf="hasLicense">
                         <div class="stat-icon">
                             <fa-icon [icon]="faLicense"></fa-icon>
