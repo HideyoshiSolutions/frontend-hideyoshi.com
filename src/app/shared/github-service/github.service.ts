@@ -4,7 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {
     map, mergeMap,
     Observable,
-    pipe, switchMap, take
+    pipe, switchMap, take, tap
 } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
@@ -28,6 +28,57 @@ export class GithubService {
     }
 
     getProjects(): Observable<Project> {
+        if (this.isLocalStorageValid()) {
+            console.log('Fetching projects from local storage')
+            return this.getProjectsFromLocalStorage();
+        }
+
+        console.log('Fetching projects from Github API')
+        return this.getProjectsFromGithub()
+    }
+
+    private isLocalStorageValid(): boolean {
+        const projects = localStorage.getItem('github-projects');
+        let status = !!projects
+
+        if (!status) {
+            return false;
+        }
+
+        const timestamp = localStorage.getItem('github-projects-timestamp');
+        if (timestamp) {
+            const diff = new Date().getTime() - parseInt(timestamp);
+            status = diff < 86400000;
+        } else {
+            status = false;
+        }
+
+        return status;
+    }
+
+    private saveProjectsToLocalStorage(project: Project) {
+        const p = localStorage.getItem('github-projects');
+        if (p) {
+            const projects = JSON.parse(p);
+            projects.push(project);
+            localStorage.setItem('github-projects', JSON.stringify(projects));
+        } else {
+            localStorage.setItem('github-projects', JSON.stringify([project]));
+        }
+
+        localStorage.setItem('github-projects-timestamp', new Date().getTime().toString());
+    }
+
+    private getProjectsFromLocalStorage(): Observable<Project> {
+        const projects = localStorage.getItem('github-projects') || '[]';
+        return new Observable<Project>((observer) => {
+            JSON.parse(projects).forEach((project: Project) => {
+                observer.next(project);
+            });
+        });
+    }
+
+    private getProjectsFromGithub(): Observable<Project> {
         return this.http.get(this.apiReposString()).pipe(
             map((projects: any) => {
                 return projects.map((project: any) => {
@@ -54,7 +105,8 @@ export class GithubService {
                         });
                     });
                 });
-            })
+            }),
+            tap((project: Project) => this.saveProjectsToLocalStorage(project))
         )
     }
 
