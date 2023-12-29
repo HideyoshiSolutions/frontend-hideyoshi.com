@@ -8,10 +8,10 @@ import {
 } from '@angular/core';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { SliderItemComponent } from 'src/app/shared/components/slider-item/slider-item.component';
-import UserChecker from '../../../shared/model/user/user.checker';
 import { User } from '../../../shared/model/user/user.model';
 import { AuthService } from '../../../shared/service/auth.service';
 import { Subscription } from 'rxjs';
+import {Value} from "@sinclair/typebox/value";
 
 @Component({
     selector: 'app-nav-slider',
@@ -41,7 +41,7 @@ export class NavSliderComponent
     ngOnInit(): void {
         this.userSubscription = this.authService.authSubject.subscribe(
             (res) => {
-                if (res && UserChecker.test(res)) {
+                if (res && Value.Check(User, res)) {
                     this.loggedUser = <User>res;
                 } else {
                     this.loggedUser = null;

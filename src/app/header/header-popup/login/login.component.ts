@@ -14,9 +14,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { faLock, faUser } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/shared/service/auth.service';
-import { HttpError } from 'src/app/shared/model/httpError/httpError.model';
-import HttpErrorChecker from 'src/app/shared/model/httpError/httpErrorChecker';
-import UserChecker from 'src/app/shared/model/user/user.checker';
+import { Value } from '@sinclair/typebox/value'
 import { User } from 'src/app/shared/model/user/user.model';
 import {
     animate,
@@ -35,6 +33,7 @@ import {
     NgcStatusChangeEvent,
 } from 'ngx-cookieconsent';
 import { CookieConsertService } from '../../../shared/cookie-consent/cookie-consert.service';
+import {HttpError} from "../../../shared/model/httpError/httpError.model";
 
 const GOOGLE_LOGO_SVG = 'assets/img/providers/google.svg';
 const GOOGLE_DISABLED_LOGO_SVG = 'assets/img/providers/google-disabled.svg';
@@ -206,10 +205,10 @@ export class LoginComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     private validateLogin(res: User | HttpError | null) {
-        if (res && UserChecker.test(res)) {
+        if (res && Value.Check(User, res)) {
             this.closePopup();
         }
-        if (HttpErrorChecker.test(res)) {
+        if (Value.Check(HttpError, res)) {
             this.errorMessage = (<HttpError>res).details;
         }
     }
