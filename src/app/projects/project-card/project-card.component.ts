@@ -87,6 +87,7 @@ export class ProjectCardComponent implements OnInit {
             plotOptions: {
                 pie: {
                     expandOnClick: true,
+                    
                 }
             },
             dataLabels: {

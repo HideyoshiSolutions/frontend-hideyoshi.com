@@ -17,14 +17,18 @@
     width: 80%;
 }
 
-.card .card-content .card-title {
+.card .card-content .card-title a {
     font-size: 2rem;
-    font-weight: 500;
+    font-weight: 600;
     justify-content: left;
+    color: #767676;
+    text-decoration: none;
 }
+
 .card .card-content .card-text {
     font-size: 1.2rem;
-    font-weight: 300;
+    font-weight: 400;
+    color: #919294;
 }
 
 
@@ -46,6 +50,8 @@
     flex-direction: row;
     align-items: start;
     align-content: start;
+
+    color: #919294;
 }
 .stat-item .stat-icon {
     margin: 0px 15px 0px 0px;
