@@ -1,15 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AuthService } from './shared/service/auth.service';
-import { UpdateService } from './shared/service-worker/update.service';
-import {
-    NgcCookieConsentService,
-    NgcInitializationErrorEvent,
-    NgcInitializingEvent,
-    NgcNoCookieLawEvent,
-    NgcStatusChangeEvent,
-} from 'ngx-cookieconsent';
-import { Subscription } from 'rxjs';
-import { CookieConsertService } from './shared/cookie-consent/cookie-consert.service';
+import {Component, OnInit} from '@angular/core';
+import {AuthService} from './shared/service/auth.service';
+import {UpdateService} from './shared/service-worker/update.service';
+import {NgcCookieConsentService, NgcStatusChangeEvent,} from 'ngx-cookieconsent';
+import {Subscription} from 'rxjs';
+import {CookieConsertService} from './shared/cookie-consent/cookie-consert.service';
 
 @Component({
     selector: 'app-root',

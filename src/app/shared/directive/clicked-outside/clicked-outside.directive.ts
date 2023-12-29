@@ -1,39 +1,22 @@
-import { DOCUMENT } from '@angular/common';
-import {
-    AfterViewInit,
-    Directive,
-    ElementRef,
-    EventEmitter,
-    Inject,
-    Input,
-    OnDestroy,
-    Output,
-    ViewChild,
-} from '@angular/core';
-import {
-    combineLatest,
-    combineLatestWith,
-    filter,
-    fromEvent,
-    merge,
-    Subscription,
-} from 'rxjs';
+import {DOCUMENT} from '@angular/common';
+import {AfterViewInit, Directive, ElementRef, EventEmitter, Inject, Input, OnDestroy, Output,} from '@angular/core';
+import {filter, fromEvent, Subscription,} from 'rxjs';
 
 @Directive({
     selector: '[appClickedOutside]',
 })
 export class ClickedOutsideDirective implements AfterViewInit, OnDestroy {
     @Input()
-    ignoreElementList!: HTMLDivElement[];
+        ignoreElementList!: HTMLDivElement[];
 
     @Input()
-    includeClickedOutside!: HTMLDivElement[];
+        includeClickedOutside!: HTMLDivElement[];
 
     @Input()
-    clickOutsideStopWatching: boolean = false;
+        clickOutsideStopWatching: boolean = false;
 
     @Output()
-    clickOutside: EventEmitter<void> = new EventEmitter();
+        clickOutside: EventEmitter<void> = new EventEmitter();
 
     eventListener!: Subscription;
 

@@ -1,8 +1,8 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { AuthService } from 'src/app/shared/service/auth.service';
-import { SliderItemComponent } from 'src/app/shared/components/slider-item/slider-item.component';
-import { User } from 'src/app/shared/model/user/user.model';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Subscription} from 'rxjs';
+import {AuthService} from 'src/app/shared/service/auth.service';
+import {SliderItemComponent} from 'src/app/shared/components/slider-item/slider-item.component';
+import {User} from 'src/app/shared/model/user/user.model';
 import {Value} from "@sinclair/typebox/value";
 
 @Component({

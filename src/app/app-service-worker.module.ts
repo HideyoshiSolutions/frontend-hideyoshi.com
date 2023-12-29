@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { environment } from 'src/environments/environment';
-import { ServiceWorkerModule } from '@angular/service-worker';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {environment} from 'src/environments/environment';
+import {ServiceWorkerModule} from '@angular/service-worker';
 
 @NgModule({
     declarations: [],

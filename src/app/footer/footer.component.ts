@@ -1,9 +1,5 @@
-import { Component } from '@angular/core';
-import {
-    faGithub,
-    faLinkedinIn,
-    faTwitter,
-} from '@fortawesome/free-brands-svg-icons';
+import {Component} from '@angular/core';
+import {faGithub, faLinkedinIn, faTwitter,} from '@fortawesome/free-brands-svg-icons';
 
 @Component({
     selector: 'app-footer',

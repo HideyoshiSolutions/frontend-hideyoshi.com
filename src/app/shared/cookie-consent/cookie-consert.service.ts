@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject, Subscription } from 'rxjs';
-import { CookieService } from 'ngx-cookie-service';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject} from 'rxjs';
+import {CookieService} from 'ngx-cookie-service';
 
 @Injectable({
     providedIn: 'root',

@@ -1,6 +1,6 @@
-import { Type, type Static } from '@sinclair/typebox'
+import {type Static, Type} from '@sinclair/typebox'
 
-import { Token } from '../token/token.model';
+import {Token} from '../token/token.model';
 
 
 export const User = Type.Object({

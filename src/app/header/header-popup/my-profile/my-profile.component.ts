@@ -1,26 +1,11 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    OnInit,
-    Output,
-} from '@angular/core';
-import { AuthService } from '../../../shared/service/auth.service';
-import { User } from '../../../shared/model/user/user.model';
-import {
-    animate,
-    animateChild,
-    group,
-    query,
-    state,
-    style,
-    transition,
-    trigger,
-} from '@angular/animations';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ValidateNotEmptyValidator } from '../../../shared/validators/validate-not-empty.validator';
-import { ValidatePasswordValidator } from '../../../shared/validators/validate-password.validator';
-import { faFileUpload } from '@fortawesome/free-solid-svg-icons';
+import {Component, EventEmitter, Input, OnInit, Output,} from '@angular/core';
+import {AuthService} from '../../../shared/service/auth.service';
+import {User} from '../../../shared/model/user/user.model';
+import {animate, animateChild, group, query, state, style, transition, trigger,} from '@angular/animations';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {ValidateNotEmptyValidator} from '../../../shared/validators/validate-not-empty.validator';
+import {ValidatePasswordValidator} from '../../../shared/validators/validate-password.validator';
+import {faFileUpload} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-my-profile',
