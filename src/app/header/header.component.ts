@@ -25,7 +25,7 @@ import { MyProfileComponent } from './header-popup/my-profile/my-profile.compone
 export class HeaderComponent implements OnInit, OnDestroy {
     pages: { name: string; route: string }[] = [
         { name: 'Home', route: '/home' },
-        { name: 'Projects', route: '/home' },
+        { name: 'Projects', route: '/projects' },
         { name: 'Contact', route: '/home' },
     ];
 
@@ -38,13 +38,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
     userSliderStatus: boolean = false;
 
     @ViewChild('profileBtn')
-    profileBtnElementRef!: ElementRef;
+        profileBtnElementRef!: ElementRef;
 
     @ViewChild('profileDropdown')
-    profileDropdownElementRef!: ElementRef;
+        profileDropdownElementRef!: ElementRef;
 
     @ViewChild('user')
-    userElementRef!: ElementRef;
+        userElementRef!: ElementRef;
 
     loggedUser!: User | null;
 

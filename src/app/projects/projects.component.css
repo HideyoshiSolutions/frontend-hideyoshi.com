@@ -1,0 +1,8 @@
+app-project-card {
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
+}
+app-project-card:last-child {
+    margin-bottom: 25px;
+}

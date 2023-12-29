@@ -1,0 +1,74 @@
+.card .inverse-card-image {
+    flex-direction: row-reverse;
+}
+
+.card .card-content {
+    height: 350px;
+    width: 100%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.card .card-content > * {
+    margin: 10px;
+}
+
+.card .card-content .card-content-h {
+    width: 80%;
+}
+
+.card .card-content .card-title {
+    font-size: 2rem;
+    font-weight: 500;
+    justify-content: left;
+}
+.card .card-content .card-text {
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+
+.card .card-content .card-content-f {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+.card .card-content .card-content-f .card-info {
+    display: flex;
+    flex-direction: column;
+}
+.card .card-content .card-content-f .card-stats {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+
+.stat-item {
+    margin: 5px 0px 5px 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    align-content: start;
+}
+.stat-item .stat-icon {
+    margin: 0px 15px 0px 0px;
+    width: 20px;
+    height: 20px;
+    font-size: 1rem;
+
+    display: flex;
+}
+.stat-item span {
+    font-size: 1rem;
+    font-weight: 300;
+    margin: 0;
+    justify-content: left;
+}
+
+.stats-inline {
+    margin: 0;
+    width: 100%;
+    flex-direction: row !important;
+}
