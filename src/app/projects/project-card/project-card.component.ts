@@ -68,7 +68,7 @@ export class ProjectCardComponent implements OnInit {
             colors: languages.map(value => value.color),
             chart: {
                 width: 380,
-                type: "pie"
+                type: "donut"
             },
             labels: languages.map(value => value.name),
             responsive: [
