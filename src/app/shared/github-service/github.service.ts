@@ -15,9 +15,17 @@ export class GithubService {
 
     GITHUB_API_URL = 'https://api.github.com';
 
+    GITHUB_API_COLORS = 'https://raw.githubusercontent.com/ozh/github-colors/master/colors.json';
+
     GITHUB_USER = environment.githubUser;
 
-    constructor(private http: HttpClient) { }
+    colors!: Map<string, string>;
+
+    constructor(private http: HttpClient) {
+        this.getLanguageColor().subscribe((colors: Map<string, string>) => {
+            this.colors = colors;
+        });
+    }
 
     getProjects(): Observable<Project> {
         return this.http.get(this.apiReposString()).pipe(
@@ -61,11 +69,28 @@ export class GithubService {
                 return Object.keys(languages).map((language: string) => {
                     return {
                         name: language,
+                        color: this.colors.get(language) || this.getRandColor(),
                         percentage: (languages[language]/totalBytes)*100
                     } as Language;
                 });
             })
         );
+    }
+
+    private getLanguageColor(): Observable<Map<string, string>> {
+        return this.http.get(this.GITHUB_API_COLORS).pipe(
+            map((colors: any) => {
+                const colorMap = new Map<string, string>();
+                Object.keys(colors).forEach((language: string) => {
+                    colorMap.set(language, colors[language].color);
+                });
+                return colorMap;
+            })
+        );
+    }
+
+    private getRandColor(): string {
+        return `#${Math.floor(Math.random()*16777215).toString(16)}`;
     }
 
     private apiReposString() {

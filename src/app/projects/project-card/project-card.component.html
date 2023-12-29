@@ -7,10 +7,18 @@
                 <p class="card-text">{{project.description}}</p>
             </div>
             <div class="card-content-f row">
-                <div class="card-info col-9" *ngIf="hasLanguage">
-                    <p >Language: {{project.languages}}</p>
+                <div class="card-languages col-sm-9" *ngIf="hasLanguage" id="language-chart">
+                    <apx-chart *ngIf="chartOptions !== undefined"
+                        [series]="chartOptions.series"
+                        [colors]="chartOptions.colors"
+                        [chart]="chartOptions.chart"
+                        [labels]="chartOptions.labels"
+                        [responsive]="chartOptions.responsive"
+                        [plotOptions]="chartOptions.plotOptions"
+                        [dataLabels]="chartOptions.dataLabels">
+                    </apx-chart>
                 </div>
-                <div class="card-stats" [ngClass]="hasLanguage ? 'col-3' : 'stats-inline'">
+                <div class="card-stats" [ngClass]="hasLanguage ? 'col-sm-3' : 'stats-inline'">
                     <div class="stat-item" *ngIf="hasLicense">
                         <div class="stat-icon">
                             <fa-icon [icon]="faLicense"></fa-icon>
