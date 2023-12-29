@@ -10,7 +10,7 @@ on:
 env:
     VERCEL_CLI_TOKEN: ${{ secrets.VERCEL_CLI_TOKEN }}
     VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-    GIT_PREVIOS_COMMIT: ${{github.event.before}}
+    GIT_PREVIOS_COMMIT: ${{ github.event.before }}
 
 
 jobs:
