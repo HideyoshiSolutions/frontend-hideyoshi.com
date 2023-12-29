@@ -2,7 +2,8 @@ import {Component, HostListener, Input, OnInit, ViewChild} from '@angular/core';
 import {faCodeFork, faEye, faScaleBalanced, faStar} from '@fortawesome/free-solid-svg-icons';
 import {Language, Project} from "../../shared/model/project/project.model";
 import {
-    ApexChart, ApexDataLabels,
+    ApexChart,
+    ApexDataLabels,
     ApexNonAxisChartSeries,
     ApexPlotOptions,
     ApexResponsive,

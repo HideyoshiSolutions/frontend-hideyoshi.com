@@ -1,14 +1,5 @@
-import {
-    animate,
-    animateChild,
-    group,
-    query,
-    state,
-    style,
-    transition,
-    trigger,
-} from '@angular/animations';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {animate, animateChild, group, query, state, style, transition, trigger,} from '@angular/animations';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
     selector: 'app-header-slider',
@@ -45,16 +36,16 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class HeaderSliderComponent {
     @Input()
-    ignoreClickOutside!: HTMLDivElement[];
+        ignoreClickOutside!: HTMLDivElement[];
 
     @Input()
-    clickOutsideStopWatching: boolean = false;
+        clickOutsideStopWatching: boolean = false;
 
     @Input()
-    state: boolean = false;
+        state: boolean = false;
 
     @Output()
-    stateChange = new EventEmitter<boolean>();
+        stateChange = new EventEmitter<boolean>();
 
     constructor() {}
 

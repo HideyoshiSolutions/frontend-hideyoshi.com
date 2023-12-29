@@ -1,30 +1,16 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
-import {
-    faEnvelope,
-    faFingerprint,
-    faLock,
-    faUser,
-} from '@fortawesome/free-solid-svg-icons';
-import { Subscription } from 'rxjs';
-import { AuthService } from 'src/app/shared/service/auth.service';
-import { HttpError } from 'src/app/shared/model/httpError/httpError.model';
-import { User } from 'src/app/shared/model/user/user.model';
-import {
-    animate,
-    animateChild,
-    group,
-    query,
-    state,
-    style,
-    transition,
-    trigger,
-} from '@angular/animations';
-import { ValidateEmailValidator } from '../../../shared/validators/validate-email.validator';
-import { ValidatePasswordValidator } from '../../../shared/validators/validate-password.validator';
-import { ValidateNotEmptyValidator } from '../../../shared/validators/validate-not-empty.validator';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {MatIconRegistry} from '@angular/material/icon';
+import {DomSanitizer} from '@angular/platform-browser';
+import {faEnvelope, faFingerprint, faLock, faUser,} from '@fortawesome/free-solid-svg-icons';
+import {Subscription} from 'rxjs';
+import {AuthService} from 'src/app/shared/service/auth.service';
+import {HttpError} from 'src/app/shared/model/httpError/httpError.model';
+import {User} from 'src/app/shared/model/user/user.model';
+import {animate, animateChild, group, query, state, style, transition, trigger,} from '@angular/animations';
+import {ValidateEmailValidator} from '../../../shared/validators/validate-email.validator';
+import {ValidatePasswordValidator} from '../../../shared/validators/validate-password.validator';
+import {ValidateNotEmptyValidator} from '../../../shared/validators/validate-not-empty.validator';
 import {Value} from "@sinclair/typebox/value";
 
 const GOOGLE_LOGO_SVG = 'assets/img/providers/google.svg';

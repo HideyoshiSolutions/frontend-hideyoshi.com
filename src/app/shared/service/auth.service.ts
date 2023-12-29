@@ -1,16 +1,10 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import {
-    first,
-    map,
-    Observable,
-    of,
-    Subject,
-} from 'rxjs';
-import { catchError } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
-import { HttpError } from '../model/httpError/httpError.model';
-import { User } from '../model/user/user.model';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {first, map, Observable, of, Subject,} from 'rxjs';
+import {catchError} from 'rxjs/operators';
+import {environment} from 'src/environments/environment';
+import {HttpError} from '../model/httpError/httpError.model';
+import {User} from '../model/user/user.model';
 
 @Injectable({
     providedIn: 'root',

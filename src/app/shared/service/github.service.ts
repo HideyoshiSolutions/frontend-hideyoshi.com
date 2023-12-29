@@ -1,12 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Language, Project} from "../model/project/project.model";
 import {HttpClient} from "@angular/common/http";
-import {
-    map, mergeMap,
-    Observable,
-    pipe, switchMap, take, tap
-} from 'rxjs';
-import { environment } from 'src/environments/environment';
+import {map, Observable, switchMap, tap} from 'rxjs';
+import {environment} from 'src/environments/environment';
 
 @Injectable({
     providedIn: 'root'

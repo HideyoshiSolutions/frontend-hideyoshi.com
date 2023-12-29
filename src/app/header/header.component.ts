@@ -1,20 +1,12 @@
-import {
-    Component,
-    ComponentRef,
-    ElementRef,
-    OnDestroy,
-    OnInit,
-    ViewChild,
-    ViewContainerRef,
-} from '@angular/core';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
-import { LoginComponent } from './header-popup/login/login.component';
-import { SignupComponent } from './header-popup/signup/signup.component';
-import { AuthService } from '../shared/service/auth.service';
-import { User } from '../shared/model/user/user.model';
-import { Subscription } from 'rxjs';
-import { HelpComponent } from './header-popup/help/help.component';
-import { MyProfileComponent } from './header-popup/my-profile/my-profile.component';
+import {Component, ComponentRef, ElementRef, OnDestroy, OnInit, ViewChild, ViewContainerRef,} from '@angular/core';
+import {faUser} from '@fortawesome/free-solid-svg-icons';
+import {LoginComponent} from './header-popup/login/login.component';
+import {SignupComponent} from './header-popup/signup/signup.component';
+import {AuthService} from '../shared/service/auth.service';
+import {User} from '../shared/model/user/user.model';
+import {Subscription} from 'rxjs';
+import {HelpComponent} from './header-popup/help/help.component';
+import {MyProfileComponent} from './header-popup/my-profile/my-profile.component';
 import {Value} from "@sinclair/typebox/value";
 
 @Component({

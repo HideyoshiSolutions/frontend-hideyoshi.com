@@ -1,27 +1,9 @@
-import {
-    animate,
-    state,
-    style,
-    transition,
-    trigger,
-} from '@angular/animations';
-import {
-    Component,
-    EventEmitter,
-    Input,
-    OnDestroy,
-    OnInit,
-    Output,
-    ViewContainerRef,
-} from '@angular/core';
-import {
-    faQuestionCircle, faSignIn,
-    faSignOutAlt,
-    faUser,
-} from '@fortawesome/free-solid-svg-icons';
-import { Subscription } from 'rxjs';
-import { AuthService } from 'src/app/shared/service/auth.service';
-import { User } from '../../shared/model/user/user.model';
+import {animate, state, style, transition, trigger,} from '@angular/animations';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewContainerRef,} from '@angular/core';
+import {faQuestionCircle, faSignIn, faSignOutAlt, faUser,} from '@fortawesome/free-solid-svg-icons';
+import {Subscription} from 'rxjs';
+import {AuthService} from 'src/app/shared/service/auth.service';
+import {User} from '../../shared/model/user/user.model';
 import {IconDefinition} from "@fortawesome/free-regular-svg-icons";
 import {Value} from "@sinclair/typebox/value";
 

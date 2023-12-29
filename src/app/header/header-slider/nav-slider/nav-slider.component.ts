@@ -1,16 +1,9 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    OnDestroy,
-    OnInit,
-    Output,
-} from '@angular/core';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
-import { SliderItemComponent } from 'src/app/shared/components/slider-item/slider-item.component';
-import { User } from '../../../shared/model/user/user.model';
-import { AuthService } from '../../../shared/service/auth.service';
-import { Subscription } from 'rxjs';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output,} from '@angular/core';
+import {faUser} from '@fortawesome/free-solid-svg-icons';
+import {SliderItemComponent} from 'src/app/shared/components/slider-item/slider-item.component';
+import {User} from '../../../shared/model/user/user.model';
+import {AuthService} from '../../../shared/service/auth.service';
+import {Subscription} from 'rxjs';
 import {Value} from "@sinclair/typebox/value";
 
 @Component({

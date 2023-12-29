@@ -1,21 +1,5 @@
-import {
-    animate,
-    animateChild,
-    group,
-    query,
-    state,
-    style,
-    transition,
-    trigger,
-} from '@angular/animations';
-import {
-    Component,
-    ElementRef,
-    EventEmitter,
-    Input,
-    Output,
-    ViewEncapsulation,
-} from '@angular/core';
+import {animate, animateChild, group, query, state, style, transition, trigger,} from '@angular/animations';
+import {Component, EventEmitter, Input, Output,} from '@angular/core';
 
 @Component({
     selector: 'app-popup',
@@ -56,13 +40,13 @@ import {
 })
 export class PopupComponent {
     @Input()
-    state: boolean = false;
+        state: boolean = false;
 
     @Input()
-    ignoreClickOutside!: HTMLDivElement[];
+        ignoreClickOutside!: HTMLDivElement[];
 
     @Output()
-    stateChange = new EventEmitter<boolean>(false);
+        stateChange = new EventEmitter<boolean>(false);
 
     constructor() {}
 

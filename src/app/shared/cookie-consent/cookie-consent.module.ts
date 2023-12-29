@@ -1,9 +1,6 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {
-    NgcCookieConsentConfig,
-    NgcCookieConsentModule,
-} from 'ngx-cookieconsent';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {NgcCookieConsentConfig, NgcCookieConsentModule,} from 'ngx-cookieconsent';
 
 const cookieConfig: NgcCookieConsentConfig = {
     cookie: {
