@@ -94,7 +94,7 @@ export class StackSliderComponent implements AfterViewInit {
         this.ngxGlide.showBullets = false;
         this.ngxGlide.type = 'carousel';
         this.ngxGlide.focusAt = 'center';
-        this.ngxGlide.gap = 10;
+        this.ngxGlide.gap = numberOfCards === 1 ? 0 : 10;
         this.ngxGlide.autoplay = 3000;
 
         this.ngxGlide.recreate();
