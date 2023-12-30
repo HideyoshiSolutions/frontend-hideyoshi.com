@@ -120,6 +120,7 @@
 
 .stack-slider {
     height: 65%;
+    min-height: 425px;
 }
 
 
@@ -136,5 +137,16 @@
         padding-top: 60px;
         width: 80%;
         height: 30%;
+    }
+}
+
+@media only screen and (max-height: 750px) {
+    .stack-section {
+        height: fit-content;
+    }
+
+    .stack-slider {
+        height: fit-content;
+        /*min-height: 425px;*/
     }
 }
