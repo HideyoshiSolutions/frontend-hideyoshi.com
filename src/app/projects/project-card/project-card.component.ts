@@ -77,8 +77,11 @@ export class ProjectCardComponent implements OnInit {
     }
 
     private generateChart(languages: Language[], windowWidth: number): ChartOptions {
+        const WIDTH_PROPORTION = .9*.8;
+        const DOUBLE_PADDING_WIDTH = 40;
+
         const responsiveWindowWidth = windowWidth >= 530 ?
-            300 : (windowWidth*.8 - 80);
+            300 : (windowWidth*WIDTH_PROPORTION - DOUBLE_PADDING_WIDTH);
 
         return {
             series: languages.map(value => value.percentage),
