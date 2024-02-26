@@ -19,6 +19,10 @@ const routes: Routes = [
         loadChildren: () => import('./projects/projects.module').then(mod => mod.ProjectsModule),
     },
     {
+        path: 'contact',
+        loadChildren: () => import('./contact/contact.module').then(mod => mod.ContactModule),
+    },
+    {
         path: 'callback',
         component: CallbackComponent,
     },

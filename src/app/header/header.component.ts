@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     pages: { name: string; route: string }[] = [
         { name: 'Home', route: '/home' },
         { name: 'Projects', route: '/projects' },
-        { name: 'Contact', route: '/home' },
+        { name: 'Contact', route: '/contact' },
     ];
 
     userIcon = faUser;

@@ -10,6 +10,8 @@ import {AppServiceWorkerModule} from './app-service-worker.module';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 import {FooterComponent} from './footer/footer.component';
+import {Object} from "@sinclair/typebox";
+import {Router} from "@angular/router";
 
 @NgModule({
     declarations: [AppComponent, FooterComponent],
@@ -28,4 +30,22 @@ import {FooterComponent} from './footer/footer.component';
     providers: [],
     bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+
+    constructor(private router: Router) {
+        if (environment.production) {
+            this.disableDevTools();
+        }
+    }
+
+    private disableDevTools() {
+        const t0 = Date.now();
+        eval('debugger');
+        const t1 = Date.now();
+
+        console.log('DevTools is open: ', t1 - t0);
+        if (t1 - t0 > 100) {
+            window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+        }
+    }
+}
