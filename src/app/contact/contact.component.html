@@ -1,1 +1,6 @@
-<p>contact works!</p>
+<form [formGroup]="messageForm">
+    <input type="text" formControlName="subject"/>
+    <textarea formControlName="message"></textarea>
+
+    <button (click)="sendMessage()">Send</button>
+</form>

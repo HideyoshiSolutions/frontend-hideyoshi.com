@@ -4,6 +4,7 @@ import {UpdateService} from './shared/service-worker/update.service';
 import {NgcCookieConsentService, NgcStatusChangeEvent,} from 'ngx-cookieconsent';
 import {Subscription} from 'rxjs';
 import {CookieConsertService} from './shared/cookie-consent/cookie-consert.service';
+import {AlertService} from "./shared/service/alert.service";
 
 @Component({
     selector: 'app-root',
@@ -27,6 +28,10 @@ export class AppComponent implements OnInit {
     ngOnInit(): void {
         this.authService.autoLogin();
 
+        this.initializeCookieConsent();
+    }
+
+    private initializeCookieConsent() {
         let cookieConsentStatus =
             this.cookieConsentService.getCookieConsentStatusFromLocalStorage();
 

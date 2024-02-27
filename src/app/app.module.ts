@@ -10,12 +10,12 @@ import {AppServiceWorkerModule} from './app-service-worker.module';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {environment} from '../environments/environment';
 import {FooterComponent} from './footer/footer.component';
-import {Object} from "@sinclair/typebox";
-import {Router} from "@angular/router";
+import {NgToastModule} from "ng-angular-popup";
 
 @NgModule({
     declarations: [AppComponent, FooterComponent],
     imports: [
+        NgToastModule,
         BrowserModule,
         HeaderModule,
         AppRouterModule,
@@ -32,7 +32,7 @@ import {Router} from "@angular/router";
 })
 export class AppModule {
 
-    constructor(private router: Router) {
+    constructor() {
         if (environment.production) {
             this.disableDevTools();
         }

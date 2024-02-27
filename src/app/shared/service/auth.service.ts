@@ -1,10 +1,11 @@
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {first, map, Observable, of, Subject,} from 'rxjs';
+import {BehaviorSubject, first, map, Observable, of, Subject, tap,} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {environment} from 'src/environments/environment';
 import {HttpError} from '../model/httpError/httpError.model';
 import {User} from '../model/user/user.model';
+import {Value} from "@sinclair/typebox/value";
 
 @Injectable({
     providedIn: 'root',
@@ -12,11 +13,11 @@ import {User} from '../model/user/user.model';
 export class AuthService {
     private userAuthenticated!: User;
 
-    authSubject = new Subject<User | HttpError | null>();
+    authSubject = new BehaviorSubject<User | HttpError | null>(null);
 
-    readonly BACKEND_PATH = environment.backendPath;
+    private readonly BACKEND_PATH = environment.backendPath;
 
-    readonly BACKEND_OAUTH_PATH = environment.backendOAuthPath;
+    private readonly BACKEND_OAUTH_PATH = environment.backendOAuthPath;
 
     constructor(private http: HttpClient) {}
     login(userAuthAtempt: User): void {
@@ -170,30 +171,17 @@ export class AuthService {
     }
 
     private validateUser(userAuthAtempt: Observable<User>) {
-        userAuthAtempt
-            .pipe(
-                catchError((error) => {
-                    if (error.status == 0) {
-                        return of(<HttpError>{
-                            title: 'Service Unavailable',
-                            status: 500,
-                            details:
-                                'Service Unavailable, please try again later.',
-                            developerMessage:
-                                'Service Unavailable, please try again later.',
-                            timestamp: new Date().toISOString(),
-                        });
-                    }
-                    return of(<HttpError>error.error);
-                }),
-                first(),
-            )
-            .subscribe({
-                next: (userAuthentication) => {
-                    this.userAuthenticated = <User>userAuthentication;
-                    this.authSubject.next(this.userAuthenticated);
-                },
-            });
+        userAuthAtempt.subscribe({
+            next: (res) => {
+                if (Value.Check(User, res)) {
+                    this.userAuthenticated = res;
+                }
+                this.authSubject.next(res);
+            },
+            error: (error) => {
+                this.authSubject.next(error);
+            },
+        });
     }
 
     private getAddProfilePictureUrl(
