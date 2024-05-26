@@ -200,7 +200,7 @@ export class AuthService {
         fileType: string,
     ): Observable<string | null> {
         return this.http
-            .post<{ presigned_url: string; file_key: string }>(
+            .post<{ signed_url: string; file_key: string }>(
                 this.BACKEND_PATH +
                     '/user/profile-picture?fileType=' +
                     fileType,
@@ -213,8 +213,8 @@ export class AuthService {
             .pipe(
                 first(),
                 map((res) => {
-                    if (!!res && !!res.presigned_url) {
-                        return res.presigned_url;
+                    if (!!res && !!res.signed_url) {
+                        return res.signed_url;
                     }
                     return null;
                 }),
