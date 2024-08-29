@@ -4,7 +4,8 @@ WORKDIR /app
 
 COPY . .
 
-RUN apk add gettext
+RUN apk add --update gettext python3 py3-pip py3-setuptools make g++ && \
+    rm -rf /var/cache/apk/*
 
 RUN npm install
 RUN npm install -g @angular/cli@16
