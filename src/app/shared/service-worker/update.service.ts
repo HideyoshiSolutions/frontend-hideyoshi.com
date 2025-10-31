@@ -17,7 +17,11 @@ export class UpdateService {
     }
 
     public checkForUpdates(): void {
-        this.swUpdate.available.subscribe((event) => this.promptUser());
+        this.swUpdate.versionUpdates.subscribe(versionUpdate => {
+            if (versionUpdate.type === 'VERSION_READY') {
+                this.promptUser();
+            }
+        })
     }
 
     private promptUser(): void {
