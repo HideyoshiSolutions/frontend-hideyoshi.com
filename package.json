@@ -1,20 +1,14 @@
 {
   "name": "frontend-hideyoshi.com",
-  "version": "0.0.0",
-  "scripts": {
-    "start": "node ./set_env.js && node ./server.js",
-    "serve": "node ./set_env.js && ng serve",
-    "build": "ng build",
-    "start:prod": "node ./set_env.js --prod && node ./server.js",
-    "serve:prod": "node ./set_env.js --prod && ng serve --configuration=production",
-    "build:prod": "ng build --configuration=production"
-  },
-  "proxy": {
-    "/callback": {
-      "target": "http://localhost:8070"
-    }
-  },
   "private": true,
+  "scripts": {
+    "build": "ng build",
+    "build:prod": "ng build --configuration=production",
+    "serve": "node ./set_env.js && ng serve",
+    "serve:prod": "node ./set_env.js --prod && ng serve --configuration=production",
+    "start": "node ./set_env.js && node ./server.js",
+    "start:prod": "node ./set_env.js --prod && node ./server.js"
+  },
   "dependencies": {
     "@angular/animations": "^20.3.9",
     "@angular/cdk": "^19.2.19",
@@ -78,5 +72,10 @@
     "prettier-eslint": "^16.1.1",
     "ts-interface-builder": "^0.3.3",
     "typescript": "~5.8.3"
+  },
+  "proxy": {
+    "/callback": {
+      "target": "http://localhost:8070"
+    }
   }
 }
