@@ -7,36 +7,25 @@ import {Component, EventEmitter, Input, Output,} from '@angular/core';
     styleUrls: ['./popup.component.css'],
     animations: [
         trigger('popupState', [
-            state(
-                'hide',
-                style({
-                    opacity: '0',
-                    zIndex: 2
-                }),
-            ),
-            state(
-                'show',
-                style({
-                    opacity: '1',
-                    zIndex: 2
-                }),
-            ),
-            transition(
-                '* => show',
-                group([
-                    query('@*', animateChild(), { optional: true }),
-                    animate('250ms ease-in'),
-                ]),
-            ),
-            transition(
-                'show => hide',
-                group([
-                    query('@*', animateChild(), { optional: true }),
-                    animate('250ms ease-out'),
-                ]),
-            ),
+            state('hide', style({
+                opacity: '0',
+                zIndex: 2
+            })),
+            state('show', style({
+                opacity: '1',
+                zIndex: 2
+            })),
+            transition('* => show', group([
+                query('@*', animateChild(), { optional: true }),
+                animate('250ms ease-in'),
+            ])),
+            transition('show => hide', group([
+                query('@*', animateChild(), { optional: true }),
+                animate('250ms ease-out'),
+            ])),
         ]),
     ],
+    standalone: false
 })
 export class PopupComponent {
     @Input()

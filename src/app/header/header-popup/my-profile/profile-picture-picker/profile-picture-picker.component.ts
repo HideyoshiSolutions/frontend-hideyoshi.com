@@ -5,6 +5,7 @@ import {AuthService} from '../../../../shared/service/auth.service';
     selector: 'app-profile-picture-picker',
     templateUrl: './profile-picture-picker.component.html',
     styleUrls: ['./profile-picture-picker.component.css'],
+    standalone: false
 })
 export class ProfilePicturePickerComponent {
     @Output()

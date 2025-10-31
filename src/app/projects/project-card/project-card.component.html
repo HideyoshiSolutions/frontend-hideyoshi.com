@@ -1,49 +1,55 @@
-  <div class="card container">
-        <div class="card-content">
-            <div class="card-content-h">
-                <h2 class="card-title">
-                    <a [href]="project.link">{{project.name}}</a>
-                </h2>
-                <p class="card-text">{{project.description}}</p>
-            </div>
-            <div class="card-content-f row">
-                <div class="card-languages col-md-9" *ngIf="hasLanguage" id="language-chart">
-                    <apx-chart *ngIf="chartOptions !== undefined"
-                        [series]="chartOptions.series"
-                        [colors]="chartOptions.colors"
-                        [chart]="chartOptions.chart"
-                        [labels]="chartOptions.labels"
-                        [responsive]="chartOptions.responsive"
-                        [plotOptions]="chartOptions.plotOptions"
-                        [dataLabels]="chartOptions.dataLabels">
-                    </apx-chart>
-                </div>
-                <div class="card-stats" [ngClass]="hasLanguage ? 'col-md-3' : 'stats-inline'">
-                    <div class="stat-item" *ngIf="hasLicense">
-                        <div class="stat-icon">
-                            <fa-icon [icon]="faLicense"></fa-icon>
-                        </div>
-                        <span>{{project.license}}</span>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-icon">
-                            <fa-icon [icon]="faStars"></fa-icon>
-                        </div>
-                        <span>{{project.stars}}</span>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-icon">
-                            <fa-icon [icon]="faCodeFork"></fa-icon>
-                        </div>
-                        <span>{{project.forks}}</span>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-icon">
-                            <fa-icon [icon]="faEye"></fa-icon>
-                        </div>
-                        <span>{{project.watchers}}</span>
-                    </div>
-                </div>
-            </div>
+<div class="card container">
+  <div class="card-content">
+    <div class="card-content-h">
+      <h2 class="card-title">
+        <a [href]="project.link">{{project.name}}</a>
+      </h2>
+      <p class="card-text">{{project.description}}</p>
+    </div>
+    <div class="card-content-f row">
+      @if (hasLanguage) {
+        <div class="card-languages col-md-9" id="language-chart">
+          @if (chartOptions !== undefined) {
+            <apx-chart
+              [series]="chartOptions.series"
+              [colors]="chartOptions.colors"
+              [chart]="chartOptions.chart"
+              [labels]="chartOptions.labels"
+              [responsive]="chartOptions.responsive"
+              [plotOptions]="chartOptions.plotOptions"
+              [dataLabels]="chartOptions.dataLabels">
+            </apx-chart>
+          }
         </div>
+      }
+      <div class="card-stats" [ngClass]="hasLanguage ? 'col-md-3' : 'stats-inline'">
+        @if (hasLicense) {
+          <div class="stat-item">
+            <div class="stat-icon">
+              <fa-icon [icon]="faLicense"></fa-icon>
+            </div>
+            <span>{{project.license}}</span>
+          </div>
+        }
+        <div class="stat-item">
+          <div class="stat-icon">
+            <fa-icon [icon]="faStars"></fa-icon>
+          </div>
+          <span>{{project.stars}}</span>
+        </div>
+        <div class="stat-item">
+          <div class="stat-icon">
+            <fa-icon [icon]="faCodeFork"></fa-icon>
+          </div>
+          <span>{{project.forks}}</span>
+        </div>
+        <div class="stat-item">
+          <div class="stat-icon">
+            <fa-icon [icon]="faEye"></fa-icon>
+          </div>
+          <span>{{project.watchers}}</span>
+        </div>
+      </div>
+    </div>
   </div>
+</div>

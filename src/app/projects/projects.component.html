@@ -1,6 +1,8 @@
 <div class="container">
-    <div *ngFor="let p of projects; index as i;trackBy: identifyProject">
-        <app-project-card [project]="p" [inverted]="i % 2 !== 0">
-        </app-project-card>
+  @for (p of projects; track identifyProject(i, p); let i = $index) {
+    <div>
+      <app-project-card [project]="p" [inverted]="i % 2 !== 0">
+      </app-project-card>
     </div>
+  }
 </div>

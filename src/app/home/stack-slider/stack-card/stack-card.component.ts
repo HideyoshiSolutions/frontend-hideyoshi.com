@@ -23,6 +23,7 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
             ]),
         ])
     ],
+    standalone: false
 })
 export class StackCardComponent {
     @Input()
