@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Language, Project} from "../model/project/project.model";
-import {HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import {map, Observable, switchMap, tap} from 'rxjs';
 import {environment} from 'src/environments/environment';
 

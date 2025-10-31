@@ -13,22 +13,17 @@ import {Value} from "@sinclair/typebox/value";
     styleUrls: ['./header-dropdown.component.css'],
     animations: [
         trigger('dropdownState', [
-            state(
-                'hide',
-                style({
-                    opacity: '0',
-                }),
-            ),
-            state(
-                'show',
-                style({
-                    opacity: '1',
-                }),
-            ),
+            state('hide', style({
+                opacity: '0',
+            })),
+            state('show', style({
+                opacity: '1',
+            })),
             transition('hide => show', animate('20ms ease-in')),
             transition('show => hide', animate('5ms ease-out')),
         ]),
     ],
+    standalone: false
 })
 export class HeaderDropdownComponent implements OnInit, OnDestroy {
     mainOptions: { text: string, icon: IconDefinition, callback: () => void }[] = [

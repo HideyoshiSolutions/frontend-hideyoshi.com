@@ -1,9 +1,10 @@
-import {DOCUMENT} from '@angular/common';
-import {AfterViewInit, Directive, ElementRef, EventEmitter, Inject, Input, OnDestroy, Output,} from '@angular/core';
+
+import {AfterViewInit, Directive, ElementRef, EventEmitter, Inject, Input, OnDestroy, Output, DOCUMENT} from '@angular/core';
 import {filter, fromEvent, Subscription,} from 'rxjs';
 
 @Directive({
     selector: '[appClickedOutside]',
+    standalone: false
 })
 export class ClickedOutsideDirective implements AfterViewInit, OnDestroy {
     @Input()

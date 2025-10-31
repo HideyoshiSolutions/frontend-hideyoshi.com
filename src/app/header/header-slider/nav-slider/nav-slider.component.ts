@@ -10,6 +10,7 @@ import {Value} from "@sinclair/typebox/value";
     selector: 'app-nav-slider',
     templateUrl: './nav-slider.component.html',
     styleUrls: ['./nav-slider.component.css'],
+    standalone: false
 })
 export class NavSliderComponent
     extends SliderItemComponent

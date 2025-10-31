@@ -13,56 +13,39 @@ import {faFileUpload} from '@fortawesome/free-solid-svg-icons';
     styleUrls: ['./my-profile.component.css'],
     animations: [
         trigger('resizeContainerForErrorMessage', [
-            state(
-                'hide',
-                style({
-                    height: '100px',
-                    width: '320px',
-                }),
-            ),
-            transition(
-                'show => hide',
-                group([
-                    query('@*', animateChild(), { optional: true }),
-                    animate('1s ease'),
-                ]),
-            ),
+            state('hide', style({
+                height: '100px',
+                width: '320px',
+            })),
+            transition('show => hide', group([
+                query('@*', animateChild(), { optional: true }),
+                animate('1s ease'),
+            ])),
         ]),
         trigger('showErrorMessage', [
-            state(
-                'show',
-                style({
-                    opacity: 1,
-                    height: '100px',
-                    width: '320px',
-                }),
-            ),
-            state(
-                'hide',
-                style({
-                    opacity: 0,
-                    height: '0px',
-                    width: '0px',
-                }),
-            ),
+            state('show', style({
+                opacity: 1,
+                height: '100px',
+                width: '320px',
+            })),
+            state('hide', style({
+                opacity: 0,
+                height: '0px',
+                width: '0px',
+            })),
             transition('* => show', animate('500ms ease-in')),
         ]),
         trigger('hideAuthContainer', [
-            state(
-                'hide',
-                style({
-                    opacity: 0,
-                }),
-            ),
-            transition(
-                'show => hide',
-                group([
-                    query('@*', animateChild(), { optional: true }),
-                    animate('250ms ease-out'),
-                ]),
-            ),
+            state('hide', style({
+                opacity: 0,
+            })),
+            transition('show => hide', group([
+                query('@*', animateChild(), { optional: true }),
+                animate('250ms ease-out'),
+            ])),
         ]),
     ],
+    standalone: false
 })
 export class MyProfileComponent implements OnInit {
     @Input()

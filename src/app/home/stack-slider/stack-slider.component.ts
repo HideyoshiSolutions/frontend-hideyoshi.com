@@ -6,7 +6,8 @@ import {Stack} from "../../shared/model/stack/stack.model";
 @Component({
     selector: 'app-stack-slider',
     templateUrl: './stack-slider.component.html',
-    styleUrls: ['./stack-slider.component.css']
+    styleUrls: ['./stack-slider.component.css'],
+    standalone: false
 })
 export class StackSliderComponent implements AfterViewInit {
     @ViewChild('ngxGlide')
