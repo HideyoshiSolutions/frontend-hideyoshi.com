@@ -5,7 +5,6 @@
 export const environment = {
     production: false,
     backendPath: 'http://localhost:8070',
-    backendOAuthPath: 'http://localhost:8070',
     githubUser: 'HideyoshiNakazone',
 };
 

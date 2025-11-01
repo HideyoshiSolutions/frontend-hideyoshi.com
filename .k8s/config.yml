@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: ${KUBE_NAMESPACE}
+  name: frontend-config
+data:
+  BACKEND_URL: "${BACKEND_URL}"
+  GITHUB_USER: "${GH_USER}"
