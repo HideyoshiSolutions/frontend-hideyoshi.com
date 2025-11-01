@@ -13,15 +13,15 @@ FROM base AS prod
 
 WORKDIR /app
 
+RUN apk add --update gettext python3 py3-pip py3-setuptools make g++ && \
+    rm -rf /var/cache/apk/*
+
+
 COPY --from=build /app/node_modules ./node_modules
 COPY . .
 
 
 RUN npm install -g @angular/cli@20.3.8
-
-
-RUN apk add --update gettext python3 py3-pip py3-setuptools make g++ && \
-    rm -rf /var/cache/apk/*
 
 RUN npm run build:prod
 
