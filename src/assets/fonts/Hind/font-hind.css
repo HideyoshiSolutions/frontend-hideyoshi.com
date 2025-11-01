@@ -1,0 +1,64 @@
+/*
+Hind-Bold.ttf
+Hind-Light.ttf
+Hind-Medium.ttf
+Hind-Regular.ttf
+Hind-SemiBold.ttf
+*/
+
+/*
+  Hind font-face declarations.
+  We map weights as follows:
+    Light     -> 300
+    Regular   -> 400
+    Medium    -> 500
+    SemiBold  -> 600
+    Bold      -> 700
+
+  No italic files are present in this folder — only normal style declarations are provided.
+  font-display: swap is used for better rendering behavior.
+*/
+
+@font-face {
+  font-family: 'Hind';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('Hind-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Hind';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('Hind-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Hind';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('Hind-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Hind';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('Hind-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Hind';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('Hind-Bold.ttf') format('truetype');
+}
+
+/* Usage example:
+body { font-family: 'Hind', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; }
+*/
