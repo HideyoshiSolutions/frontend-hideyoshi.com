@@ -78,8 +78,6 @@ jobs:
                   ${{ env.IMAGE_SHA }}
                 cache-from: type=registry,ref=${{ env.IMAGE_LATEST }}
                 cache-to: type=inline
-                build-args: |
-                  BUILDKIT_INLINE_CACHE=1
 
     deploy:
         needs: [docker]
