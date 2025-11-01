@@ -46,20 +46,19 @@ jobs:
               run: |
                 OWNER=$(echo "${GITHUB_REPOSITORY_OWNER}" | tr '[:upper:]' '[:lower:]')
                 REPO=$(echo "${GITHUB_REPOSITORY#*/}" | tr '[:upper:]' '[:lower:]')
-                
+      
+                # Determine tag
                 if [ "${GITHUB_REF_NAME}" = "main" ]; then
                   TAG="latest"
                 else
                   TAG="dev"
                 fi
-                
+      
                 SHORT_SHA=$(echo "${GITHUB_SHA}" | cut -c1-7)
-                
-                echo "PROJECT_IMAGE_NAME=ghcr.io/${OWNER}/${REPO}" >> $GITHUB_ENV
-                echo "TAG=$TAG" >> $GITHUB_ENV
-                echo "SHORT_SHA=$SHORT_SHA" >> $GITHUB_ENV
-                echo "IMAGE_LATEST=${PROJECT_IMAGE_NAME}:${TAG}" >> $GITHUB_ENV
-                echo "IMAGE_SHA=${PROJECT_IMAGE_NAME}:sha-${SHORT_SHA}" >> $GITHUB_ENV
+                IMAGE_BASE="ghcr.io/${OWNER}/${REPO}"
+      
+                echo "IMAGE_LATEST=${IMAGE_BASE}:${TAG}" >> $GITHUB_ENV
+                echo "IMAGE_SHA=${IMAGE_BASE}:sha-${SHORT_SHA}" >> $GITHUB_ENV
 
             - name: Build Docker image
               run: |
