@@ -26,9 +26,6 @@ jobs:
         needs: [build]
         runs-on: ubuntu-latest
         if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop')
-        env:
-          IMAGE_TAG: ${{ github.ref_name == 'main' && 'latest' || 'dev' }}
-          IMAGE_NAME: ghcr.io/${{ toLower(github.repository_owner) }}/frontend-hideyoshi.com:latest
         permissions:
           contents: read
           packages: write   # required to push to ghcr.io
@@ -45,8 +42,30 @@ jobs:
                 username: ${{ github.actor }}
                 password: ${{ secrets.GITHUB_TOKEN }}
 
-            - name: Build image
-              run: docker build -t $IMAGE_NAME .
+            - name: Prepare image tags
+              run: |
+                OWNER=$(echo "${GITHUB_REPOSITORY_OWNER}" | tr '[:upper:]' '[:lower:]')
+                REPO=$(echo "${GITHUB_REPOSITORY#*/}" | tr '[:upper:]' '[:lower:]')
+                
+                if [ "${GITHUB_REF_NAME}" = "main" ]; then
+                  TAG="latest"
+                else
+                  TAG="dev"
+                fi
+                
+                SHORT_SHA=$(echo "${GITHUB_SHA}" | cut -c1-7)
+                
+                echo "IMAGE_BASE=ghcr.io/${OWNER}/${REPO}" >> $GITHUB_ENV
+                echo "TAG=$TAG" >> $GITHUB_ENV
+                echo "SHORT_SHA=$SHORT_SHA" >> $GITHUB_ENV
+                echo "IMAGE_LATEST=${IMAGE_BASE}:${TAG}" >> $GITHUB_ENV
+                echo "IMAGE_SHA=${IMAGE_BASE}:sha-${SHORT_SHA}" >> $GITHUB_ENV
 
-            - name: Push image
-              run: docker push $IMAGE_NAME
+            - name: Build Docker image
+              run: |
+                docker build -t $IMAGE_LATEST -t $IMAGE_SHA .
+
+            - name: Push Docker images
+              run: |
+                docker push $IMAGE_LATEST
+                docker push $IMAGE_SHA
