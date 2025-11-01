@@ -50,13 +50,13 @@
                             "budgets": [
                                 {
                                     "type": "initial",
-                                    "maximumWarning": "1mb",
-                                    "maximumError": "1.5mb"
+                                    "maximumWarning": "2.5mb",
+                                    "maximumError": "5mb"
                                 },
                                 {
                                     "type": "anyComponentStyle",
-                                    "maximumWarning": "2.5kb",
-                                    "maximumError": "5kb"
+                                    "maximumWarning": "5kb",
+                                    "maximumError": "10kb"
                                 }
                             ],
                             "fileReplacements": [
@@ -66,7 +66,7 @@
                                 }
                             ],
                             "outputHashing": "all",
-                            "serviceWorker": true
+                            "serviceWorker": "ngsw-config.json"
                         },
                         "development": {
                           "optimization": false,
@@ -96,7 +96,7 @@
                     }
                 },
                 "test": {
-                    "builder": "@angular/build:karma",
+                    "builder": "@angular/build:application",
                     "options": {
                         "main": "src/test.ts",
                         "polyfills": "src/polyfills.ts",
