@@ -4,6 +4,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
     selector: 'app-help',
     templateUrl: './help.component.html',
     styleUrls: ['./help.component.css'],
+    standalone: false
 })
 export class HelpComponent {
     @Input()

@@ -6,6 +6,7 @@ import {AuthService} from 'src/app/shared/service/auth.service';
     selector: 'app-callback',
     templateUrl: './callback.component.html',
     styleUrls: ['./callback.component.css'],
+    standalone: false
 })
 export class CallbackComponent implements OnInit {
     constructor(

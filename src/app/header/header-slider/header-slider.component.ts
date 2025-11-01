@@ -7,18 +7,12 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
     styleUrls: ['./header-slider.component.css'],
     animations: [
         trigger('slideState', [
-            state(
-                'hide',
-                style({
-                    transform: 'translateX(100%)',
-                }),
-            ),
-            state(
-                'show',
-                style({
-                    transform: 'translateX(0%)',
-                }),
-            ),
+            state('hide', style({
+                transform: 'translateX(100%)',
+            })),
+            state('show', style({
+                transform: 'translateX(0%)',
+            })),
             transition('hide => show', [
                 group([
                     query('@*', animateChild(), { optional: true }),
@@ -33,6 +27,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
             ]),
         ]),
     ],
+    standalone: false
 })
 export class HeaderSliderComponent {
     @Input()

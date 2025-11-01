@@ -9,6 +9,7 @@ import {Value} from "@sinclair/typebox/value";
     selector: 'app-user-slider',
     templateUrl: './user-slider.component.html',
     styleUrls: ['./user-slider.component.css'],
+    standalone: false
 })
 export class UserSliderComponent extends SliderItemComponent implements OnInit {
     userlessOptions = [

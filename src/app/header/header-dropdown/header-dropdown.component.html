@@ -1,36 +1,44 @@
 <div
-    class="dropdown"
-    appClickedOutside
-    (clickOutside)="onClickedOutside()"
-    [includeClickedOutside]="[management]"
-    [ignoreElementList]="ignoreClickOutside"
-    [@dropdownState]="dropDownState"
-    (@dropdownState.start)="$event.element.style.display = 'block'"
+  class="dropdown"
+  appClickedOutside
+  (clickOutside)="onClickedOutside()"
+  [includeClickedOutside]="[management]"
+  [ignoreElementList]="ignoreClickOutside"
+  [@dropdownState]="dropDownState"
+  (@dropdownState.start)="$event.element.style.display = 'block'"
     (@dropdownState.done)="
         $event.element.style.display = state ? 'block' : 'none'
     "
->
-    <div class="info">
-        <h3>{{ this.user ? this.user.username : "User Account" }}</h3>
-    </div>
-    <div #management>
-        <ul class="user-management" *ngIf="!this.user">
-            <li *ngFor="let option of mainOptions"
-                class="dropdown-item" (click)=option.callback()>
-                <div class="icon-box">
-                    <fa-icon [icon]="option.icon"></fa-icon>
-                </div>
-                <p>{{option.text}}</p>
-            </li>
-        </ul>
-        <ul class="user-management" *ngIf="this.user">
-            <li *ngFor="let option of userOptions"
-                class="dropdown-item" (click)=option.callback()>
-                <div class="icon-box">
-                    <fa-icon [icon]="option.icon"></fa-icon>
-                </div>
-                <p>{{option.text}}</p>
-            </li>
-        </ul>
-    </div>
+  >
+  <div class="info">
+    <h3>{{ this.user ? this.user.username : "User Account" }}</h3>
+  </div>
+  <div #management>
+    @if (!this.user) {
+      <ul class="user-management">
+        @for (option of mainOptions; track option) {
+          <li
+            class="dropdown-item" (click)=option.callback()>
+            <div class="icon-box">
+              <fa-icon [icon]="option.icon"></fa-icon>
+            </div>
+            <p>{{option.text}}</p>
+          </li>
+        }
+      </ul>
+    }
+    @if (this.user) {
+      <ul class="user-management">
+        @for (option of userOptions; track option) {
+          <li
+            class="dropdown-item" (click)=option.callback()>
+            <div class="icon-box">
+              <fa-icon [icon]="option.icon"></fa-icon>
+            </div>
+            <p>{{option.text}}</p>
+          </li>
+        }
+      </ul>
+    }
+  </div>
 </div>

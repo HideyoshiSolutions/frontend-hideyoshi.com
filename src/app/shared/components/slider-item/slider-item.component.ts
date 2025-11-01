@@ -7,36 +7,29 @@ import {Component, Input} from '@angular/core';
     styleUrls: ['./slider-item.component.css'],
     animations: [
         trigger('animateSliderItem', [
-            state(
-                'hide',
-                style({
-                    opacity: '0',
-                    transform: 'translateX(150px)',
-                }),
-                {
-                    params: {
-                        fadeInTime: 600,
-                        fadeOutTime: 600,
-                    },
+            state('hide', style({
+                opacity: '0',
+                transform: 'translateX(150px)',
+            }), {
+                params: {
+                    fadeInTime: 600,
+                    fadeOutTime: 600,
                 },
-            ),
-            state(
-                'show',
-                style({
-                    opacity: '1',
-                    transform: 'translateX(0px)',
-                }),
-                {
-                    params: {
-                        fadeOutTime: 600,
-                        fadeInTime: 600,
-                    },
+            }),
+            state('show', style({
+                opacity: '1',
+                transform: 'translateX(0px)',
+            }), {
+                params: {
+                    fadeOutTime: 600,
+                    fadeInTime: 600,
                 },
-            ),
+            }),
             transition('hide => show', animate(`{{ fadeInTime }}s ease-in`)),
             transition('show => hide', animate(`{{ fadeOutTime }}s ease-out`)),
         ]),
     ],
+    standalone: false
 })
 export class SliderItemComponent {
     @Input()

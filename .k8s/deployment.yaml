@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: ${KUBE_NAMESPACE}
+  name: frontend-deployment
+  labels:
+    app: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      nodeSelector:
+        ${WORKER_NODE_LABEL}
+      initContainers:
+        - name: wait-backend-init
+          image: busybox:latest
+          args:
+            - /bin/sh
+            - -c
+            - >
+              set -x;
+              while [ $(curl -sw '%{http_code}' "backend-service:8000/health" -o /dev/null) -ne 200 ]; do
+              sleep 15;
+              done
+      containers:
+        - name: frontend
+          image: ${IMAGE_BASE}:${TAG}
+          imagePullPolicy: "Always"
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "75m"
+            limits:
+              memory: "128Mi"
+              cpu: "256m"
+          ports:
+            - containerPort: 5000
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 5000
+            initialDelaySeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 5000
+            initialDelaySeconds: 10
+          envFrom:
+            - configMapRef:
+                name: frontend-config
+          env:
+            - name: PORT
+              value: "5000"

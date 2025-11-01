@@ -1,4 +1,4 @@
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {first, map, Observable, of, Subject,} from 'rxjs';
 import {catchError} from 'rxjs/operators';
@@ -16,8 +16,6 @@ export class AuthService {
 
     readonly BACKEND_PATH = environment.backendPath;
 
-    readonly BACKEND_OAUTH_PATH = environment.backendOAuthPath;
-
     constructor(private http: HttpClient) {}
     login(userAuthAtempt: User): void {
         this.validateUser(this.loginUser(userAuthAtempt));
@@ -25,14 +23,14 @@ export class AuthService {
 
     googleLogin() {
         window.open(
-            this.BACKEND_OAUTH_PATH + '/oauth2/authorization/google',
+            this.BACKEND_PATH + '/oauth2/authorization/google',
             '_self',
         );
     }
 
     githubLogin() {
         window.open(
-            this.BACKEND_OAUTH_PATH + '/oauth2/authorization/github',
+            this.BACKEND_PATH + '/oauth2/authorization/github',
             '_self',
         );
     }
@@ -112,7 +110,7 @@ export class AuthService {
         });
 
         return this.http
-            .get<User>(this.BACKEND_OAUTH_PATH + '/login/oauth2/code/google', {
+            .get<User>(this.BACKEND_PATH + '/login/oauth2/code/google', {
                 withCredentials: true,
                 params: params,
             })
@@ -125,7 +123,7 @@ export class AuthService {
         });
 
         return this.http
-            .get<User>(this.BACKEND_OAUTH_PATH + '/login/oauth2/code/github', {
+            .get<User>(this.BACKEND_PATH + '/login/oauth2/code/github', {
                 withCredentials: true,
                 params: params,
             })
