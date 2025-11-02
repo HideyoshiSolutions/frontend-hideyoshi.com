@@ -16,21 +16,12 @@ spec:
         app: frontend
     spec:
       nodeSelector:
-        ${WORKER_NODE_LABEL}
-      initContainers:
-        - name: wait-backend-init
-          image: busybox:latest
-          args:
-            - /bin/sh
-            - -c
-            - >
-              set -x;
-              while [ $(curl -sw '%{http_code}' "backend-service:8000/health" -o /dev/null) -ne 200 ]; do
-              sleep 15;
-              done
+        $WORKER_NODE_LABEL
+      imagePullSecrets:
+        - name: ghcr-login-secret
       containers:
         - name: frontend
-          image: ${IMAGE_BASE}:${TAG}
+          image: ${IMAGE_BASE}:${IMAGE_TAG}
           imagePullPolicy: "Always"
           resources:
             requests:

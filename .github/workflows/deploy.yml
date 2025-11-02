@@ -110,10 +110,7 @@ jobs:
               REPO=$(echo "${GITHUB_REPOSITORY#*/}" | tr '[:upper:]' '[:lower:]')
               
               IMAGE_BASE="ghcr.io/${OWNER}/${REPO}"
-              TAG="${{ github.event.inputs.tag || 'latest' }}"
-              
-              echo "Deploying image: ${IMAGE_BASE}:${TAG} to Kubernetes Namespace: ${KUBE_NAMESPACE}"
-              kubectl config use-context --current --namespace=${KUBE_NAMESPACE}
+              IMAGE_TAG="${{ github.event.inputs.tag || 'latest' }}"
 
               # Apply any other configuration changes if needed
               envsubst < .k8s/config.yml | kubectl apply -f -
