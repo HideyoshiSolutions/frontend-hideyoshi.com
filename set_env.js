@@ -1,6 +1,6 @@
 function getPrefix() {
     if (process.argv.includes('--prod') || process.argv.includes('-p')) {
-        return `${__dirname}/dist/frontend-hideyoshi.com`
+        return `${__dirname}/dist/frontend-hideyoshi.com/browser/`
     }
     return `${__dirname}/src`
 }

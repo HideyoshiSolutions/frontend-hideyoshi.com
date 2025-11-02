@@ -4,26 +4,25 @@ FROM base AS build
 
 WORKDIR /app
 
-COPY package*.json ./
+RUN npm install -g @angular/cli@20.3.8
 
-RUN npm install
+COPY package*.json ./
+RUN npm install --production
+
+COPY . .
+RUN npm run build:prod
 
 
 FROM base AS prod
 
 WORKDIR /app
 
-RUN apk add --update gettext python3 py3-pip py3-setuptools make g++ && \
-    rm -rf /var/cache/apk/*
-
-
 COPY --from=build /app/node_modules ./node_modules
-COPY . .
+COPY --from=build /app/dist ./dist
+COPY --from=build /app/server.js ./
+COPY --from=build /app/set_env.js ./
+COPY --from=build /app/package*.json ./
 
-
-RUN npm install -g @angular/cli@20.3.8
-
-RUN npm run build:prod
 
 EXPOSE 5000-7000
 
