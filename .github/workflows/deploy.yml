@@ -83,7 +83,15 @@ jobs:
         needs: [docker]
         runs-on: ubuntu-latest
         if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
-        environment: 'production'
+        environment: ${{ github.ref_name == 'main' && 'production' || 'dev' }}
+        env:
+          # Kubernetes Specific
+          KUBE_NAMESPACE: ${{ vars.KUBE_NAMESPACE }}
+          KUBE_DOMAIN: ${{ vars.KUBE_DOMAIN }}
+          WORKER_NODE_LABEL: ${{ vars.WORKER_NODE_LABEL }}
+          # Application Specific
+          BACKEND_URL: ${{ vars.BACKEND_URL }}
+          GH_USER: ${{ vars.GH_USER }}
 
         steps:
           - uses: actions/checkout@v4
