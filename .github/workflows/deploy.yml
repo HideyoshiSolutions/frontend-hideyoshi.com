@@ -97,11 +97,11 @@ jobs:
 
         steps:
           - uses: actions/checkout@v4
+          - uses: azure/setup-kubectl@v4
 
-          - name: Set up Kubeconfig
-            uses: azure/setup-kubectl@v3
+          - name: Set Up Kubeconfig
+            uses: azure/k8s-set-context@v4
             with:
-              method: kubeconfig
               kubeconfig: ${{ secrets.PORTFOLIO_KUBECONFIG }}
 
           - name: Prepare Image Tag
