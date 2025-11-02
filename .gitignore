@@ -46,5 +46,4 @@ Thumbs.db
 src/assets/env.js
 
 .env
-
 .secret

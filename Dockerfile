@@ -4,10 +4,8 @@ FROM base AS build
 
 WORKDIR /app
 
-RUN npm install -g @angular/cli@20.3.8
-
 COPY package*.json ./
-RUN npm install --production
+RUN npm install
 
 COPY . .
 RUN npm run build:prod
