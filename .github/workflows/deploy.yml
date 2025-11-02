@@ -83,7 +83,9 @@ jobs:
         needs: [docker]
         runs-on: ubuntu-latest
         if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
-        environment: ${{ github.ref_name == 'main' && 'production' || 'dev' }}
+        environment:
+          name: ${{ github.ref_name == 'main' && 'production' || 'dev' }}
+          url: https://${{ vars.KUBE_DOMAIN }}
         env:
           # Kubernetes Specific
           KUBE_NAMESPACE: ${{ vars.KUBE_NAMESPACE }}
@@ -111,6 +113,7 @@ jobs:
               TAG="${{ github.event.inputs.tag || 'latest' }}"
               
               echo "Deploying image: ${IMAGE_BASE}:${TAG} to Kubernetes Namespace: ${KUBE_NAMESPACE}"
+              kubectl config use-context --current --namespace=${KUBE_NAMESPACE}
 
               # Apply any other configuration changes if needed
               envsubst < .k8s/config.yml | kubectl apply -f -
