@@ -11,7 +11,7 @@ on:
 
 jobs:
     build:
-        runs-on: ubuntu-latest
+        runs-on: blacksmith-4vcpu-ubuntu-2404
 
         strategy:
             matrix:
@@ -30,7 +30,7 @@ jobs:
 
     docker:
         needs: [build]
-        runs-on: ubuntu-latest
+        runs-on: blacksmith-4vcpu-ubuntu-2404
         if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop')
         permissions:
           contents: read
@@ -43,8 +43,8 @@ jobs:
             - name: Set up QEMU
               uses: docker/setup-qemu-action@v3
 
-            - name: Set up Docker Buildx
-              uses: docker/setup-buildx-action@v3
+            - name: Setup Blacksmith Builder
+              uses: useblacksmith/setup-docker-builder@v1
 
             - name: Log in to GHCR
               uses: docker/login-action@v3
@@ -72,7 +72,7 @@ jobs:
                 echo "IMAGE_SHA=${IMAGE_BASE}:sha-${SHORT_SHA}" >> $GITHUB_ENV
 
             - name: Build and push Docker image (with registry cache)
-              uses: docker/build-push-action@v5
+              uses: useblacksmith/build-push-action@v2
               with:
                 context: .
                 push: true
@@ -80,12 +80,10 @@ jobs:
                 tags: |
                   ${{ env.IMAGE_LATEST }}
                   ${{ env.IMAGE_SHA }}
-                cache-from: type=registry,ref=${{ env.IMAGE_LATEST }}
-                cache-to: type=inline
 
     deploy:
         needs: [docker]
-        runs-on: ubuntu-latest
+        runs-on: blacksmith-4vcpu-ubuntu-2404
         if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
         environment:
           name: ${{ github.ref_name == 'main' && 'production' || 'dev' }}
