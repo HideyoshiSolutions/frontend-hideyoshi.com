@@ -80,8 +80,8 @@ jobs:
                 tags: |
                   ${{ env.IMAGE_LATEST }}
                   ${{ env.IMAGE_SHA }}
-                cache-from: type=registry,ref=${{ env.IMAGE_LATEST }}
-                cache-to: type=inline
+                cache-from: type=registry,ref=ghcr.io/hideyoshisolutions/frontend-hideyoshi.com:cache
+                cache-to: type=registry,ref=ghcr.io/hideyoshisolutions/frontend-hideyoshi.com:cache,mode=max
 
     deploy:
         needs: [docker]
