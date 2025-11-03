@@ -57,17 +57,17 @@ jobs:
               run: |
                 OWNER=$(echo "${GITHUB_REPOSITORY_OWNER}" | tr '[:upper:]' '[:lower:]')
                 REPO=$(echo "${GITHUB_REPOSITORY#*/}" | tr '[:upper:]' '[:lower:]')
-      
+
                 # Determine tag
                 if [ "${GITHUB_REF_NAME}" = "main" ]; then
                   TAG="latest"
                 else
                   TAG="dev"
                 fi
-      
+
                 SHORT_SHA=$(echo "${GITHUB_SHA}" | cut -c1-7)
                 IMAGE_BASE="ghcr.io/${OWNER}/${REPO}"
-      
+
                 echo "IMAGE_LATEST=${IMAGE_BASE}:${TAG}" >> $GITHUB_ENV
                 echo "IMAGE_SHA=${IMAGE_BASE}:sha-${SHORT_SHA}" >> $GITHUB_ENV
 
@@ -112,10 +112,11 @@ jobs:
             run: |
               OWNER=$(echo "${GITHUB_REPOSITORY_OWNER}" | tr '[:upper:]' '[:lower:]')
               REPO=$(echo "${GITHUB_REPOSITORY#*/}" | tr '[:upper:]' '[:lower:]')
-              
+              SHORT_SHA=$(echo "${GITHUB_SHA}" | cut -c1-7)
+
               IMAGE_BASE="ghcr.io/${OWNER}/${REPO}"
-              IMAGE_TAG="${{ github.event.inputs.tag || 'latest' }}"
-              
+              IMAGE_TAG="sha-${SHORT_SHA}"
+
               echo "IMAGE_BASE=${IMAGE_BASE}" >> $GITHUB_ENV
               echo "IMAGE_TAG=${IMAGE_TAG}" >> $GITHUB_ENV
 
