@@ -1,12 +1,34 @@
-node_modules/*
-dist/*
-.k8s/*
-.github/*
+# Node and build artifacts
+node_modules
+dist
+.DS_Store
+npm-debug.log
+yarn-error.log
+.lock-wscript
 
-.gitignore
-.dockerignore
-Dockerfile
-README.md
-
+# Local env files and editor stuff
 .env
-.secret
+.env.*
+.secrets
+.secrets.*
+.vscode
+.idea
+*.swp
+
+# Git
+.git
+.gitignore
+
+# Kubernetes manifests, CI, Dockerfiles (if you intentionally want them out of build context)
+.k8s
+.github
+Dockerfile
+
+# tests and misc
+coverage
+tests
+
+# keep package files
+!package*.json
+!package-lock.json
+
