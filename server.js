@@ -7,22 +7,17 @@ const PKG_NAME = "frontend-hideyoshi.com";
 
 const app = express();
 app.use(cors());
+app.use(compression());
 
-function shouldCompress (req, res) {
-  if (req.headers['x-no-compression']) {
-    // don't compress responses with this request header
-    return false
-  }
-
-  // fallback to standard filter function
-  return compression.filter(req, res)
-}
-
-app.use(compression({ filter: shouldCompress }))
-app.use(express.static(`${__dirname}/dist/${PKG_NAME}`));
+const distFolder = path.join(process.cwd(), `dist/${PKG_NAME}/browser`);
+app.use(express.static(distFolder, {
+    maxAge: '1y'
+}));
 
 app.get("/*", (req, res) => {
     res.sendFile(path.join(`${__dirname}/dist/${PKG_NAME}/index.html`));
 });
 
-app.listen(process.env.PORT || 5000);
+app.listen(process.env.PORT || 5000, () => {
+    console.log(`Node Express server for ${PKG_NAME} listening on http://localhost:${process.env.PORT || 5000}`);
+});
