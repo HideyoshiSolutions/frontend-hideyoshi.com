@@ -15,7 +15,7 @@ app.use(express.static(distFolder, {
 }));
 
 app.get("/*", (req, res) => {
-    res.sendFile(path.join(`${__dirname}/dist/${PKG_NAME}/index.html`));
+    res.sendFile(path.join(`${__dirname}/dist/${PKG_NAME}/browser/index.html`));
 });
 
 app.listen(process.env.PORT || 5000, () => {
