@@ -1,11 +1,12 @@
-node_modules
-dist
+node_modules/*
+dist/*
+.k8s/*
+.github/*
 
-.github
 .gitignore
+.dockerignore
 Dockerfile
 README.md
-.k8s
 
 .env
 .secret
