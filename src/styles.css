@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&display=swap');
-@import "font-montserrat.css";
+@import "assets/fonts/Hind/font-hind.css";
+@import "assets/fonts/Montserrat/font-montserrat.css";
+@import "assets/fonts/Poppins/font-poppins.css";
 
 * {
     padding: 0 auto;

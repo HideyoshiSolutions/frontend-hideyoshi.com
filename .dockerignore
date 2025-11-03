@@ -1,5 +1,11 @@
+node_modules
+dist
+
 .github
 .gitignore
 Dockerfile
 README.md
 .k8s
+
+.env
+.secret

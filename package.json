@@ -30,6 +30,7 @@
     "@sinclair/typebox": "^0.32.4",
     "apexcharts": "^3.45.1",
     "bootstrap": "^4.6.2",
+    "compression": "^1.8.1",
     "cookieconsent": "^3.1.1",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
@@ -47,6 +48,7 @@
     "zone.js": "~0.15.1"
   },
   "devDependencies": {
+    "@angular-devkit/build-angular": "^20.3.8",
     "@angular-eslint/builder": "^19.8.1",
     "@angular-eslint/eslint-plugin": "^20.5.0",
     "@angular-eslint/eslint-plugin-template": "^20.5.0",
