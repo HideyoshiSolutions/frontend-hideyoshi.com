@@ -121,13 +121,15 @@ jobs:
               echo "IMAGE_TAG=${IMAGE_TAG}" >> $GITHUB_ENV
 
           - name: Apply Kubernetes Manifests - Configuration
-            run: envsubst < .k8s/config.yml | kubectl apply -f -
+            run: cat .k8s/config.yml | envsubst | kubectl apply -f -
 
           - name: Apply Kubernetes Manifests - Deployment
-            run: envsubst < .k8s/deployment.yaml | kubectl apply -f -
+            run: |
+                cat .k8s/deployment.yaml | envsubst | kubectl apply -f -
+                cat .k8s/deployment.yaml | envsubst | kubectl rollout status deployment/frontend-deployment -n ${KUBE_NAMESPACE} --timeout=120s
 
           - name: Apply Kubernetes Manifests - Service
-            run: envsubst < .k8s/service.yaml | kubectl apply -f -
+            run: cat .k8s/service.yaml | envsubst | kubectl apply -f -
 
           - name: Apply Kubernetes Manifests - Ingress
-            run: envsubst < .k8s/ingress.yaml | kubectl apply -f -
+            run: cat .k8s/ingress.yaml | envsubst | kubectl apply -f -
