@@ -18,7 +18,7 @@ spec:
       nodeSelector:
         $WORKER_NODE_LABEL
       imagePullSecrets:
-        - name: ghcr-login-secret
+        - name: ghcr-secret
       containers:
         - name: frontend
           image: ${IMAGE_BASE}:${IMAGE_TAG}
