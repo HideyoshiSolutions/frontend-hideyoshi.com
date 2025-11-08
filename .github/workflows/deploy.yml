@@ -7,7 +7,6 @@ on:
         tag:
           description: 'Tag to deploy'
           required: false
-          default: 'latest'
 
 jobs:
     build:
@@ -115,7 +114,10 @@ jobs:
               SHORT_SHA=$(echo "${GITHUB_SHA}" | cut -c1-7)
 
               IMAGE_BASE="ghcr.io/${OWNER}/${REPO}"
-              IMAGE_TAG="sha-${SHORT_SHA}"
+              IMAGE_TAG="${{ github.event.inputs.tag || '' }}"
+              if [ -z "$IMAGE_TAG" ]; then
+                IMAGE_TAG="sha-$SHORT_SHA"
+              fi
 
               echo "IMAGE_BASE=${IMAGE_BASE}" >> $GITHUB_ENV
               echo "IMAGE_TAG=${IMAGE_TAG}" >> $GITHUB_ENV
