@@ -12,7 +12,7 @@ spec:
   tls:
     - hosts:
         - ${KUBE_DOMAIN}
-      secretName: letsencrypt-cluster-certificate-tls
+      secretName: frontend-tls
   rules:
     - host: ${KUBE_DOMAIN}
       http:
